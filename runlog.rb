@@ -6,7 +6,6 @@ password = ARGV.shift
 
 CURRENT_DIR = Dir.pwd
 
-PROPSFILE = "--defaultsFile=/Users/srb55/projects/db-scripts/liquibase.properties"
 CLASSPATH = "--classpath=#{CURRENT_DIR}/lib/ojdbc6-11.2.0.3.jar"
 
 DBURL = "--url=jdbc:oracle:thin:@ldap://oidmaster1.cit.cornell.edu:389/#{instance},cn=oraclecontext"
