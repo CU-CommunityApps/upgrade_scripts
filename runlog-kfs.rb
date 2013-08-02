@@ -27,6 +27,7 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => kfs_changel
             {:name => "kfs/5.0_5.0.1", :version => 2, :changelogs => kfs_changelogs }, 
             {:name => "kfs/5.0.1_5.0.2", :version => 2, :changelogs => kfs_changelogs },
             {:name => "kfs/5.0.2_5.0.3", :version => 2, :changelogs => kfs_changelogs },  
+            {:name => "custom/kfs/ld", :version => 2, :changelogs => ['ld-module-customizations.xml'] },
           ]
           
 folders.each do |folder|
