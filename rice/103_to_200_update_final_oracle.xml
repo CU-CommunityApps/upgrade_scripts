@@ -7304,7 +7304,7 @@
 			insert into krim_perm_t
 			(perm_id, perm_tmpl_id, nmspc_cd, nm, desc_txt, actv_ind, ver_nbr, obj_id)
 			values ((select (max(to_number(perm_id)) + 1) from krim_perm_t where perm_id is not NULL and regexp_like(perm_id, '^[1-9][0-9]{0,3}$') ),
-			        (select perm_tmpl_id from krim_perm_tmpl_t where nm = 'Create / Maintain Record(s)' and nmspc_cd = 'KR-NS'),
+			        (select perm_tmpl_id from krim_perm_tmpl_t where nm = 'Create Maintain Record(s)' and nmspc_cd = 'KR-NS'),
 			        'KR-NS','Create Term Maintenance Document','Allows user to create a new Term maintainence document','Y',1,
 			        '0dbce939-4f22-4e9b-a4bb-1615c0f411a2')
 			/
@@ -7326,7 +7326,7 @@
 			insert into krim_perm_t
 			(perm_id, perm_tmpl_id, nmspc_cd, nm, desc_txt, actv_ind, ver_nbr, obj_id)
 			values ((select (max(to_number(perm_id)) + 1) from krim_perm_t where perm_id is not NULL and regexp_like(perm_id, '^[1-9][0-9]{0,3}$') ),
-			        (select perm_tmpl_id from krim_perm_tmpl_t where nm = 'Create / Maintain Record(s)' and nmspc_cd = 'KR-NS'),
+			        (select perm_tmpl_id from krim_perm_tmpl_t where nm = 'Create Maintain Record(s)' and nmspc_cd = 'KR-NS'),
 			        'KR-NS','Create Context Maintenance Document','Allows user to create a new Context maintainence document','Y',1,
 			        'cefeed6d-b5e2-40aa-9034-137db317b532')
 			/
@@ -7348,7 +7348,7 @@
 			insert into krim_perm_t
 			(perm_id, perm_tmpl_id, nmspc_cd, nm, desc_txt, actv_ind, ver_nbr, obj_id)
 			values ((select (max(to_number(perm_id)) + 1) from krim_perm_t where perm_id is not NULL and regexp_like(perm_id, '^[1-9][0-9]{0,3}$') ),
-			        (select perm_tmpl_id from krim_perm_tmpl_t where nm = 'Create / Maintain Record(s)' and nmspc_cd = 'KR-NS'),
+			        (select perm_tmpl_id from krim_perm_tmpl_t where nm = 'Create Maintain Record(s)' and nmspc_cd = 'KR-NS'),
 			        'KR-NS','Create TermSpecification Maintenance Document','Allows user to create a new TermSpecification maintainence document','Y',1,
 			        '02bd9acd-48d9-4fec-acbd-6a441c5ea8c2')
 			/

@@ -32,6 +32,7 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_
                                                                     'rice/kim_upgrade_optional.xml', 
                                                                     'rice/kim_upgrade.xml', 
                                                                     'rice/kim_security_module.xml'] }, 
+            {:name => "kfs/4.1_4.1.1", :version => 2, :changelogs => ['rice/kns_upgrade.xml'] },
             {:name => "rice", :version => 3, :changelogs => [
                                                              '1011_to_102_update_final_oracle.xml', 
                                                              '102_to_103_update_final_oracle.xml',
@@ -47,7 +48,7 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_
                                                              '221_to_222_cleanup_final_oracle.xml',
                                                              '223_to_224_update_final_oracle.xml'
                                                              ]},
-            {:name => "kfs/4.1_4.1.1", :version => 2, :changelogs => ['rice/kns_upgrade.xml'] },
+            
             {:name => "kfs/4.1.1_5.0", :version => 2, :changelogs => ['rice_server/rice-server-script.xml',
                                                                       'rice_server/parameter_updates.xml',
                                                                       'rice_server/kim_upgrade_pre_rice_20.xml',

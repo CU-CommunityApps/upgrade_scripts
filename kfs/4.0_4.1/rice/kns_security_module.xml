@@ -16,7 +16,8 @@
 -->
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
 
-	<changeSet author="KFS41" id="SEC_NAMESPACE">
+<!-- KFSUPGRADE-56 CU Customization we already have access security
+	<changeSet author="KFS41" id="SEC_NAMESPACE" >
 		<comment>Add the Security Module Namespace code</comment>
 		<insert tableName="KRNS_NMSPC_T">
 			<column name="NMSPC_CD" value="KFS-SEC" />
@@ -30,6 +31,7 @@
 			<replace replace="SYS_GUID" with="UUID" />
 		</modifySql>
     </changeSet>
+-->
 
 	<!-- Add the standard components for the KFS-SEC namespace -->    
 	<changeSet author="KFS41" id="SEC_PARAMETER_DETAIL_TYPES">

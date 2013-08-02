@@ -34,7 +34,7 @@
 			</addColumn>
 
 		</changeSet>
-		<changeSet author="srb55,cab379" id="KFS_50_Create_LD_LBR_BFT_RT_CAT_T">
+		<changeSet author="srb55,cab379" id="KFS_50_Create_CA_ACCOUNT_T_LD_LBR_BFT_RT_CAT_T">
 			<comment>KFSUPGRADE-7 DI enter an account and recieve error *error looking up account*</comment>
 			
 			<addColumn tableName="LD_BENEFITS_CALC_T">
