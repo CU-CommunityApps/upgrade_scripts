@@ -1,0 +1,19 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="cah292" id="223-224-cleanup" failOnError="false">
+		<comment>rice conversion for 2.2.3 to 2.2.4</comment>
+	    <sql stripComments="true" endDelimiter="/">
+			<![CDATA[
+				UPDATE KRNS_PESSIMISTIC_LOCK_T SET SESN_ID = 'undefined' WHERE SESN_ID IS NULL OR SESN_ID = ''
+				/
+				ALTER TABLE KRNS_PESSIMISTIC_LOCK_T MODIFY (SESN_ID DEFAULT 'undefined')
+				/
+			]]>
+	 	</sql>
+	</changeSet>
+</databaseChangeLog>

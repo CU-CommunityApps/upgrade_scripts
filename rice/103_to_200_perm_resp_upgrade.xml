@@ -1,0 +1,27 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="cah292" id="103-200-perm-resp" failOnError="false">
+		<comment>rice conversion for 1.0.3 to 2.0 permission and responsibility changes</comment>
+	    <sql stripComments="true" endDelimiter="/">
+			BEGIN
+				FOR perm_to_update IN (SELECT PERM_ID,NMSPC_CD,NM FROM KRIM_PERM_T WHERE (NMSPC_CD,NM) IN
+						(SELECT NMSPC_CD,NM FROM KRIM_PERM_T GROUP BY NMSPC_CD,NM HAVING COUNT(*) > 1))
+				LOOP
+					UPDATE KRIM_PERM_T SET NM = perm_to_update.NM || ' ' || perm_to_update.PERM_ID WHERE PERM_ID = perm_to_update.PERM_ID;
+				END LOOP;
+
+				FOR resp_to_update IN (SELECT RSP_ID,NMSPC_CD,NM FROM KRIM_RSP_T WHERE (NMSPC_CD,NM) IN
+						(SELECT NMSPC_CD,NM FROM KRIM_RSP_T GROUP BY NMSPC_CD,NM HAVING COUNT(*) > 1))
+				LOOP
+					UPDATE KRIM_RSP_T SET NM = resp_to_update.NM || ' ' || resp_to_update.RSP_ID WHERE RSP_ID = resp_to_update.RSP_ID;
+				END LOOP;
+			END;
+			/
+	 	</sql>
+	</changeSet>
+</databaseChangeLog>

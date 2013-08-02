@@ -112,6 +112,8 @@
 		</modifySql>
     </changeSet>
 
+
+
 	<changeSet author="KFS41" id="SEC_KIM_TYPE_ATTRIBUTES">
 		<comment>Add the new KIM types attributes for the Access Security Module</comment>
 		<insert tableName="KRIM_TYP_ATTR_T">
@@ -204,7 +206,7 @@
 			<replace replace="SYS_GUID" with="UUID" />
 		</modifySql>
     </changeSet>
-
+<!-- CU MOD KFSUPGRADE-55 we already have these guys since we have the access security mod
 	<changeSet author="KFS41" id="SEC_KIM_PERMISSION_TEMPLATES">
 		<comment>Add the new KIM permission templates for the Access Security Module</comment>
 	
@@ -283,7 +285,7 @@
 		</modifySql>
 	</changeSet>
 
-	
+	-->
 	<changeSet author="KFS41" id="SEC_INIT_DOC_PERM">
 		
 		<insert tableName="KRIM_PERM_T">

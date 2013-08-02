@@ -1,0 +1,56 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+		<changeSet author="srb55,cab379" id="KFS_50_Create_LD_LBR_BFT_RT_CAT_T">
+			<comment>KFSMI-6987 Employee Benefit Expense Calculation -- with CU customizations</comment>
+			
+			<renameColumn 
+		            newColumnName="ACTV_IND"
+		            oldColumnName="ACT_IND"
+		            tableName="LD_LBR_BFT_RT_CAT_T"/>
+			
+			<renameColumn 
+		            newColumnName="LBR_BEN_RT_CAT_NM"
+		            oldColumnName="CODE_DESC"
+		            tableName="LD_LBR_BFT_RT_CAT_T"/>
+		
+			<renameColumn 
+		            newColumnName="LBR_BEN_RT_CAT_CD"
+		            oldColumnName="CODE"
+		            tableName="LD_LBR_BFT_RT_CAT_T"/>
+		
+			<addColumn tableName="LD_LBR_OBJ_BENE_T">
+				<column name="LBR_BEN_RT_CAT_CD" type="VARCHAR2(2)" />
+			</addColumn>
+
+			<addColumn tableName="LD_BENEFITS_CALC_T">
+				<column name="LBR_BEN_RT_CAT_CD" type="VARCHAR2(2)" defaultValue="--" />
+				<column name="OFFSET_FIN_OBJECT_CD" type="VARCHAR2(4)"/>
+				<column name="OFFSET_ACCOUNT_NBR" type="VARCHAR2(7)"/>
+			</addColumn>
+
+		</changeSet>
+		<changeSet author="srb55,cab379" id="KFS_50_Create_LD_LBR_BFT_RT_CAT_T">
+			<comment>KFSUPGRADE-7 DI enter an account and recieve error *error looking up account*</comment>
+			
+			<addColumn tableName="LD_BENEFITS_CALC_T">
+				<column name="LBR_BEN_RT_CAT_CD" type="VARCHAR2(2)" defaultValue="--" />
+			</addColumn>
+			
+			<sql stripComments="true" endDelimiter="/">
+				<![CDATA[
+					UPDATE CA_ACCOUNT_T A
+					    SET LBR_BEN_RT_CAT_CD = 
+					(SELECT LBR_BEN_RT_CAT_CD 
+					   FROM CA_ACCOUNT_TX C 
+					  WHERE C.fin_coa_cd = A.fin_coa_cd and A.account_nbr=C.account_nbr)
+					/
+				]]>
+		 	</sql>
+		
+		</changeSet>	
+</databaseChangeLog>

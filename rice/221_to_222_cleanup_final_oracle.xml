@@ -1,0 +1,22 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="cah292" id="221-222-cleanup" failOnError="false">
+		<comment>rice conversion for 2.2.1 to 2.2.2 cleanup</comment>
+	    <sql stripComments="true" endDelimiter="/">
+			<![CDATA[
+				--
+				-- KULRICE-9152: PK for krad_msg_t is too long for MySQL 5.1
+				--
+
+				-- drop old table
+				drop table old_krad_msg_t
+				/
+			]]>
+	 	</sql>
+	</changeSet>
+</databaseChangeLog>
