@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-		<changeSet author="srb55,cab379" id="KFS_50_Create_LD_LBR_BFT_RT_CAT_T">
+		<changeSet author="srb55,cab379" id="KFS_50_Create_LD_LBR_BFT_RT_CAT_T" failOnError="false">
 			<comment>KFSMI-6987 Employee Benefit Expense Calculation -- with CU customizations</comment>
 			
 			<renameColumn 
@@ -28,16 +28,15 @@
 			</addColumn>
 
 			<addColumn tableName="LD_BENEFITS_CALC_T">
-				<column name="LBR_BEN_RT_CAT_CD" type="VARCHAR2(2)" defaultValue="--" />
 				<column name="OFFSET_FIN_OBJECT_CD" type="VARCHAR2(4)"/>
 				<column name="OFFSET_ACCOUNT_NBR" type="VARCHAR2(7)"/>
 			</addColumn>
 
 		</changeSet>
-		<changeSet author="srb55,cab379" id="KFS_50_Create_CA_ACCOUNT_T_LD_LBR_BFT_RT_CAT_T">
+		<changeSet author="srb55,cab379" id="KFS_50_Create_CA_ACCOUNT_T_LD_LBR_BFT_RT_CAT_T" failOnError="false">
 			<comment>KFSUPGRADE-7 DI enter an account and recieve error *error looking up account*</comment>
 			
-			<addColumn tableName="LD_BENEFITS_CALC_T">
+			<addColumn tableName="CA_ACCOUNT_T">
 				<column name="LBR_BEN_RT_CAT_CD" type="VARCHAR2(2)" defaultValue="--" />
 			</addColumn>
 			

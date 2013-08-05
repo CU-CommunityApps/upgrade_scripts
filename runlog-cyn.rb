@@ -49,9 +49,8 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_
                                                              '223_to_224_update_final_oracle.xml'
                                                              ]},
             
-            {:name => "kfs/4.1.1_5.0", :version => 2, :changelogs => ['rice_server/rice-server-script.xml',
+            {:name => "kfs/4.1.1_5.0", :version => 2, :changelogs => [#'rice_server/rice-server-script.xml',
                                                                       'rice_server/parameter_updates.xml',
-                                                                      'rice_server/kim_upgrade_pre_rice_20.xml',
                                                                       'rice_server/kim_upgrade.xml',
                                                                       'rice_server/kew_upgrade.xml'] },
             {:name => "kfs/5.0_5.0.1", :version => 2, :changelogs => rice_changelogs},
