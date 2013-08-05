@@ -31,9 +31,8 @@
 			<replace replace="SYS_GUID" with="UUID" />
 		</modifySql>
     </changeSet>
--->
 
-	<!-- Add the standard components for the KFS-SEC namespace -->    
+
 	<changeSet author="KFS41" id="SEC_PARAMETER_DETAIL_TYPES">
 		<insert tableName="KRNS_PARM_DTL_TYP_T">
 			<column name="NMSPC_CD" value="KFS-SEC" />
@@ -151,6 +150,6 @@
 		<modifySql dbms="mysql">
 			<replace replace="SYS_GUID" with="UUID" />
 		</modifySql>
-    </changeSet>
+    </changeSet>-->
 
 </databaseChangeLog>

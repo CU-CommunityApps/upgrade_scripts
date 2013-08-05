@@ -32,7 +32,7 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_
                                                                     'rice/kim_upgrade_optional.xml', 
                                                                     'rice/kim_upgrade.xml', 
                                                                     'rice/kim_security_module.xml'] }, 
-            {:name => "kfs/4.1_4.1.1", :version => 2, :changelogs => ['rice/kns_upgrade.xml'] },
+            {:name => "kfs/4.1_4.1.1", :version => 1, :changelogs => ['rice/kns_upgrade.xml'] },
             {:name => "rice", :version => 3, :changelogs => [
                                                              '1011_to_102_update_final_oracle.xml', 
                                                              '102_to_103_update_final_oracle.xml',

@@ -8,7 +8,7 @@
 			<column name='PARM_DTL_TYP_CD' value='BudgetAdjustment' />
 			<column name='PARM_NM'
 				value='RESEARCH_ADMIN_INCOME_OBJECT_CODE_BY_SPONSOR_TYPE' />
-			<column name='OBJ_ID' valueNumeric='KFS619' />
+			<column name='OBJ_ID' value='KFS619' />
 			<column name='VER_NBR' valueNumeric='1' />
 			<column name='PARM_TYP_CD' value='CONFG' />
 			<column name='PARM_DESC_TXT'
@@ -21,7 +21,7 @@
 			<column name='PARM_DTL_TYP_CD' value='Account' />
 			<column name='PARM_NM' value='KC_OVERRIDES_KFS_DEFAULT_ACCOUNT_IND' />
 			<column name='TXT' value='Y' />
-			<column name='OBJ_ID' valueNumeric='KFSCOA124' />
+			<column name='OBJ_ID' value='KFSCOA124' />
 			<column name='VER_NBR' valueNumeric='1' />
 			<column name='PARM_TYP_CD' value='CONFG' />
 			<column name='PARM_DESC_TXT'
