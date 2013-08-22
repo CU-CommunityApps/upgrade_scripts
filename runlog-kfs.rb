@@ -18,6 +18,7 @@ LIQUIBASE_3_0_2_CMD = "java -jar #{CURRENT_DIR}/lib/liquibase-3.0.2.jar --logLev
 
 #liqiubase changelogs to process in each folder
 kfs_changelogs = [ 'db/master-structure-script.xml', 'db/master-data-script.xml', 'db/master-constraint-script.xml']
+kfs_changelogs_with_rice_client = [ 'db/master-structure-script.xml', 'db/master-data-script.xml', 'db/master-constraint-script.xml', 'db/rice-client-script.xml']
 
 ## folders in the correct order
 folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => kfs_changelogs }, 
