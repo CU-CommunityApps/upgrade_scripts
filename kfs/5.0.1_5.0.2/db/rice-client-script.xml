@@ -43,7 +43,7 @@ ALTER TABLE KRNS_PESSIMISTIC_LOCK_T MODIFY (SESN_ID DEFAULT 'undefined');
 		]]></sql>		
 	</changeSet>
 	<changeSet author="RICE216" id="RICE_CLIENT_UPDATES_mysql" dbms="mysql">
-		<sqlFile path="rice_216_client_final_mysql.sql" />
+		<sqlFile path="db/rice_216_client_final_mysql.sql" />
 	</changeSet>
 	
 </databaseChangeLog>
