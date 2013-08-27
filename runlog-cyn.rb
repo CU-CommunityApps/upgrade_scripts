@@ -20,6 +20,8 @@ rice_changelogs = [#'rice_server/rice-server-script.xml',
                    'rice_server/parameter_updates.xml',
                    'rice_server/kim_upgrade.xml',
                    'rice_server/kew_upgrade.xml']
+
+custom_changelogs = ['krim_rsp_t_update.xml']
                    
 # folders in the correct order
 folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_upgrade.xml', 
@@ -56,6 +58,7 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_
             {:name => "kfs/5.0_5.0.1", :version => 2, :changelogs => rice_changelogs},
             {:name => "kfs/5.0.1_5.0.2", :version => 2, :changelogs => rice_changelogs },
             {:name => "kfs/5.0.2_5.0.3", :version => 2, :changelogs => rice_changelogs },
+            {:name => "custom/rice", :version => 3, :changelogs => custom_changelogs },
           ]
           
 folders.each do |folder|
