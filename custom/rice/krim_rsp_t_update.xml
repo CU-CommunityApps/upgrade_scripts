@@ -8,7 +8,7 @@
 	 <changeSet author="srb55" id="KFSUPGRADE-89" failOnError="false">
 		<comment>There was a change in rice that want all version numbers to be > 0</comment>
 		    <update tableName="krim_rsp_t">
-		      <column name="ver_nbr" value="0" />
+		      <column name="ver_nbr" value="1" />
 		      <where>ver_nbr = 0</where>
 		    </update>
 	</changeSet>
