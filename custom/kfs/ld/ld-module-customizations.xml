@@ -33,6 +33,7 @@
 			</addColumn>
 
 		</changeSet>
+		
 		<changeSet author="srb55,cab379" id="KFS_50_Create_CA_ACCOUNT_T_LD_LBR_BFT_RT_CAT_T" failOnError="false">
 			<comment>KFSUPGRADE-7 DI enter an account and recieve error *error looking up account*</comment>
 			
@@ -51,5 +52,7 @@
 				]]>
 		 	</sql>
 		
-		</changeSet>	
+			<dropColumn tableName="CA_ACCOUNT_TX" columnName="LBR_BEN_RT_CAT_CD" />	
+		</changeSet>
+			
 </databaseChangeLog>
