@@ -21,7 +21,8 @@ rice_changelogs = [#'rice_server/rice-server-script.xml',
                    'rice_server/kim_upgrade.xml',
                    'rice_server/kew_upgrade.xml']
 
-custom_changelogs = ['krim_rsp_t_update.xml']
+custom_changelogs = ['krim_rsp_t_update.xml',
+                     'krim_ext_id_typ_t_no_encrypyt.xml']
                    
 # folders in the correct order
 folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_upgrade.xml', 

@@ -1,0 +1,22 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="srb55" id="KFSUPGRADE-174" failOnError="false">
+		<comment>
+			We dont store any sensitive data in our kim tables and 
+			the data is stored in clear text.  This data is fed in through 
+			the kim feed and is not changed through rice docs.  However
+			we have turned on the encryption required flag for the tax id 
+			field.  This causes constant problems with KIM trying to decrypt
+			plain text data.
+		</comment>
+		    <update tableName="KRIM_EXT_ID_TYP_T">
+		      <column name="ENCR_REQ_IND" value="N" />
+		      <where>EXT_ID_TYP_CD = 'TAX'</where>
+		    </update>
+	</changeSet>
+</databaseChangeLog>
