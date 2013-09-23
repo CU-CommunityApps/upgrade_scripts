@@ -1,0 +1,374 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">;
+
+<changeSet author="cab379" id="createProcedure-example" failOnError="false">
+    <createProcedure comments="A String">
+create or replace 
+PROCEDURE         AUTO_CANCEL_FYI_ACK is
+--*--------------------------------------------------------------------*
+--*                                                                    *
+--*  NAME: KFSXS054.sql      AUTHOR: J Walker@CSU    DATE: 07/16/2010  *
+--* TITLE: Auto Acknowledge FYIs older than 900 days                    *
+--*                                                                    *
+--* DATE       INIT SSR # REASON FOR THE CHANGE                        *
+--* ---------- ---- ----- ---------------------------------------------*
+--* 07/16/2010  JAW I02889. Create new program.                        *
+--* 08/26/2010  JAW I02889. Split FYI and ACKnowledgements.            *
+--* 09/14/2010  JAW I02899. Remove actions lists entrees.              *
+--* 10/19/2010  KLM T06048. Delete GL pending entries.                 *
+--* mm/dd/ccyy  XX  nnnnn xxxx                                         *
+--*                                                                    *
+--* MM/DD/CCYY-INIT-CLARITY#--DESCRIPTION OF CHANGE                    *
+--* ------------------------------------------------------------------ *
+--* 07/12/2011--JC--T07168--Correct the data type on the C3 join       *
+--* mm/dd/ccyy--xx--Tnnnnn--Description-last line of modlog-don't delete
+--*                                                                    *
+--*--------------------------------------------------------------------*
+--*--------------------------------------------------------------------*
+--* NOTE: Always keep the mm/dd/yyyy template entry in above modlog    *
+--*       Insert latest modlog entry above mm/dd/yy template entry.    *
+--*       For CLARITY#:                                                *
+--*       use Tnnnnn for Clarity Task# or Innnnn for Clarity Incident# *
+--*--------------------------------------------------------------------*
+
+--*
+--*  TURN ON ECHO FEATURE AND DISPLAY OF OUTPUT
+
+--  set serveroutput on size 1000000
+--  set termout on
+--  set feedback on
+--  set echo on
+--  set verify on
+--  set timing on
+
+--*  EXITS SQL*PLUS WHEN OPERATING SYSTEM ERROR OCCURS
+--whenever oserror exit failure rollback
+
+--*  EXITS SQL*PLUS WHEN SQL COMMAND OR PL/SQL BLOCK GENERATES AN ERROR
+--whenever sqlerror exit failure rollback
+--
+
+--declare
+
+-- Counters
+
+    v_count          number(8) :=0;
+    v_count_ack      number(8) :=0;
+    v_count_not_kfs  number(8) :=0;
+    v_count_updated  number(8) :=0;
+    v_count_updated_ack number(8) :=0;
+    v_count_error    number(8) :=0;
+    v_count_error_ack number(8) :=0;
+    v_char_days      varchar2(3) := '';
+    v_fyi_age_days   number    :=0;
+    v_ack_age_days   number    :=0;
+    v_count_excluded number    :=0;
+    v_count_excluded_ack number :=0;
+
+-- variables
+
+    v_taken_fyi_msg   varchar2(40) := '';
+    v_taken_ack_msg   varchar2(40) := '';
+    v_rqst_fyi_msg    varchar2(1000) := '';
+    v_rqst_ack_msg    varchar2(1000) := '';
+    v_kfs_user    varchar2(40) := '2';
+    action_id     number :=0;
+    is_child_of_kfs  boolean := false;
+    parent_id     number := 0;
+    doc_type      varchar2(64) := '';
+    v_parm        varchar2(200) := '';
+    exclude_doc_type number := 0;
+    approver_nm   varchar2(100) := '';
+
+Cursor C1 is -- FYI Cursor
+select * from krew_actn_rqst_t
+where actn_rqst_cd = 'F' -- F is fyi and K is Acknowledge
+and stat_cd != 'D'
+and (trunc(crte_dt) + v_fyi_age_days) <= trunc(sysdate);
+
+Cursor C2 is -- ACK Cursor
+select * from krew_actn_rqst_t
+where actn_rqst_cd = 'K' -- F is fyi and K is Acknowledge
+and stat_cd != 'D'
+and (trunc(crte_dt) + v_ack_age_days) <= trunc(sysdate);
+
+Cursor C3 is -- Cancelled docs with Pending Entries
+select t1.doc_hdr_id, t2.doc_typ_nm
+  from krew_doc_hdr_t t1, krew_doc_typ_t t2
+where t1.doc_hdr_stat_cd = 'X' -- cancelled
+and t1.doc_typ_id = t2.doc_typ_id
+and exists (Select 1 from gl_pending_entry_t@kfs.cit.cornell.edu
+               where fdoc_nbr = to_char(t1.doc_hdr_id))
+order by 1;
+
+
+Procedure child_of_kfs (doc_nbr varchar2)
+is
+Begin
+  -- Get doc type for document number, then find parent
+  select doc_typ_id into parent_id from krew_doc_hdr_t
+  where doc_hdr_id = doc_nbr;
+  select parnt_id, doc_typ_nm into parent_id, doc_type from krew_doc_typ_t
+  where doc_typ_id = parent_id;
+
+  -- Loop thru all children/parent docs looking for KFS
+  Loop
+    select parnt_id, doc_typ_nm into parent_id, doc_type from krew_doc_typ_t
+    where doc_typ_id = parent_id;
+
+    if doc_type = 'KFS' then
+      is_child_of_kfs := true;
+      exit;
+    end if;
+    if parent_id is null then
+      exit;
+    end if;
+  End Loop;
+  Exception
+  When OTHERS then
+    is_child_of_kfs := false;
+--    DBMS_OUTPUT.PUT_LINE('Doc Nbr : ' || doc_nbr ||' not child of KFS');
+End; -- Procedure End child_of_kfs
+
+Begin -- Begin Main Program
+   dbms_output.enable(1000000);
+   DBMS_OUTPUT.PUT_LINE
+        ('**** Start of Auto Cancel Batch Step ' ||to_char(sysdate,'MM/DD/YYYY HH24:MI:SS'));
+
+select nvl(trim(val),'') into v_parm from krcr_parm_t
+where parm_nm = 'AGED_FYI_ACK_DOC_TYPES_INCLUDED';
+DBMS_OUTPUT.PUT_LINE('FYI/ACK DOC Types Included = ' || v_parm);
+
+-- User accessible system parameter stores the aging period for FYI, default to 900 days
+select nvl(trim(val),'900') into v_char_days from krcr_parm_t
+where parm_nm = 'DAYS_TO_AGE_FYI';
+
+v_fyi_age_days  := to_number(v_char_days);
+v_taken_fyi_msg := 'Automatic FYI > '||v_char_days ||' days';
+DBMS_OUTPUT.PUT_LINE('FYI Aging Period = ' || v_char_days);
+
+-- User accessible system parameter stores the aging period for ACK, default to 900 days
+select nvl(trim(val),'900') into v_char_days from krcr_parm_t
+where parm_nm = 'DAYS_TO_AGE_ACKNOWLEDGE';
+
+v_ack_age_days  := to_number(v_char_days);
+v_taken_ack_msg := 'Automatic Acknowledge > '||v_char_days ||' days';
+DBMS_OUTPUT.PUT_LINE('ACK Aging Period = ' || v_char_days);
+
+-- Loop thru Rice Workflow Action Request Records
+-- Insert Action Taken Record and update Request Record
+For rqst_rec in C1 Loop -- Process Aged FYIs
+  Begin -- Start Begin Block
+    v_rqst_fyi_msg  := 'Automatic FYI - Document older than '||to_char(v_fyi_age_days)||' days';
+    is_child_of_kfs := false;
+    child_of_kfs(rqst_rec.doc_hdr_id);
+    if is_child_of_kfs = false then
+       v_count_not_kfs := v_count_not_kfs + 1;
+       --DBMS_OUTPUT.PUT_LINE('Doc Nbr (skipped): ' || rqst_rec.doc_hdr_id ||' not child of KFS');
+    else
+        v_count := v_count + 1;
+        select krew_actn_tkn_s.nextval into action_id from dual;
+
+        -- Get the doc type and see if it is one to include
+        select doc_typ_id into parent_id from krew_doc_hdr_t
+        where doc_hdr_id = rqst_rec.doc_hdr_id;
+        select trim(doc_typ_nm) into doc_type from krew_doc_typ_t
+        where doc_typ_id = parent_id;
+
+        exclude_doc_type := 0;
+        select instr(v_parm,doc_type) into exclude_doc_type from dual;
+
+        if exclude_doc_type > 0 then -- Doc Type to Include
+           v_count_updated := v_count_updated + 1;
+           -- Create Action Taken Acknowledge
+           insert into krew_actn_tkn_t
+           (actn_tkn_id, doc_hdr_id, prncpl_id, dlgtr_prncpl_id, actn_cd, actn_dt,
+           doc_ver_nbr, annotn, cur_ind, ver_nbr, dlgtr_grp_id)
+           values
+           (action_id, rqst_rec.doc_hdr_id,
+           v_kfs_user, '', 'K', sysdate, '1',
+           v_taken_fyi_msg, '1', '1', '');
+
+           approver_nm := '';
+           if rqst_rec.recip_typ_cd = 'U' then
+             Begin
+               select trim(prncpl_nm) into approver_nm from krim_prncpl_t
+               where prncpl_id = rqst_rec.prncpl_id;
+
+               v_rqst_fyi_msg := v_rqst_fyi_msg || '. FYI For User '||approver_nm;
+             Exception
+               When OTHERS Then
+               DBMS_OUTPUT.PUT_LINE('Problem finding approver id: '||rqst_rec.prncpl_id);
+             End;
+           elsif rqst_rec.recip_typ_cd = 'W' then
+            Begin
+               select trim(grp_nm) into approver_nm from krim_grp_t
+               where grp_id = rqst_rec.grp_id;
+
+               v_rqst_fyi_msg := v_rqst_fyi_msg || '. FYI For Group '||approver_nm;
+             Exception
+               When OTHERS Then
+               DBMS_OUTPUT.PUT_LINE('Problem finding group id: '||rqst_rec.grp_id);
+             End;
+           end if;
+
+           -- Create Action Requested Acknowledge
+           insert into krew_actn_rqst_t
+           (actn_rqst_id, parnt_id, actn_rqst_cd, doc_hdr_id, rule_id, stat_cd, rsp_id,
+           prncpl_id, role_nm, qual_role_nm, qual_role_nm_lbl_txt, recip_typ_cd, prio_nbr,
+           rte_typ_nm, rte_lvl_nbr, actn_tkn_id, doc_ver_nbr, crte_dt, rsp_desc_txt, frc_actn,
+           actn_rqst_annotn_txt, dlgn_typ, appr_plcy, cur_ind, ver_nbr, rte_node_instn_id,
+           grp_id, rqst_lbl)
+           values
+           (krew_actn_rqst_s.nextval, '', 'K', rqst_rec.doc_hdr_id, '', 'D', '0',
+           v_kfs_user, '', '', '', 'U', '0',
+           '', '1', action_id, '1', sysdate, 'Batch Process', '1',
+           v_rqst_fyi_msg, '', 'F', '1', '0',
+           rqst_rec.rte_node_instn_id, '', '');
+
+           -- Update the Request record to indicate action taken
+           Update krew_actn_rqst_t
+           set stat_cd = 'D'
+           where actn_rqst_id = rqst_rec.actn_rqst_id;
+
+           delete from krew_actn_itm_t where actn_rqst_id = rqst_rec.actn_rqst_id;
+        else
+           v_count_excluded := v_count_excluded + 1;
+           --DBMS_OUTPUT.PUT_LINE('Doc Type Excluded = '||rqst_rec.doc_hdr_id);
+        end if; -- Doc type to exclude
+
+    end if; -- Child of KFS
+
+  Exception
+  When OTHERS Then
+      v_count_error := v_count_error + 1;
+  End; -- End Begin block
+End Loop;
+
+-- Loop thru Rice Workflow Action Request Records
+-- Insert Action Taken Record and update Request Record
+For rqst_rec in C2 Loop -- Process Aged ACKs
+  Begin -- Start Begin Block
+    v_rqst_ack_msg  := 'Automatic Acknowledge - Document older than '||to_char(v_ack_age_days)||' days';
+    is_child_of_kfs := false;
+    child_of_kfs(rqst_rec.doc_hdr_id);
+    if is_child_of_kfs = false then
+       v_count_not_kfs := v_count_not_kfs + 1;
+       --DBMS_OUTPUT.PUT_LINE('Doc Nbr (skipped): ' || rqst_rec.doc_hdr_id ||' not child of KFS');
+    else
+        v_count_ack := v_count_ack + 1;
+        select krew_actn_tkn_s.nextval into action_id from dual;
+
+        -- Get the doc type and see if it is one to include
+        select doc_typ_id into parent_id from krew_doc_hdr_t
+        where doc_hdr_id = rqst_rec.doc_hdr_id;
+        select trim(doc_typ_nm) into doc_type from krew_doc_typ_t
+        where doc_typ_id = parent_id;
+
+        exclude_doc_type := 0;
+        select instr(v_parm,doc_type) into exclude_doc_type from dual;
+
+        if exclude_doc_type > 0 then -- Doc Type to Include
+           v_count_updated_ack := v_count_updated_ack + 1;
+           -- Create Action Taken Acknowledge
+           insert into krew_actn_tkn_t
+           (actn_tkn_id, doc_hdr_id, prncpl_id, dlgtr_prncpl_id, actn_cd, actn_dt,
+           doc_ver_nbr, annotn, cur_ind, ver_nbr, dlgtr_grp_id)
+           values
+           (action_id, rqst_rec.doc_hdr_id,
+           v_kfs_user, '', 'K', sysdate, '1',
+           v_taken_ack_msg, '1', '1', '');
+
+           approver_nm := '';
+           if rqst_rec.recip_typ_cd = 'U' then
+             Begin
+               select trim(prncpl_nm) into approver_nm from krim_prncpl_t
+               where prncpl_id = rqst_rec.prncpl_id;
+
+               v_rqst_ack_msg := v_rqst_ack_msg || '. Acknowledge for User '||approver_nm;
+             Exception
+               When OTHERS Then
+               DBMS_OUTPUT.PUT_LINE('Problem finding approver id: '||rqst_rec.prncpl_id);
+             End;
+           elsif rqst_rec.recip_typ_cd = 'W' then
+            Begin
+               select trim(grp_nm) into approver_nm from krim_grp_t
+               where grp_id = rqst_rec.grp_id;
+
+               v_rqst_ack_msg := v_rqst_ack_msg || '. Acknowledge for Group '||approver_nm;
+             Exception
+               When OTHERS Then
+               DBMS_OUTPUT.PUT_LINE('Problem finding group id: '||rqst_rec.grp_id);
+             End;
+           end if;
+
+           -- Create Action Requested Acknowledge
+           insert into krew_actn_rqst_t
+           (actn_rqst_id, parnt_id, actn_rqst_cd, doc_hdr_id, rule_id, stat_cd, rsp_id,
+           prncpl_id, role_nm, qual_role_nm, qual_role_nm_lbl_txt, recip_typ_cd, prio_nbr,
+           rte_typ_nm, rte_lvl_nbr, actn_tkn_id, doc_ver_nbr, crte_dt, rsp_desc_txt, frc_actn,
+           actn_rqst_annotn_txt, dlgn_typ, appr_plcy, cur_ind, ver_nbr, rte_node_instn_id,
+           grp_id, rqst_lbl)
+           values
+           (krew_actn_rqst_s.nextval, '', 'K', rqst_rec.doc_hdr_id, '', 'D', '0',
+           v_kfs_user, '', '', '', 'U', '0',
+           '', '1', action_id, '1', sysdate, 'Batch Process', '1',
+           v_rqst_ack_msg, '', 'F', '1', '0',
+           rqst_rec.rte_node_instn_id, '', '');
+
+           -- Update the Request record to indicate action taken
+           Update krew_actn_rqst_t
+           set stat_cd = 'D'
+           where actn_rqst_id = rqst_rec.actn_rqst_id;
+
+           delete from krew_actn_itm_t where actn_rqst_id = rqst_rec.actn_rqst_id;
+        else
+           v_count_excluded_ack := v_count_excluded_ack + 1;
+           --DBMS_OUTPUT.PUT_LINE('Doc Type Excluded = '||rqst_rec.doc_hdr_id);
+        end if; -- Doc type to exclude
+
+    end if; -- Child of KFS
+
+  Exception
+  When OTHERS Then
+      v_count_error_ack := v_count_error_ack + 1;
+  End; -- End Begin block
+End Loop;
+
+For xx in C3 Loop
+   Begin
+     Delete from gl_pending_entry_t@kfs.cit.cornell.edu
+          where fdoc_nbr = xx.doc_hdr_id
+          and fdoc_typ_cd not in ('ACHD','CHKD');
+     DBMS_OUTPUT.PUT_LINE(rpad(xx.doc_hdr_id,10)||' '||rpad(xx.doc_typ_nm,4)||' - '|| SQL%ROWCOUNT||' Pending entries deleted');
+   End;
+End Loop;
+
+
+DBMS_OUTPUT.PUT_LINE('**** STATISTICS *****');
+DBMS_OUTPUT.PUT_LINE('Number of Aged FYI documents         = ' || to_char(v_count));
+DBMS_OUTPUT.PUT_LINE('Non KFS Docs                         = ' || v_count_not_kfs);
+DBMS_OUTPUT.PUT_LINE('FYI documents auto acknowledged      = ' || v_count_updated);
+DBMS_OUTPUT.PUT_LINE('Number of Excluded Doc Types         = ' || v_count_excluded);
+DBMS_OUTPUT.PUT_LINE('Number of FYI Errors                 = ' || v_count_error);
+
+DBMS_OUTPUT.PUT_LINE('Number of Aged ACK documents         = ' || to_char(v_count_ack));
+DBMS_OUTPUT.PUT_LINE('ACK documents auto acknowledged      = ' || v_count_updated_ack);
+DBMS_OUTPUT.PUT_LINE('Number of Excluded Doc Types         = ' || v_count_excluded_ack);
+DBMS_OUTPUT.PUT_LINE('Number of ACK Errors                 = ' || v_count_error_ack);
+
+dbms_output.put_line('Successfully Complete.');
+--
+--Document the program has ended.
+DBMS_OUTPUT.PUT_LINE
+     ('**** End of Auto Cancel Batch Step ' ||to_char(sysdate,'MM/DD/YYYY HH24:MI:SS'));
+
+End;
+</createProcedure>
+</changeSet>
+
+</databaseChangeLog>
