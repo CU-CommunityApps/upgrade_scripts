@@ -28,11 +28,12 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => kfs_changel
             {:name => "kfs/5.0_5.0.1", :version => 2, :changelogs => kfs_changelogs_with_rice_client }, 
             {:name => "kfs/5.0.1_5.0.2", :version => 2, :changelogs => kfs_changelogs_with_rice_client },
             {:name => "kfs/5.0.2_5.0.3", :version => 2, :changelogs => kfs_changelogs_with_rice_client },  
-            {:name => "custom/kfs/ld", :version => 2, :changelogs => ['ld-module-customizations.xml'] },
+            {:name => "custom/kfs/ld", :version => 3, :changelogs => ['ld-module-customizations.xml'] },
+            {:name => "custom/kfs/gl", :version => 3, :changelogs => ['gl-module-customizations.xml'] },
           ]
           
 folders.each do |folder|
-  lb_cmd = folder[:version] == 1 ? LIQUIBASE_1_9_5_CMD : LIQUIBASE_2_0_5_CMD
+  lb_cmd = folder[:version] == 1 ? LIQUIBASE_1_9_5_CMD : folder[:version] == 2 ? LIQUIBASE_2_0_5_CMD : LIQUIBASE_3_0_2_CMD
   Dir.chdir(folder[:name]) do
     puts  "*" * 25 + "\n"
     puts "working in #{Dir.pwd}\n\n"
