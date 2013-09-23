@@ -3,10 +3,11 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
-        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">;
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 <changeSet author="cab379" id="createProcedure-example" failOnError="false">
-    <createProcedure comments="A String">
+    <createProcedure >
+<![CDATA[ 
 create or replace 
 PROCEDURE         AUTO_CANCEL_FYI_ACK is
 --*--------------------------------------------------------------------*
@@ -368,6 +369,7 @@ DBMS_OUTPUT.PUT_LINE
      ('**** End of Auto Cancel Batch Step ' ||to_char(sysdate,'MM/DD/YYYY HH24:MI:SS'));
 
 End;
+ ]]>
 </createProcedure>
 </changeSet>
 
