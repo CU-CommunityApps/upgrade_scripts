@@ -15,7 +15,7 @@
     limitations under the License.
 -->
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
-
+<!--
 	<changeSet author="KFS41" id="SEC_KIM_ATTRIBUTE_DEFINITIONS">
 		<comment>Add the new KIM attribute definitions for the Access Security Module</comment>
 		
@@ -48,7 +48,7 @@
 			<column name="NM" value="constraintCode" />
 			<column name="ACTV_IND" value="Y" />
 		</insert>
-
+		--
 		<insert tableName="KRIM_ATTR_DEFN_T">
 			<column name="KIM_ATTR_DEFN_ID" value="KFSSEC103" />
 			<column name="OBJ_ID" valueNumeric="SYS_GUID() " />
@@ -63,8 +63,8 @@
 			<replace replace="SYS_GUID" with="UUID" />
 		</modifySql>
 	</changeSet>
-
-
+-->
+<!--
 	<changeSet author="KFS41" id="SEC_KIM_TYPES">
 		<comment>Add the new KIM types for the Access Security Module</comment>
 		<insert tableName="KRIM_TYP_T">
@@ -111,9 +111,9 @@
 			<replace replace="SYS_GUID" with="UUID" />
 		</modifySql>
     </changeSet>
+-->
 
-
-
+<!--
 	<changeSet author="KFS41" id="SEC_KIM_TYPE_ATTRIBUTES">
 		<comment>Add the new KIM types attributes for the Access Security Module</comment>
 		<insert tableName="KRIM_TYP_ATTR_T">
@@ -122,7 +122,7 @@
 			<column name="VER_NBR" valueNumeric="1" />
 			<column name="SORT_CD" value="a" />
 			<column name="KIM_TYP_ID" value="KFSSEC1" />
-			<column name="KIM_ATTR_DEFN_ID" value="13" /><!-- document type -->
+			<column name="KIM_ATTR_DEFN_ID" value="13" />
 			<column name="ACTV_IND" value="Y" />
 		</insert>
 		<insert tableName="KRIM_TYP_ATTR_T">
@@ -131,7 +131,7 @@
 			<column name="VER_NBR" valueNumeric="1" />
 			<column name="SORT_CD" value="b" />
 			<column name="KIM_TYP_ID" value="KFSSEC1" />
-			<column name="KIM_ATTR_DEFN_ID" value="6" /><!-- propertyName -->
+			<column name="KIM_ATTR_DEFN_ID" value="6" /><
 			<column name="ACTV_IND" value="Y" />
 		</insert>
 
@@ -141,7 +141,7 @@
 			<column name="VER_NBR" valueNumeric="1" />
 			<column name="SORT_CD" value="a" />
 			<column name="KIM_TYP_ID" value="KFSSEC2" />
-			<column name="KIM_ATTR_DEFN_ID" value="6" /><!-- propertyName -->
+			<column name="KIM_ATTR_DEFN_ID" value="6" />
 			<column name="ACTV_IND" value="Y" />
 		</insert>
 
@@ -151,7 +151,7 @@
 			<column name="VER_NBR" valueNumeric="1" />
 			<column name="SORT_CD" value="a" />
 			<column name="KIM_TYP_ID" value="KFSSEC3" />
-			<column name="KIM_ATTR_DEFN_ID" value="4" /><!-- namespaceCode -->
+			<column name="KIM_ATTR_DEFN_ID" value="4" />
 			<column name="ACTV_IND" value="Y" />
 		</insert>
 
@@ -161,7 +161,7 @@
 			<column name="VER_NBR" valueNumeric="1" />
 			<column name="SORT_CD" value="b" />
 			<column name="KIM_TYP_ID" value="KFSSEC3" />
-			<column name="KIM_ATTR_DEFN_ID" value="6" /><!-- propertyName -->
+			<column name="KIM_ATTR_DEFN_ID" value="6" />
 			<column name="ACTV_IND" value="Y" />
 		</insert>
 
@@ -206,6 +206,8 @@
 			<replace replace="SYS_GUID" with="UUID" />
 		</modifySql>
     </changeSet>
+-->
+
 <!-- CU MOD KFSUPGRADE-55 we already have these guys since we have the access security mod
 	<changeSet author="KFS41" id="SEC_KIM_PERMISSION_TEMPLATES">
 		<comment>Add the new KIM permission templates for the Access Security Module</comment>
@@ -286,6 +288,7 @@
 	</changeSet>
 
 	-->
+	<!--
 	<changeSet author="KFS41" id="SEC_INIT_DOC_PERM">
 		
 		<insert tableName="KRIM_PERM_T">
@@ -323,7 +326,8 @@
 			<replace replace="SYS_GUID" with="UUID" />
 		</modifySql>
 	</changeSet>
-	
+-->
+<!--	
 	<changeSet author="KFS41" id="SEC_LOOKUP_PERM">
 		
 		<insert tableName="KRIM_PERM_T">
@@ -447,5 +451,5 @@
 			<replace replace="SYS_GUID" with="UUID" />
 		</modifySql>
 	</changeSet>
-
+-->
 </databaseChangeLog>

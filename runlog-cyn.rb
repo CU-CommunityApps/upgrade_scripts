@@ -34,8 +34,7 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_
             {:name => "kfs/4.0_4.1", :version => 1, :changelogs => ['rice/kns_upgrade.xml', 
                                                                     'rice/kns_security_module.xml', 
                                                                     'rice/kim_upgrade_optional.xml', 
-                                                                    'rice/kim_upgrade.xml', 
-                                                                    'rice/kim_security_module.xml'] }, 
+                                                                    'rice/kim_upgrade.xml'] }, 
             {:name => "kfs/4.1_4.1.1", :version => 1, :changelogs => ['rice/kns_upgrade.xml'] },
             {:name => "rice", :version => 3, :changelogs => [
                                                              '1011_to_102_update_final_oracle.xml', 
@@ -54,14 +53,14 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_
                                                              '22x_to_230_update_final_oracle.xml'
                                                              ]},
             
-            {:name => "kfs/4.1.1_5.0", :version => 2, :changelogs => [#'rice_server/rice-server-script.xml',
-                                                                      'rice_server/parameter_updates.xml',
+            {:name => "kfs/4.1.1_5.0", :version => 2, :changelogs => ['rice_server/parameter_updates.xml',
                                                                       'rice_server/kim_upgrade.xml',
                                                                       'rice_server/kew_upgrade.xml'] },
             {:name => "kfs/5.0_5.0.1", :version => 2, :changelogs => rice_changelogs},
             {:name => "kfs/5.0.1_5.0.2", :version => 2, :changelogs => rice_changelogs },
             {:name => "kfs/5.0.2_5.0.3", :version => 2, :changelogs => rice_changelogs },
             {:name => "custom/rice", :version => 3, :changelogs => custom_changelogs },
+            {:name => "custom/rice/access_security", :version => 3, :changelogs => ['access-security-customizations.xml'] },
           ]
           
 folders.each do |folder|

@@ -1,0 +1,59 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+		<changeSet author="srb55" id="ALTERING_SEC_TABLES" failOnError="false">
+			<comment>Updating access security tables</comment>
+			<renameColumn 
+			        newColumnName="RSTR_VIEW_ACCT_LINE_IND"
+			        oldColumnName="RSTR_VIEW_ACCT_LINE"
+			        tableName="SEC_SCRTY_DEFN_T"/>
+
+			<renameColumn 
+			        newColumnName="RSTR_EDIT_ACCT_LINE_IND"
+			        oldColumnName="RSTR_EDIT_ACCT_LINE"
+			        tableName="SEC_SCRTY_DEFN_T"/>
+			<renameColumn 
+			        newColumnName="RSTR_VIEW_DOC_IND"
+			        oldColumnName="RSTR_VIEW_DOC"
+			        tableName="SEC_SCRTY_DEFN_T"/>
+
+			<renameColumn 
+			        newColumnName="RSTR_EDIT_DOC_IND"
+			        oldColumnName="RSTR_EDIT_DOC"
+			        tableName="SEC_SCRTY_DEFN_T"/>
+
+			<renameColumn 
+			        newColumnName="RSTR_VIEW_NTE_ATT_IND"
+			        oldColumnName="RSTR_VIEW_NTE_ATT"
+			        tableName="SEC_SCRTY_DEFN_T"/>
+
+			<renameColumn 
+			        newColumnName="RSTR_LU_IND"
+			        oldColumnName="RSTR_LU"
+			        tableName="SEC_SCRTY_DEFN_T"/>
+			<renameColumn 
+			        newColumnName="RSTR_GL_INQ_IND"
+			        oldColumnName="RSTR_GL_INQ"
+			        tableName="SEC_SCRTY_DEFN_T"/>
+
+			<renameColumn 
+			        newColumnName="RSTR_LD_INQ_IND"
+			        oldColumnName="RSTR_LD_INQ"
+			        tableName="SEC_SCRTY_DEFN_T"/>
+
+			<renameColumn 
+			        newColumnName="OVRD_DNY_IND"
+			        oldColumnName="OVRD_DNY"
+			        tableName="SEC_SCRTY_MDL_DEFN_T"/>
+
+			<renameColumn 
+			        newColumnName="OVRD_DNY_IND"
+			        oldColumnName="OVRD_DNY"
+			        tableName="SEC_SCRTY_PRNCPL_DEFN_T"/>
+		</changeSet>
+
+</databaseChangeLog>

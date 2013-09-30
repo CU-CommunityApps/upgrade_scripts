@@ -1,0 +1,18 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+		<changeSet author="srb55" id="UPDATE_KRIM_ATTR_DEFN_T" failOnError="false">
+			<comment>Updating component name to reflect change from com.rsmart to org.kuali</comment>
+
+			<update tableName="KRIM_ATTR_DEFN_T">
+		      <column name="CMPNT_NM" value="org.kuali.kfs.sec.identity.SecKimAttributes" />
+		      <where>CMPNT_NM = 'com.rmsart.kfs.sec.identity.SecKimAttributes'</where>
+		    </update>
+		
+		</changeSet>
+		
+</databaseChangeLog>
