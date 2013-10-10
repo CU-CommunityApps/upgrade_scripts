@@ -16,14 +16,14 @@ LIQUIBASE_1_9_5_CMD = "java -jar #{CURRENT_DIR}/lib/liquibase-1.9.5.jar --logLev
 LIQUIBASE_2_0_5_CMD = "java -jar #{CURRENT_DIR}/lib/liquibase-2.0.5.jar --logLevel=info #{CLASSPATH} --driver=oracle.jdbc.OracleDriver #{DBURL} #{USER} #{PASS} --changeLogFile=LOGFILE update"
 LIQUIBASE_3_0_2_CMD = "java -jar #{CURRENT_DIR}/lib/liquibase-3.0.2.jar --logLevel=info #{CLASSPATH} --driver=oracle.jdbc.OracleDriver #{DBURL} #{USER} #{PASS} --changeLogFile=LOGFILE update"
 
-rice_changelogs = [#'rice_server/rice-server-script.xml',
-                   'rice_server/parameter_updates.xml',
+rice_changelogs = ['rice_server/parameter_updates.xml',
                    'rice_server/kim_upgrade.xml',
                    'rice_server/kew_upgrade.xml']
 
 custom_changelogs = ['krim_rsp_t_update.xml',
                      'krim_ext_id_typ_t_no_encrypyt.xml',
-                     'gl-module-customizations.xml']
+                     'gl-module-customizations.xml',
+                     'krcr_parm_t_update.xml']
                    
 # folders in the correct order
 folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_upgrade.xml', 
