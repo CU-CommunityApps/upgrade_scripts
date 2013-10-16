@@ -213,6 +213,16 @@
 			-----------------------------------------------------------------------------
 			-- KREW_ACTN_ITM_T
 			-----------------------------------------------------------------------------
+			-- ==== CU Customization: need to drop extension table constraint first
+			DECLARE
+			c NUMBER;
+			BEGIN
+			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_ACTN_ITM_EXT_TR1' ;
+			IF c>0 THEN
+			EXECUTE IMMEDIATE 'ALTER TABLE KREW_ACTN_ITM_EXT_T DROP CONSTRAINT KREW_ACTN_ITM_EXT_TR1';
+			END IF;
+			END;
+			/
 			DECLARE
 			c NUMBER;
 			BEGIN
@@ -317,7 +327,12 @@
 			  ON KREW_ACTN_ITM_T
 			  (PRNCPL_ID, DLGN_TYP, DOC_HDR_ID)
 			/
-
+			-- ==== CU Customization: need to add extension table constraint back in
+      alter table KREW_ACTN_ITM_EXT_T 
+        add constraint KREW_ACTN_ITM_EXT_TR1 foreign key (ACTN_ITM_ID) 
+        references KREW_ACTN_ITM_T (ACTN_ITM_ID) 
+        ON DELETE CASCADE 
+      /
 
 			-----------------------------------------------------------------------------
 			-- KREW_ACTN_RQST_T
