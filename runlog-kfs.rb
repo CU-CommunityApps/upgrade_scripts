@@ -27,7 +27,10 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => kfs_changel
             {:name => "kfs/4.1.1_5.0", :version => 2, :changelogs => kfs_changelogs }, 
             {:name => "kfs/5.0_5.0.1", :version => 2, :changelogs => kfs_changelogs_with_rice_client }, 
             {:name => "kfs/5.0.1_5.0.2", :version => 2, :changelogs => kfs_changelogs_with_rice_client },
-            {:name => "kfs/5.0.2_5.0.3", :version => 2, :changelogs => kfs_changelogs_with_rice_client },  
+            {:name => "kfs/5.0.2_5.0.3", :version => 2, :changelogs => kfs_changelogs_with_rice_client },
+            {:name => "kfs/5.0.3_5.0.4", :version => 2, :changelogs => kfs_changelogs_with_rice_client }, 
+            {:name => "kfs/5.0.4_5.0.5", :version => 2, :changelogs => kfs_changelogs_with_rice_client }, 
+            {:name => "kfs/5.0.5_5.1", :version => 2, :changelogs => kfs_changelogs_with_rice_client },   
             {:name => "custom/kfs/ld", :version => 3, :changelogs => ['ld-module-customizations.xml'] },
             {:name => "custom/kfs/access_security", :version => 3, :changelogs => ['access-security-customizations.xml'] },
           ]
