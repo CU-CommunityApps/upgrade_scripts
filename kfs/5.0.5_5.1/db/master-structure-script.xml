@@ -3,8 +3,9 @@
 	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
 	xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd'>
 	<!-- 
-	  CU customization: We already have the line description field
+	   ==== CU customization: We already have the line description field
 	  <include file="db/01_structure/fp-module-structure-updates.xml"/> 
+	   ==== END CU customization
 	-->
 	<include file="db/01_structure/purap-module-structure-updates.xml"/>
 </databaseChangeLog>

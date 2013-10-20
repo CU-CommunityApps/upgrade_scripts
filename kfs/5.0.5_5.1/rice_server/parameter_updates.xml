@@ -189,7 +189,8 @@
 	
 	<modifySql dbms="mysql"><replace with="UUID()" replace="SYS_GUID()"/></modifySql>
 	</changeSet>
-	
+	<!-- 
+	==== CU customization: We already have this parameter, we want ours as it is properly configured
 	<changeSet author="KFS52" id="KFSCNTRB-715">
        <comment>KFSCNTRB-715:Purchase Order Notifications to Department</comment> 
 		<insert tableName="KRCR_PARM_T">
@@ -206,7 +207,8 @@
 		</insert>
      <modifySql dbms="mysql"><replace with="UUID()" replace="SYS_GUID()"/></modifySql>
    </changeSet>
-
+   ==== END CU customization
+-->
  <changeSet author="KFS52" id="KFSCNTRB-1276">
 		<comment>KFSCNTRB-1276 Need this column to hold number of days after the creation of a requisition in which it can be copied.The value 9999 would indicate that a copy would be allowed for an infinite number of days and the value 0 would indicate that copy is not allowed</comment>		
 		<delete tableName="KRCR_PARM_T">
