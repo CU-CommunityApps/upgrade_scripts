@@ -42,7 +42,7 @@
     </ruleAttribute>
   </ruleAttributes>
 
-	<documentTypes xmlns="ns:workflow/DocumentType"
+<documentTypes xmlns="ns:workflow/DocumentType"
 		xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
     <documentType>
       <name>PO</name>
@@ -56,6 +56,14 @@
         <policy>
           <name>DOCUMENT_STATUS_POLICY</name>
           <stringValue>APP</stringValue>
+        </policy>
+        <policy>
+          <name>INITIATOR_MUST_CANCEL</name>
+          <value>false</value>
+        </policy>
+        <policy>
+          <name>INITIATOR_MUST_ROUTE</name>
+          <value>false</value>
         </policy>
       </policies>
       <attributes>
