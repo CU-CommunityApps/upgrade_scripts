@@ -1,0 +1,454 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="srb55" id="KFSUPGRADE-429" failOnError="false">
+		<comment>Conversion on cap asset tab on FP docs</comment>
+	    <sql stripComments="true" endDelimiter="/">
+			<![CDATA[
+        delete
+        from fp_cptl_ast_info_dtl_t  t1 
+        where t1.campus_cd is null or (t1.fdoc_nbr = (select t.fdoc_nbr
+        from fp_cptl_ast_info_t t, cynergyup.krew_doc_hdr_t t2 
+         where t.cptlast_desc is null
+           and t.cptlast_nbr is null
+           and t.cptlast_typ_cd is null
+           and t.cptlast_mfr_nm is null
+           and t.cptlast_mfrmdl_nbr is null
+           and t.vndr_dtl_asnd_id is null
+           and t.vndr_hdr_gnrtd_id is null
+           and t.fdoc_nbr = t1.fdoc_nbr
+           and t2.doc_hdr_id= t1.fdoc_nbr
+           and t2.DOC_HDR_STAT_CD in('X','I' )))
+        /
+        select t1.* 
+        from fp_cptl_ast_info_dtl_t  t1 
+        where t1.campus_cd is null or (t1.fdoc_nbr = (select t.fdoc_nbr
+        from fp_cptl_ast_info_t t, cynergyup.krew_doc_hdr_t t2 
+         where t.cptlast_desc is null
+           and t.cptlast_nbr is null
+           and t.cptlast_typ_cd is null
+           and t.cptlast_mfr_nm is null
+           and t.cptlast_mfrmdl_nbr is null
+           and t.vndr_dtl_asnd_id is null
+           and t.vndr_hdr_gnrtd_id is null
+           and t.fdoc_nbr = t1.fdoc_nbr
+           and t2.doc_hdr_id= t1.fdoc_nbr
+           and t2.DOC_HDR_STAT_CD in('X','I' )))
+        /
+        delete 
+          from fp_cptl_ast_info_t t
+         where t.cptlast_desc is null
+           and t.cptlast_nbr is null
+           and t.cptlast_typ_cd is null
+           and t.cptlast_mfr_nm is null
+           and t.cptlast_mfrmdl_nbr is null
+           and t.vndr_dtl_asnd_id is null
+           and t.vndr_hdr_gnrtd_id is null
+        /  
+        UPDATE FP_CPTL_AST_INFO_T SET CPTLAST_ACTION_IND='M' WHERE CPTLAST_NBR IS NOT NULL
+        /
+        UPDATE FP_CPTL_AST_INFO_T SET CPTLAST_ACTION_IND='C' WHERE CPTLAST_TYP_CD IS NOT NULL OR VNDR_HDR_GNRTD_ID IS NOT NULL OR CPTLAST_DESC IS NOT NULL OR CPTLAST_MFR_NM IS NOT NULL
+        /
+        UPDATE FP_CPTL_AST_INFO_T T1
+           SET T1.CPTLAST_PROCESSED_IND = 'Y'
+         where EXISTS (SELECT *
+                  FROM CB_GL_ENTRY_T T2, CB_GL_ENTRY_AST_T T3
+                 WHERE T1.FDOC_NBR = T2.FDOC_NBR
+                   AND T2.CB_GL_ACCT_ID = T3.CB_GL_ACCT_ID
+                   AND T3.CB_LN_NBR = T1.CPTLAST_LINE_NBR
+                   AND T3.CM_FDOC_NBR IS NOT NULL
+                   AND (T1.CPTLAST_PROCESSED_IND IS NULL OR
+                       T1.CPTLAST_PROCESSED_IND = 'N'))
+        /               
+        update fp_cptl_ast_info_t t1
+           set CPTLAST_LINE_AMT =
+               (select sum(t2.fdoc_line_amt)
+                  from fp_acct_lines_t t2, ca_object_code_t t3
+                 where t1.fdoc_nbr = t2.fdoc_nbr
+                   and t2.fin_coa_cd = t3.fin_coa_cd
+                   and t2.fdoc_post_yr = t3.univ_fiscal_yr
+                   and t2.fin_object_cd = t3.fin_object_cd
+                   and t3.fin_obj_sub_typ_cd in ('AM',
+                                                 'BD',
+                                                 'BF',
+                                                 'BR',
+                                                 'BX',
+                                                 'BY',
+                                                 'C1',
+                                                 'C2',
+                                                 'CF',
+                                                 'CM',
+                                                 'CO',
+                                                 'CP',
+                                                 'EC',
+                                                 'IF',
+                                                 'IT',
+                                                 'LA',
+                                                 'LE',
+                                                 'LF',
+                                                 'LI',
+                                                 'LR',
+                                                 'LS',
+                                                 'RF',
+                                                 'UC',
+                                                 'UF',
+                                                 'UO')
+                 group by t2.fdoc_nbr)
+         where exists
+         (select *
+                  from fp_acct_lines_t t2, ca_object_code_t t3
+                 where t2.fdoc_nbr = t1.fdoc_nbr
+                   and t2.fin_coa_cd = t3.fin_coa_cd
+                   and t2.fdoc_post_yr = t3.univ_fiscal_yr
+                   and t2.fin_object_cd = t3.fin_object_cd
+                   and t3.fin_obj_sub_typ_cd in ('AM',
+                                                 'BD',
+                                                 'BF',
+                                                 'BR',
+                                                 'BX',
+                                                 'BY',
+                                                 'C1',
+                                                 'C2',
+                                                 'CF',
+                                                 'CM',
+                                                 'CO',
+                                                 'CP',
+                                                 'EC',
+                                                 'IF',
+                                                 'IT',
+                                                 'LA',
+                                                 'LE',
+                                                 'LF',
+                                                 'LI',
+                                                 'LR',
+                                                 'LS',
+                                                 'RF',
+                                                 'UC',
+                                                 'UF',
+                                                 'UO'))
+        /                                      
+        update fp_cptl_ast_info_t t1
+           set CPTLAST_LINE_AMT =
+               (select sum(t2.fdoc_line_amt)
+                  from FP_PRCRMNT_ACCT_LINES_T t2, ca_object_code_t t3, 
+                  cynergyup.krew_doc_hdr_t t4, cynergyup.krew_doc_typ_t t5
+                 where t1.fdoc_nbr = t2.fdoc_nbr
+                   and t2.fin_coa_cd = t3.fin_coa_cd
+                   and t2.fdoc_post_yr = t3.univ_fiscal_yr
+                   and t2.fin_object_cd = t3.fin_object_cd
+                   and t1.fdoc_nbr = t4.doc_hdr_id
+                   and t4.doc_typ_id = t5.doc_typ_id
+                   and t5.doc_typ_nm='PCDO'
+                   and t3.fin_obj_sub_typ_cd in ('AM',
+                                                 'BD',
+                                                 'BF',
+                                                 'BR',
+                                                 'BX',
+                                                 'BY',
+                                                 'C1',
+                                                 'C2',
+                                                 'CF',
+                                                 'CM',
+                                                 'CO',
+                                                 'CP',
+                                                 'EC',
+                                                 'IF',
+                                                 'IT',
+                                                 'LA',
+                                                 'LE',
+                                                 'LF',
+                                                 'LI',
+                                                 'LR',
+                                                 'LS',
+                                                 'RF',
+                                                 'UC',
+                                                 'UF',
+                                                 'UO')
+                 group by t2.fdoc_nbr)
+         where exists
+         (select *
+                  from FP_PRCRMNT_ACCT_LINES_T t2, ca_object_code_t t3, 
+                  cynergyup.krew_doc_hdr_t t4, cynergyup.krew_doc_typ_t t5
+                 where t1.fdoc_nbr = t2.fdoc_nbr
+                   and t2.fin_coa_cd = t3.fin_coa_cd
+                   and t2.fdoc_post_yr = t3.univ_fiscal_yr
+                   and t2.fin_object_cd = t3.fin_object_cd
+                   and t1.fdoc_nbr = t4.doc_hdr_id
+                   and t4.doc_typ_id = t5.doc_typ_id
+                   and t5.doc_typ_nm='PCDO'
+                   and t3.fin_obj_sub_typ_cd in ('AM',
+                                                 'BD',
+                                                 'BF',
+                                                 'BR',
+                                                 'BX',
+                                                 'BY',
+                                                 'C1',
+                                                 'C2',
+                                                 'CF',
+                                                 'CM',
+                                                 'CO',
+                                                 'CP',
+                                                 'EC',
+                                                 'IF',
+                                                 'IT',
+                                                 'LA',
+                                                 'LE',
+                                                 'LF',
+                                                 'LI',
+                                                 'LR',
+                                                 'LS',
+                                                 'RF',
+                                                 'UC',
+                                                 'UF',
+                                                 'UO'))
+
+        /
+        update FP_CPTL_AST_INFO_T t set t.cptlast_line_qty=(select count(*) 
+        from  FP_CPTL_AST_INFO_DTL_T s where s.fdoc_nbr=t.fdoc_nbr)
+        /
+        delete  from fp_cptl_ast_acct_grp_dtl_t
+        /
+        declare
+          fdoc_nbr     VARCHAR2(14);
+          ast_line_nbr number(7);
+          type genericCursor is ref cursor;
+          type accountLineRecord is record(
+            fdoc_ln_typ_cd   fp_acct_lines_t.fdoc_ln_typ_cd%type,
+            fin_coa_cd       fp_acct_lines_t.fin_coa_cd%type,
+            account_nbr      fp_acct_lines_t.account_nbr%type,
+            fin_object_cd    fp_acct_lines_t.fin_object_cd%type,
+            sub_acct_nbr     fp_acct_lines_t.sub_acct_nbr%type,
+            fdoc_line_amt    fp_acct_lines_t.fdoc_line_amt%type,
+            fdoc_line_nbr    fp_acct_lines_t.fdoc_line_nbr%type,
+            fin_sub_obj_cd   fp_acct_lines_t.fin_sub_obj_cd%type,
+            project_cd       fp_acct_lines_t.project_cd%type,
+            org_reference_id fp_acct_lines_t.org_reference_id%type);
+
+          Cursor cptlInfoCursor IS
+            SELECT FDOC_NBR, CPTLAST_LINE_NBR FROM FP_CPTL_AST_INFO_T;
+
+          accountingLineCursor genericCursor;
+          currentLine          accountLineRecord;
+          accountSequence      number := 1;
+
+          fetchAccountingLine VARCHAR2(2000) := 'select t.fdoc_ln_typ_cd,
+               t.fin_coa_cd,
+               t.account_nbr,
+               t.fin_object_cd,
+               t.sub_acct_nbr,
+               t.fdoc_line_amt,
+               t.fdoc_line_nbr,
+               t.fin_sub_obj_cd,
+               t.project_cd,
+               t.org_reference_id
+          from fp_acct_lines_t t, ca_object_code_t s
+         where t.fdoc_post_yr = s.univ_fiscal_yr
+           and t.fin_coa_cd = s.fin_coa_cd
+           and t.fin_object_cd = s.fin_object_cd
+           and s.fin_obj_sub_typ_cd in (''AM'',
+                                        ''BD'',
+                                        ''BF'',
+                                        ''BR'',
+                                        ''BX'',
+                                        ''BY'',
+                                        ''C1'',
+                                        ''C2'',
+                                        ''CF'',
+                                        ''CM'',
+                                        ''CO'',
+                                        ''CP'',
+                                        ''EC'',
+                                        ''IF'',
+                                        ''IT'',
+                                        ''LA'',
+                                        ''LE'',
+                                        ''LF'',
+                                        ''LI'',
+                                        ''LR'',
+                                        ''LS'',
+                                        ''RF'',
+                                        ''UC'',
+                                        ''UF'',
+                                        ''UO'' )
+                                        and t.fdoc_nbr = ''';
+
+          insertGroupDetail VARCHAR2(2000) := 'INSERT INTO fp_cptl_ast_acct_grp_dtl_t (OBJ_ID, 
+                          VER_NBR, FDOC_NBR, CPTLAST_LINE_NBR, 
+                          CPTLAST_ACCTLINE_NBR, FDOC_LINE_NBR, FDOC_LN_TYP_CD, 
+                          FIN_COA_CD, ACCOUNT_NBR,
+                          FIN_OBJECT_CD, FDOC_LINE_AMT, 
+                          SUB_ACCT_NBR, FIN_SUB_OBJ_CD, PROJECT_CD, 
+                          ORG_REFERENCE_ID) VALUES (' ||
+                                                 'sys_guid(), 1 ,';
+
+        begin
+          OPEN cptlInfoCursor;
+          LOOP
+            FETCH cptlInfoCursor
+              INTO fdoc_nbr, ast_line_nbr;
+            EXIT WHEN cptlInfoCursor%NOTFOUND;
+            --DBMS_OUTPUT.PUT_LINE('Processing ' || fdoc_nbr);
+            --DBMS_OUTPUT.PUT_LINE(fetchAccountingLine || fdoc_nbr || '''');
+            accountSequence := 1;
+            open accountingLineCursor for fetchAccountingLine || fdoc_nbr || '''' ;
+            loop
+              fetch accountingLineCursor
+                into currentLine;
+              exit when accountingLineCursor%NOTFOUND;
+              /*dbms_output.put_line(insertGroupDetail || '''' || fdoc_nbr || ''',' ||
+                                   ast_line_nbr || ',' || accountSequence || ',' || 
+                                   currentLine.fdoc_line_nbr || ',''' ||
+                                   currentLine.fdoc_ln_typ_cd || ''',''' ||
+                                   currentLine.fin_coa_cd || ''',''' ||
+                                   currentLine.account_nbr || ''',''' ||
+                                   currentLine.fin_object_cd || ''',''' ||
+                                   currentLine.fdoc_line_amt || ''',''' ||
+                                   currentLine.sub_acct_nbr || ''',''' ||
+                                   currentLine.fin_sub_obj_cd || ''',''' ||
+                                   currentLine.project_cd || ''',''' ||                           
+                                   currentLine.org_reference_id || ''');');*/
+              execute immediate insertGroupDetail || '''' || fdoc_nbr || ''',' ||
+                                   ast_line_nbr || ',' || accountSequence || ',' || 
+                                   currentLine.fdoc_line_nbr || ',''' ||
+                                   currentLine.fdoc_ln_typ_cd || ''',''' ||
+                                   currentLine.fin_coa_cd || ''',''' ||
+                                   currentLine.account_nbr || ''',''' ||
+                                   currentLine.fin_object_cd || ''',''' ||
+                                   currentLine.fdoc_line_amt || ''',''' ||
+                                   currentLine.sub_acct_nbr || ''',''' ||
+                                   currentLine.fin_sub_obj_cd || ''',''' ||
+                                   currentLine.project_cd || ''',''' ||                           
+                                   currentLine.org_reference_id || ''')';
+              accountSequence := accountSequence + 1;
+            end loop;
+            close accountingLineCursor;
+
+          END LOOP;
+        end;
+        /
+        declare
+          fdoc_nbr     VARCHAR2(14);
+          ast_line_nbr number(7);
+          type genericCursor is ref cursor;
+          type accountLineRecord is record(
+            fdoc_ln_typ_cd   FP_PRCRMNT_ACCT_LINES_T.fdoc_ln_typ_cd%type,
+            fin_coa_cd       FP_PRCRMNT_ACCT_LINES_T.fin_coa_cd%type,
+            account_nbr      FP_PRCRMNT_ACCT_LINES_T.account_nbr%type,
+            fin_object_cd    FP_PRCRMNT_ACCT_LINES_T.fin_object_cd%type,
+            sub_acct_nbr     FP_PRCRMNT_ACCT_LINES_T.sub_acct_nbr%type,
+            fdoc_line_amt    FP_PRCRMNT_ACCT_LINES_T.fdoc_line_amt%type,
+            fdoc_line_nbr    FP_PRCRMNT_ACCT_LINES_T.fdoc_line_nbr%type,
+            fin_sub_obj_cd   FP_PRCRMNT_ACCT_LINES_T.fin_sub_obj_cd%type,
+            project_cd       FP_PRCRMNT_ACCT_LINES_T.project_cd%type,
+            org_reference_id FP_PRCRMNT_ACCT_LINES_T.org_reference_id%type);
+
+          Cursor cptlInfoCursor IS
+            SELECT FDOC_NBR, CPTLAST_LINE_NBR FROM FP_CPTL_AST_INFO_T;
+
+          accountingLineCursor genericCursor;
+          currentLine          accountLineRecord;
+          accountSequence      number := 1;
+
+          fetchAccountingLine VARCHAR2(2000) := 'select t.fdoc_ln_typ_cd,
+               t.fin_coa_cd,
+               t.account_nbr,
+               t.fin_object_cd,
+               t.sub_acct_nbr,
+               t.fdoc_line_amt,
+               t.fdoc_line_nbr,
+               t.fin_sub_obj_cd,
+               t.project_cd,
+               t.org_reference_id
+          from FP_PRCRMNT_ACCT_LINES_T t, ca_object_code_t s
+         where t.fdoc_post_yr = s.univ_fiscal_yr
+           and t.fin_coa_cd = s.fin_coa_cd
+           and t.fin_object_cd = s.fin_object_cd
+           and s.fin_obj_sub_typ_cd in (''AM'',
+                                        ''BD'',
+                                        ''BF'',
+                                        ''BR'',
+                                        ''BX'',
+                                        ''BY'',
+                                        ''C1'',
+                                        ''C2'',
+                                        ''CF'',
+                                        ''CM'',
+                                        ''CO'',
+                                        ''CP'',
+                                        ''EC'',
+                                        ''IF'',
+                                        ''IT'',
+                                        ''LA'',
+                                        ''LE'',
+                                        ''LF'',
+                                        ''LI'',
+                                        ''LR'',
+                                        ''LS'',
+                                        ''RF'',
+                                        ''UC'',
+                                        ''UF'',
+                                        ''UO'' )
+                                        and t.fdoc_nbr = ''';
+
+          insertGroupDetail VARCHAR2(2000) := 'INSERT INTO fp_cptl_ast_acct_grp_dtl_t (OBJ_ID, 
+                          VER_NBR, FDOC_NBR, CPTLAST_LINE_NBR, 
+                          CPTLAST_ACCTLINE_NBR, FDOC_LINE_NBR, FDOC_LN_TYP_CD, 
+                          FIN_COA_CD, ACCOUNT_NBR,
+                          FIN_OBJECT_CD, FDOC_LINE_AMT, 
+                          SUB_ACCT_NBR, FIN_SUB_OBJ_CD, PROJECT_CD, 
+                          ORG_REFERENCE_ID) VALUES (' ||
+                                                 'sys_guid(), 1 ,';
+
+        begin
+          OPEN cptlInfoCursor;
+          LOOP
+            FETCH cptlInfoCursor
+              INTO fdoc_nbr, ast_line_nbr;
+            EXIT WHEN cptlInfoCursor%NOTFOUND;
+            --DBMS_OUTPUT.PUT_LINE('Processing ' || fdoc_nbr);
+            --DBMS_OUTPUT.PUT_LINE(fetchAccountingLine || fdoc_nbr || '''' );
+            accountSequence := 1;
+            open accountingLineCursor for fetchAccountingLine || fdoc_nbr || '''' ;
+            loop
+              fetch accountingLineCursor
+                into currentLine;
+              exit when accountingLineCursor%NOTFOUND;
+              /*dbms_output.put_line(insertGroupDetail || '''' || fdoc_nbr || ''',' ||
+                                   ast_line_nbr || ',' || accountSequence || ',' || 
+                                   currentLine.fdoc_line_nbr || ',''' ||
+                                   currentLine.fdoc_ln_typ_cd || ''',''' ||
+                                   currentLine.fin_coa_cd || ''',''' ||
+                                   currentLine.account_nbr || ''',''' ||
+                                   currentLine.fin_object_cd || ''',''' ||
+                                   currentLine.fdoc_line_amt || ''',''' ||
+                                   currentLine.sub_acct_nbr || ''',''' ||
+                                   currentLine.fin_sub_obj_cd || ''',''' ||
+                                   currentLine.project_cd || ''',''' ||                           
+                                   currentLine.org_reference_id || ''');');*/
+              execute immediate insertGroupDetail || '''' || fdoc_nbr || ''',' ||
+                                   ast_line_nbr || ',' || accountSequence || ',' || 
+                                   currentLine.fdoc_line_nbr || ',''' ||
+                                   currentLine.fdoc_ln_typ_cd || ''',''' ||
+                                   currentLine.fin_coa_cd || ''',''' ||
+                                   currentLine.account_nbr || ''',''' ||
+                                   currentLine.fin_object_cd || ''',''' ||
+                                   currentLine.fdoc_line_amt || ''',''' ||
+                                   currentLine.sub_acct_nbr || ''',''' ||
+                                   currentLine.fin_sub_obj_cd || ''',''' ||
+                                   currentLine.project_cd || ''',''' ||                           
+                                   currentLine.org_reference_id || ''')';
+              accountSequence := accountSequence + 1;
+            end loop;
+            close accountingLineCursor;
+
+          END LOOP;
+        end;
+        /
+			]]>
+	 	</sql>
+	</changeSet>
+</databaseChangeLog>
