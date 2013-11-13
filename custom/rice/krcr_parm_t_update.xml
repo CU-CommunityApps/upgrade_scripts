@@ -12,4 +12,10 @@
 		      <where>val like '%accountinglineimporttemplates%'</where>
 		    </update>
 	</changeSet>
+	 <changeSet author="srb55" id="KFSUPGRADE-431" failOnError="false">
+		<comment>Foundation create a separate one, so this one becomes obsolete.</comment>
+      <delete tableName="krcr_parm_t">
+        <where>parm_nm = 'NUMBER_OF_DAYS_TO_DECREASE_PAY_DATE_BY' AND nmspc_cd = 'KFS-PURAP'</where>
+      </delete>
+	</changeSet>
 </databaseChangeLog>
