@@ -1,0 +1,34 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="srb55" id="KFSUPGRADE-428" failOnError="false">
+		<comment>Vendor Extension tables</comment>
+		
+    <createTable tableName='CA_ICR_ACCT_T'>
+      <column name='VNDR_HDR_GNRTD_ID' type='NUMBER(10,0)' defaultValueNumeric='0'>
+        <constraints primaryKey='true' primaryKeyName="PUR_VNDR_HDR_TX_TP1"/>
+      </column>
+      <column name='OBJ_ID' type='VARCHAR2(36)'>
+      	<constraints nullable='false' unique="true" uniqueConstraintName="PUR_VNDR_HDR_TX_TC0" />
+      </column>
+      <column name='VER_NBR' type='NUMBER(8,0)' defaultValueNumeric='1'>
+      	<constraints nullable='false' />
+      </column>
+      <column name='VNDR_W9_RCVD_DATE' type='DATE' />
+    </createTable>
+
+	
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+        insert into PUR_VNDR_HDR_TX (VNDR_HDR_GNRTD_ID, OBJ_ID, VER_NBR, VNDR_W9_RCVD_DATE)  
+          select VNDR_HDR_GNRTD_ID, sys_guid(), 1, VNDR_W9_RCVD_DATE from PUR_VNDR_HDR_T
+  			/
+  		]]>
+   	</sql>
+ 	
+ 	</changeSet>
+</databaseChangeLog>
