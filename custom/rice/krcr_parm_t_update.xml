@@ -18,4 +18,13 @@
         <where>parm_nm = 'NUMBER_OF_DAYS_TO_DECREASE_PAY_DATE_BY' AND nmspc_cd = 'KFS-PURAP'</where>
       </delete>
 	</changeSet>
+	 <changeSet author="srb55" id="KFSUPGRADE-434" failOnError="false">
+		<comment>Remove two Cornell added Parameters that were created for DV module.</comment>
+    <delete tableName="krcr_parm_t">
+      <where>parm_nm = 'TAX_CONTROL_CODES_REQUIRING_TAX_REVIEW' AND nmspc_cd = 'KFS-FP'</where>
+    </delete>
+    <delete tableName="krcr_parm_t">
+      <where>parm_nm = 'W9_OWNERSHIP_TYPES' AND nmspc_cd = 'KFS-FP'</where>
+    </delete>
+	</changeSet>
 </databaseChangeLog>
