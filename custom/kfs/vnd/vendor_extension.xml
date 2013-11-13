@@ -8,7 +8,7 @@
 	 <changeSet author="srb55" id="KFSUPGRADE-428" failOnError="false">
 		<comment>Vendor Extension tables</comment>
 		
-    <createTable tableName='CA_ICR_ACCT_T'>
+    <createTable tableName='PUR_VNDR_HDR_TX'>
       <column name='VNDR_HDR_GNRTD_ID' type='NUMBER(10,0)' defaultValueNumeric='0'>
         <constraints primaryKey='true' primaryKeyName="PUR_VNDR_HDR_TX_TP1"/>
       </column>
@@ -30,5 +30,136 @@
   		]]>
    	</sql>
  	
+ 	</changeSet>
+ 	
+ 	 <changeSet author="srb55" id="KFSUPGRADE-427" failOnError="false">
+		<comment>Vendor Extension tables</comment>
+		
+    <createTable tableName='PUR_VNDR_ADDR_TX'>
+      <column name='VNDR_ADDR_GNRTD_ID' type='NUMBER(10,0)' defaultValueNumeric='0'>
+        <constraints primaryKey='true' primaryKeyName="PUR_VNDR_ADDR_TX_TP1"/>
+      </column>
+      <column name='OBJ_ID' type='VARCHAR2(36)'>
+      	<constraints nullable='false' unique="true" uniqueConstraintName="PUR_VNDR_ADDR_TX_TC0" />
+      </column>
+      <column name='VER_NBR' type='NUMBER(8,0)' defaultValueNumeric='1'>
+      	<constraints nullable='false' />
+      </column>
+      <column name='PO_TRNS_MTHD_CD' type='VARCHAR2(4)' />
+    </createTable> 
+
+	
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+        insert into PUR_VNDR_ADDR_TX (VNDR_ADDR_GNRTD_ID, OBJ_ID, VER_NBR, PO_TRNS_MTHD_CD)  
+          select VNDR_ADDR_GNRTD_ID,sys_guid(), 1, PO_TRNS_MTHD_CD from PUR_VNDR_ADDR_T
+  			/
+  		]]>
+   	</sql>
+   	
+   	<createTable tableName='PUR_VNDR_SUPP_DVRST_TX'>
+      <column name='VNDR_HDR_GNRTD_ID' type='NUMBER(10,0)' defaultValueNumeric='0'>
+        <constraints primaryKey='true' primaryKeyName="PUR_VNDR_SUPP_DVRST_TX_TP1"/>
+      </column>
+      <column name='VNDR_SUPP_DVRST_CD' type='NUMBER(10,0)' defaultValueNumeric='0'>
+        <constraints primaryKey='true' primaryKeyName="PUR_VNDR_SUPP_DVRST_TX_TP1"/>
+      </column>
+      <column name='OBJ_ID' type='VARCHAR2(36)'>
+      	<constraints nullable='false' unique="true" uniqueConstraintName="PUR_VNDR_SUPP_DVRST_TX_TC0" />
+      </column>
+      <column name='VER_NBR' type='NUMBER(8,0)' defaultValueNumeric='1'>
+      	<constraints nullable='false' />
+      </column>
+      <column name='VNDR_SUPP_DVRST_EXPIR_DATE' type='DATE' />
+    </createTable>
+
+	
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+        insert into PUR_VNDR_SUPP_DVRST_TX (VNDR_HDR_GNRTD_ID,VNDR_SUPP_DVRST_CD, OBJ_ID, VER_NBR, VNDR_SUPP_DVRST_EXPIR_DATE)  
+          select VNDR_HDR_GNRTD_ID, VNDR_SUPP_DVRST_CD,sys_guid(), 1, VNDR_SUPP_DVRST_EXPIR_DATE from PUR_VNDR_SUPP_DVRST_T
+  			/
+  		]]>
+   	</sql>
+   	
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="MERCHANT_NOTES" type="VARCHAR2(400)" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="INS_REQ_IND" type="VARCHAR2(1)" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="INS_REQ_COMPLETE_IND" type="VARCHAR2(1)" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="CU_ADDITIONAL_INSURED_IND" type="VARCHAR2(1)" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="GEN_LIAB_COVERAGE_AMNT" type="NUMBER(13,2)" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="GEN_LIAB_EXPR_DATE" type="DATE" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="AUTO_LIAB_COVERAGE_AMNT" type="NUMBER(13,2)" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="AUTO_LIAB_EXPR_DATE" type="DATE" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="WRKMANS_COMP_COVERAGE_AMNT" type="NUMBER(13,2)" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="WRKMANS_COMP_EXPR_DT" type="DATE" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="EXCESS_LIAB_UMB_AMNT" type="NUMBER(13,2)" />
+		</addColumn>
+		
+	 	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="EXCESS_LIAB_UMB_EXPR_DATE" type="DATE" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="HEALTH_OFF_SITE_LICENSE_REQ" type="VARCHAR2(1)" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="HEALTH_LICENSE_EXPR_DATE" type="DATE" />
+		</addColumn>
+		
+   	<addColumn tableName="PUR_VNDR_DTL_TX">
+			<column name="INSURANCE_NOTES" type="VARCHAR2(240)" />
+		</addColumn>
+		
+ 		<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+        update PUR_VNDR_DTL_TX B set (MERCHANT_NOTES, INS_REQ_IND,INS_REQ_COMPLETE_IND,CU_ADDITIONAL_INSURED_IND, GEN_LIAB_COVERAGE_AMNT,
+           GEN_LIAB_EXPR_DATE,AUTO_LIAB_COVERAGE_AMNT, AUTO_LIAB_EXPR_DATE,WRKMANS_COMP_COVERAGE_AMNT,WRKMANS_COMP_EXPR_DT,EXCESS_LIAB_UMB_AMNT,EXCESS_LIAB_UMB_EXPR_DATE,
+           HEALTH_OFF_SITE_LICENSE_REQ,HEALTH_LICENSE_EXPR_DATE,INSURANCE_NOTES)  = 
+          (select MERCHANT_NOTES, INS_REQ_IND,INS_REQ_COMPLETE_IND,CU_ADDITIONAL_INSURED_IND, GEN_LIAB_COVERAGE_AMNT,
+           GEN_LIAB_EXPR_DATE,AUTO_LIAB_COVERAGE_AMNT, AUTO_LIAB_EXPR_DATE,WRKMANS_COMP_COVERAGE_AMNT,WRKMANS_COMP_EXPR_DT,EXCESS_LIAB_UMB_AMNT,EXCESS_LIAB_UMB_EXPR_DATE,
+           HEALTH_OFF_SITE_LICENSE_REQ,HEALTH_LICENSE_EXPR_DATE,INSURANCE_NOTES from PUR_VNDR_DTL_T A where A.VNDR_HDR_GNRTD_ID = B.VNDR_HDR_GNRTD_ID and A.VNDR_DTL_ASND_ID = B.VNDR_DTL_ASND_ID)
+        /
+        insert into PUR_VNDR_DTL_TX (VNDR_HDR_GNRTD_ID, VNDR_DTL_ASND_ID, OBJ_ID, VER_NBR, MERCHANT_NOTES, INS_REQ_IND,INS_REQ_COMPLETE_IND,CU_ADDITIONAL_INSURED_IND, GEN_LIAB_COVERAGE_AMNT,
+         GEN_LIAB_EXPR_DATE,AUTO_LIAB_COVERAGE_AMNT, AUTO_LIAB_EXPR_DATE,WRKMANS_COMP_COVERAGE_AMNT,WRKMANS_COMP_EXPR_DT,EXCESS_LIAB_UMB_AMNT,EXCESS_LIAB_UMB_EXPR_DATE,
+         HEALTH_OFF_SITE_LICENSE_REQ,HEALTH_LICENSE_EXPR_DATE,INSURANCE_NOTES)  
+        select VNDR_HDR_GNRTD_ID, VNDR_DTL_ASND_ID,sys_guid(), 1, MERCHANT_NOTES, INS_REQ_IND,INS_REQ_COMPLETE_IND,CU_ADDITIONAL_INSURED_IND, GEN_LIAB_COVERAGE_AMNT,
+         GEN_LIAB_EXPR_DATE,AUTO_LIAB_COVERAGE_AMNT, AUTO_LIAB_EXPR_DATE,WRKMANS_COMP_COVERAGE_AMNT,WRKMANS_COMP_EXPR_DT,EXCESS_LIAB_UMB_AMNT,EXCESS_LIAB_UMB_EXPR_DATE,
+         HEALTH_OFF_SITE_LICENSE_REQ,HEALTH_LICENSE_EXPR_DATE,INSURANCE_NOTES from PUR_VNDR_DTL_T A where
+          not exists (select VNDR_HDR_GNRTD_ID from PUR_VNDR_DTL_TX B where A.VNDR_HDR_GNRTD_ID = B.VNDR_HDR_GNRTD_ID and A.VNDR_DTL_ASND_ID = B.VNDR_DTL_ASND_ID)
+    		/
+  		]]>
+   	</sql>
  	</changeSet>
 </databaseChangeLog>
