@@ -61,7 +61,7 @@
       <column name='VNDR_HDR_GNRTD_ID' type='NUMBER(10,0)' defaultValueNumeric='0'>
         <constraints primaryKey='true' primaryKeyName="PUR_VNDR_SUPP_DVRST_TX_TP1"/>
       </column>
-      <column name='VNDR_SUPP_DVRST_CD' type='NUMBER(10,0)' defaultValueNumeric='0'>
+      <column name='VNDR_SUPP_DVRST_CD' type='VARCHAR2(4)' defaultValueNumeric='0'>
         <constraints primaryKey='true' primaryKeyName="PUR_VNDR_SUPP_DVRST_TX_TP1"/>
       </column>
       <column name='OBJ_ID' type='VARCHAR2(36)'>
