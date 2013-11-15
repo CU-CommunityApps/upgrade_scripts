@@ -4,11 +4,11 @@
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-
-	 <changeSet author="srb55" id="KFSUPGRADE-430" failOnError="false">
-		<comment>Conversion on cap asset tab on FP docs</comment>
-	    <sql stripComments="true" endDelimiter="/">
-			<![CDATA[
+        
+    <changeSet author="srb55" id="KFSUPGRADE-430-1" failOnError="false">
+  	<comment>Conversion on cap asset tab on FP docs</comment>
+      <sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
         delete
         from fp_cptl_ast_info_dtl_t  t1 
         where t1.campus_cd is null or (t1.fdoc_nbr = (select t.fdoc_nbr
@@ -49,6 +49,14 @@
            and t.vndr_dtl_asnd_id is null
            and t.vndr_hdr_gnrtd_id is null
         /  
+  		]]>
+   	</sql>
+  </changeSet>
+      	
+	<changeSet author="srb55" id="KFSUPGRADE-430-2" failOnError="false">
+  	<comment>Conversion on cap asset tab on FP docs</comment>
+      <sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
         UPDATE FP_CPTL_AST_INFO_T SET CPTLAST_ACTION_IND='M' WHERE CPTLAST_NBR IS NOT NULL
         /
         UPDATE FP_CPTL_AST_INFO_T SET CPTLAST_ACTION_IND='C' WHERE CPTLAST_TYP_CD IS NOT NULL OR VNDR_HDR_GNRTD_ID IS NOT NULL OR CPTLAST_DESC IS NOT NULL OR CPTLAST_MFR_NM IS NOT NULL
@@ -448,7 +456,7 @@
           END LOOP;
         end;
         /
-			]]>
-	 	</sql>
-	</changeSet>
+  		]]>
+   	</sql>
+  </changeSet>
 </databaseChangeLog>
