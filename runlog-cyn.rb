@@ -25,7 +25,8 @@ custom_changelogs = ['krim_rsp_t_update.xml',
                      'gl-module-customizations.xml',
                      'krcr_parm_t_update.xml',
                      'krim_role_permt_t_update.xml',
-                     'krim_role_t_update.xml']
+                     'krim_role_t_update.xml',
+                     'parm_routing_update.xml']
                    
 # folders in the correct order
 folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_upgrade.xml', 
