@@ -38,17 +38,7 @@
            and t.fdoc_nbr = t1.fdoc_nbr
            and t2.doc_hdr_id= t1.fdoc_nbr
            and t2.DOC_HDR_STAT_CD in('X','I' )))
-        /
-        delete 
-          from fp_cptl_ast_info_t t
-         where t.cptlast_desc is null
-           and t.cptlast_nbr is null
-           and t.cptlast_typ_cd is null
-           and t.cptlast_mfr_nm is null
-           and t.cptlast_mfrmdl_nbr is null
-           and t.vndr_dtl_asnd_id is null
-           and t.vndr_hdr_gnrtd_id is null
-        /  
+        / 
   		]]>
    	</sql>
   </changeSet>
@@ -57,6 +47,16 @@
   	<comment>Conversion on cap asset tab on FP docs</comment>
       <sql stripComments="true" endDelimiter="/">
   		<![CDATA[
+    		delete 
+          from fp_cptl_ast_info_t t
+         where t.cptlast_desc is null
+           and t.cptlast_nbr is null
+           and t.cptlast_typ_cd is null
+           and t.cptlast_mfr_nm is null
+           and t.cptlast_mfrmdl_nbr is null
+           and t.vndr_dtl_asnd_id is null
+           and t.vndr_hdr_gnrtd_id is null
+        /
         UPDATE FP_CPTL_AST_INFO_T SET CPTLAST_ACTION_IND='M' WHERE CPTLAST_NBR IS NOT NULL
         /
         UPDATE FP_CPTL_AST_INFO_T SET CPTLAST_ACTION_IND='C' WHERE CPTLAST_TYP_CD IS NOT NULL OR VNDR_HDR_GNRTD_ID IS NOT NULL OR CPTLAST_DESC IS NOT NULL OR CPTLAST_MFR_NM IS NOT NULL
