@@ -1,0 +1,73 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+ 	
+ 	<changeSet author="srb55" id="KFSUPGRADE-433-2" failOnError="false">
+		<comment>Reindex docs after app doc status move</comment>
+		
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+      declare
+      vbulk_size            number       := 1000;
+      vbulk_count           pls_integer;
+      vrs_count             number       := 0;
+
+      --Table for Bulk Collect
+      type bill_table is table of cynergyup.krew_doc_hdr_ext_t%rowtype index by binary_integer;
+      vbill_tab bill_table;
+
+      --Declare Cursors
+      cursor record_set is
+       select 'X' ext_id,  --Defaults to krew_srch_attr_s sequence in the ins_ext Proc.
+              h.doc_hdr_id   hdr_id,
+              'applicationDocumentStatus' key_cd,
+              h.app_doc_stat val
+       from cynergyup.krew_doc_hdr_t h,
+            cynergyup.krew_doc_typ_t t
+       where (t.doc_typ_nm like 'REQ%')
+        and t.doc_typ_id = h.doc_typ_id
+        and h.app_doc_stat is not null;
+
+      procedure ins_ext(ext in cynergyup.krew_doc_hdr_ext_t%rowtype) is   
+      begin
+      	insert into cynergyup.krew_doc_hdr_ext_t
+        values
+        (cynergyup.krew_srch_attr_s.nextval,
+         ext.doc_hdr_id,
+         ext.key_cd,
+         ext.val);
+
+      end ins_ext;
+
+         begin<<stmt_process>>
+
+         open record_set;
+            loop
+            fetch record_set
+            bulk collect into vbill_tab
+            limit vbulk_size;
+          vbulk_count := vbill_tab.COUNT;
+          exit when vbulk_count = 0;
+
+            begin<<update_bill_date>>
+
+              for k in 1..vbulk_count 
+               loop
+               ins_ext(ext => vbill_tab(k));
+
+                vrs_count := nvl(vrs_count, 1) + sql%rowcount;
+              end loop;
+            end update_bill_date;
+          commit;
+          end loop;
+          close record_set;
+        end stmt_process;
+      /
+  		]]>
+   	</sql>
+ 	
+ 	</changeSet>
+</databaseChangeLog>

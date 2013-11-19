@@ -1,0 +1,82 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="srb55" id="KFSUPGRADE-433-1" failOnError="false">
+		<comment>SQL needed to convert app doc status</comment>
+		
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+      update cynergyup.krew_doc_hdr_t t
+      set (app_doc_stat, app_doc_stat_mdfn_dt) = (select s.reqs_stat_desc, trunc(sysdate) + 365
+                                                  from pur_reqs_t p,
+                                                       pur_reqs_stat_t s
+                                                  where p.reqs_stat_cd is not null
+                                                  and p.reqs_stat_cd = s.reqs_stat_cd
+                                                  and p.fdoc_nbr = t.doc_hdr_id)
+      where exists (select 'Y'
+                    from pur_reqs_t p
+                    where p.reqs_stat_cd is not null
+                    and p.fdoc_nbr = t.doc_hdr_id)
+
+      /
+      update cynergyup.krew_doc_hdr_t t
+      set (app_doc_stat, app_doc_stat_mdfn_dt) = (select s.po_stat_desc, trunc(sysdate) + 365
+                                                  from pur_po_t p,
+                                                       pur_po_stat_t s
+                                                  where p.po_stat_cd is not null
+                                                  and p.po_stat_cd = s.po_stat_cd
+                                                  and p.fdoc_nbr = t.doc_hdr_id)
+      where exists (select 'Y'
+                    from pur_po_t p
+                    where p.po_stat_cd is not null
+                    and p.fdoc_nbr = t.doc_hdr_id)
+
+      /
+      update cynergyup.krew_doc_hdr_t t
+      set (app_doc_stat, app_doc_stat_mdfn_dt) = (select s.pmt_rqst_stat_desc, trunc(sysdate) + 365
+                                                  from ap_pmt_rqst_t p,
+                                                       ap_pmt_rqst_stat_t s
+                                                  where p.pmt_rqst_stat_cd is not null
+                                                  and p.pmt_rqst_stat_cd = s.pmt_rqst_stat_cd
+                                                  and p.fdoc_nbr = t.doc_hdr_id)
+      where exists (select 'Y'
+                    from ap_pmt_rqst_t p
+                    where p.pmt_rqst_stat_cd is not null
+                    and p.fdoc_nbr = t.doc_hdr_id)
+
+      /
+      update cynergyup.krew_doc_hdr_t t
+      set (app_doc_stat, app_doc_stat_mdfn_dt) = (select s.crdt_memo_stat_desc, trunc(sysdate) + 365
+                                                  from ap_crdt_memo_t p,
+                                                       ap_crdt_memo_stat_t s
+                                                  where p.crdt_memo_stat_cd is not null
+                                                  and p.crdt_memo_stat_cd = s.crdt_memo_stat_cd
+                                                  and p.fdoc_nbr = t.doc_hdr_id)
+      where exists (select 'Y'
+                    from ap_crdt_memo_t p
+                    where p.crdt_memo_stat_cd is not null
+                    and p.fdoc_nbr = t.doc_hdr_id)
+
+      /
+      update cynergyup.krew_doc_hdr_t t
+      set (app_doc_stat, app_doc_stat_mdfn_dt) = (select s.rcvng_ln_stat_desc, trunc(sysdate) + 365
+                                                  from pur_rcvng_ln_t p,
+                                                       pur_rcvng_ln_stat_t s
+                                                  where p.rcvng_ln_stat_cd is not null
+                                                  and p.rcvng_ln_stat_cd = s.rcvng_ln_stat_cd
+                                                  and p.fdoc_nbr = t.doc_hdr_id)
+      where exists (select 'Y'
+                    from pur_rcvng_ln_t p
+                    where p.rcvng_ln_stat_cd is not null
+                    and p.fdoc_nbr = t.doc_hdr_id)
+
+  			/
+  		]]>
+   	</sql>
+ 	
+ 	</changeSet>
+</databaseChangeLog>
