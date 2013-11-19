@@ -1,0 +1,43 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="srb55" id="KFSUPGRADE-439" failOnError="false">
+		<comment>Remove unused values from COA Maintenance Tables</comment>
+    <delete tableName="CA_HIGHR_ED_FUNC_T">
+      <where>FIN_HGH_ED_FUNC_CD IN ('9990', 'PCCD')</where>
+    </delete>
+    <delete tableName="CA_OBJ_CONSOLDTN_T">
+      <where>FIN_CONS_OBJ_CD = 'COMP'</where>
+    </delete>
+    <delete tableName="CA_SUB_OBJ_CD_CHG_DTL_T">
+      <where>Fin_Object_Cd IN (SELECT Fin_Object_Cd FROM CA_OBJECT_CODE_T WHERE (Fin_Coa_Cd = 'FS' And Fin_Obj_Level_Cd In ('ALCO', 'TRAN', 'YEC1', 'YEC2')) Or
+              (Fin_Coa_Cd = 'IT' And Fin_Obj_Level_Cd In ('TRAN', 'YEC1')) Or 
+              (Fin_Coa_Cd = 'MC' AND Fin_Obj_Level_Cd IN ('ALCO', 'TRAN', 'YEC1', 'YEC2')))</where>
+    </delete>
+    <delete tableName="CA_SUB_OBJECT_CD_T">
+      <where>Fin_Object_Cd IN (SELECT Fin_Object_Cd FROM CA_OBJECT_CODE_T WHERE (Fin_Coa_Cd = 'FS' And Fin_Obj_Level_Cd In ('ALCO', 'TRAN', 'YEC1', 'YEC2')) Or
+              (Fin_Coa_Cd = 'IT' And Fin_Obj_Level_Cd In ('TRAN', 'YEC1')) Or 
+              (Fin_Coa_Cd = 'MC' AND Fin_Obj_Level_Cd IN ('ALCO', 'TRAN', 'YEC1', 'YEC2')))</where>
+    </delete>
+    <delete tableName="CA_OBJECT_CODE_T">
+      <where>(Fin_Coa_Cd = 'FS' And Fin_Obj_Level_Cd In ('ALCO', 'TRAN', 'YEC1', 'YEC2')) Or
+        (Fin_Coa_Cd = 'IT' And Fin_Obj_Level_Cd In ('TRAN', 'YEC1')) Or 
+        (Fin_Coa_Cd = 'MC' AND Fin_Obj_Level_Cd IN ('ALCO', 'TRAN', 'YEC1', 'YEC2'))</where>
+    </delete>
+    <delete tableName="CA_OBJ_LEVEL_T">
+      <where>(Fin_Coa_Cd = 'FS' And Fin_Obj_Level_Cd In ('ALCO', 'TRAN', 'YEC1', 'YEC2')) Or
+        (Fin_Coa_Cd = 'IT' And Fin_Obj_Level_Cd In ('TRAN', 'YEC1')) Or 
+        (Fin_Coa_Cd = 'MC' AND Fin_Obj_Level_Cd IN ('ALCO', 'TRAN', 'YEC1', 'YEC2'))</where>
+    </delete>
+    <delete tableName="CA_RESTRICT_STAT_T">
+      <where>ACCT_RSTRC_STAT_CD = 'X'</where>
+    </delete>
+    <delete tableName="CA_SUB_FUND_GRP_T">
+      <where>SUB_FUND_GRP_CD IN ('ASXXXX', 'DBOTHR', 'GIK', 'LBXXXX')</where>
+    </delete>
+	</changeSet>
+</databaseChangeLog>
