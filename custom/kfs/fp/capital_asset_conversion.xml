@@ -24,7 +24,7 @@
            and t2.doc_hdr_id= t1.fdoc_nbr
            and t2.DOC_HDR_STAT_CD in('X','I' )))
         /
-        select t1.* 
+        delete
         from fp_cptl_ast_info_dtl_t  t1 
         where t1.campus_cd is null or (t1.fdoc_nbr = (select t.fdoc_nbr
         from fp_cptl_ast_info_t t, cynergyup.krew_doc_hdr_t t2 
@@ -38,7 +38,7 @@
            and t.fdoc_nbr = t1.fdoc_nbr
            and t2.doc_hdr_id= t1.fdoc_nbr
            and t2.DOC_HDR_STAT_CD in('X','I' )))
-        / 
+        /
   		]]>
    	</sql>
   </changeSet>
