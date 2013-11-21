@@ -5,9 +5,24 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-	 <changeSet author="srb55" id="KFSUPGRADE-459" failOnError="false">
-		<comment>Delete service def tables during upgrade</comment>
+  <changeSet author="srb55" id="KFSUPGRADE-459" failOnError="false">
+    <comment>Delete service def tables during upgrade</comment>
+		
+    <comment>This may be more than we need, but seems to work.</comment>
+    <delete tableName="KRSB_QRTZ_BLOB_TRIGGERS" />
+    <delete tableName="KRSB_QRTZ_CALENDARS" />
+    <delete tableName="KRSB_QRTZ_CRON_TRIGGERS" />
+    <delete tableName="KRSB_QRTZ_FIRED_TRIGGERS" />
+    <delete tableName="KRSB_QRTZ_JOB_LISTENERS" />
+    <delete tableName="KRSB_QRTZ_PAUSED_TRIGGER_GRPS" />
+    <delete tableName="KRSB_QRTZ_SCHEDULER_STATE" />
+    <delete tableName="KRSB_QRTZ_SIMPLE_TRIGGERS" />
+    <delete tableName="KRSB_QRTZ_TRIGGER_LISTENERS" />
+    <delete tableName="KRSB_QRTZ_TRIGGERS" />
+    <delete tableName="KRSB_MSG_QUE_T" />
+    <delete tableName="KRSB_MSG_PYLD_T" />
+		
     <delete tableName="KRSB_SVC_DEF_T" />
     <delete tableName="KRSB_SVC_DSCRPTR_T" />
-	</changeSet>
+  </changeSet>
 </databaseChangeLog>
