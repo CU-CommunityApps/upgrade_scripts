@@ -145,8 +145,8 @@
             <join name="JoinRequiresBudgetReview" />
           </split>
           <!-- TODO : This doc status may have several different possibilities.  'Open' is one of them.  Not sure how to handle this -->
-          <role name="AccountingOrganizationHierarchy" nextNode="Organization"  nextAppDocStatus="Open"/>
-          <role name="Organization" />
+          <role name="AccountingOrganizationHierarchy" nextNode="Organization"  nextAppDocStatus="Pending cxml"/>
+          <role name="Organization"  nextAppDocStatus="Open"/>
         </routePath>
       </routePaths>
       <routeNodes>
