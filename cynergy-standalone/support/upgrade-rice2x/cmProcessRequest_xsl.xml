@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <styles xmlns="ns:workflow/Style" xsi:schemaLocation="ns:workflow/Style resource:Style">
+    <style name="cmProcessRequest_xsl">
+      <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wf="xalan://org.kuali.rice.edl.framework.util.EDLFunctions" version="1.0">
+        <xsl:include href="widgets" />
+        <xsl:output doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" indent="yes" method="html" omit-xml-declaration="yes" />
+        <xsl:param name="overrideMain" select="'true'" />
+        <!-- if "overrideMain" = true, please customize the "mainForm" template. Otherwise please customize the "mainBody" template -->
+        <xsl:template name="mainBody">
+          <table xmlns="" align="center" border="0" cellpadding="0" cellspacing="0" class="bord-r-t" width="80%">
+            <xsl:variable name="docId" select="//docId" />
+            <xsl:choose>
+              <xsl:when test="wf:isUserRouteLogAuthenticated(//docId)">
+                <tr>
+                  <td class="thnormal" width="30%">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'netID'" />
+                      <xsl:with-param name="renderCmd" select="'title'" />
+                    </xsl:call-template>
+                  </td>
+                  <td class="datacell">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'netID'" />
+                      <xsl:with-param name="renderCmd" select="'input'" />
+                    </xsl:call-template>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="thnormal" width="30%">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'emplID'" />
+                      <xsl:with-param name="renderCmd" select="'title'" />
+                    </xsl:call-template>
+                  </td>
+                  <td class="datacell">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'emplID'" />
+                      <xsl:with-param name="renderCmd" select="'input'" />
+                    </xsl:call-template>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="thnormal" width="30%">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'name'" />
+                      <xsl:with-param name="renderCmd" select="'title'" />
+                    </xsl:call-template>
+                  </td>
+                  <td class="datacell">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'name'" />
+                      <xsl:with-param name="renderCmd" select="'input'" />
+                    </xsl:call-template>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="thnormal" width="30%">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'student'" />
+                      <xsl:with-param name="renderCmd" select="'title'" />
+                    </xsl:call-template>
+                  </td>
+                  <td class="datacell">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'student'" />
+                      <xsl:with-param name="renderCmd" select="'input'" />
+                    </xsl:call-template>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="thnormal" width="30%">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'act'" />
+                      <xsl:with-param name="renderCmd" select="'title'" />
+                    </xsl:call-template>
+                  </td>
+                  <td class="datacell">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'act'" />
+                      <xsl:with-param name="renderCmd" select="'input'" />
+                    </xsl:call-template>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="thnormal" valign="top" width="30%">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'businessRoleActuateReports'" />
+                      <xsl:with-param name="renderCmd" select="'title'" />
+                    </xsl:call-template>
+                  </td>
+                  <td class="datacell">
+                    <table>
+                      <tr>
+                        <td>
+                          <xsl:call-template name="widget_render">
+                            <xsl:with-param name="fieldName" select="'businessRoleActuateReports'" />
+                            <xsl:with-param name="renderCmd" select="'input'" />
+                          </xsl:call-template>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <xsl:call-template name="widget_render">
+                            <xsl:with-param name="fieldName" select="'businessRolePEDL'" />
+                            <xsl:with-param name="renderCmd" select="'input'" />
+                          </xsl:call-template>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <xsl:call-template name="widget_render">
+                            <xsl:with-param name="fieldName" select="'businessRoleHrOnlineReports'" />
+                            <xsl:with-param name="renderCmd" select="'input'" />
+                          </xsl:call-template>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <xsl:call-template name="widget_render">
+                            <xsl:with-param name="fieldName" select="'businessRoleExemptLeaveReports'" />
+                            <xsl:with-param name="renderCmd" select="'input'" />
+                          </xsl:call-template>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <xsl:call-template name="widget_render">
+                            <xsl:with-param name="fieldName" select="'businessRoleSES'" />
+                            <xsl:with-param name="renderCmd" select="'input'" />
+                          </xsl:call-template>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="thnormal" width="30%">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'unit'" />
+                      <xsl:with-param name="renderCmd" select="'title'" />
+                    </xsl:call-template>
+                  </td>
+                  <td class="datacell">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'unit'" />
+                      <xsl:with-param name="renderCmd" select="'input'" />
+                    </xsl:call-template>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="thnormal" width="30%">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'deptCustomNode'" />
+                      <xsl:with-param name="renderCmd" select="'title'" />
+                    </xsl:call-template>
+                  </td>
+                  <td class="datacell">
+                    <table>
+                      <tr>
+                        <td>
+                          <xsl:call-template name="widget_render">
+                            <xsl:with-param name="fieldName" select="'deptCustomNode'" />
+                            <xsl:with-param name="renderCmd" select="'input'" />
+                          </xsl:call-template>
+                        </td>
+                        <td>
+                          <xsl:call-template name="widget_render">
+                            <xsl:with-param name="fieldName" select="'deptCheckAll'" />
+                            <xsl:with-param name="renderCmd" select="'input'" />
+                          </xsl:call-template>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="thnormal" width="30%">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'comments'" />
+                      <xsl:with-param name="renderCmd" select="'title'" />
+                    </xsl:call-template>
+                  </td>
+                  <td class="datacell">
+                    <xsl:call-template name="widget_render">
+                      <xsl:with-param name="fieldName" select="'comments'" />
+                      <xsl:with-param name="renderCmd" select="'input'" />
+                    </xsl:call-template>
+                  </td>
+                </tr>
+              </xsl:when>
+              <xsl:otherwise>
+                <tr>
+                  <td>
+                    <h3>You are not authorized to see this e-doc.</h3>
+                  </td>
+                </tr>
+              </xsl:otherwise>
+            </xsl:choose>
+          </table>
+        </xsl:template>
+        <xsl:template name="mainForm">
+          <html xmlns="">
+            <head>
+              <xsl:call-template name="htmlHead" />
+            </head>
+            <body onload="onPageLoad()">
+              <xsl:call-template name="header" />
+              <xsl:call-template name="instructions" />
+              <xsl:call-template name="errors" />
+              <xsl:variable name="formTarget" select="'EDocLite'" />
+              <form action="{$formTarget}" enctype="multipart/form-data" id="edoclite" method="post" onsubmit="return validateOnSubmit(this)">
+                <xsl:call-template name="hidden-params" />
+                <xsl:call-template name="mainBody" />
+                <br />
+                <table align="center" width="80%">
+                  <tr>
+                    <td align="center">Authorizers please document any changes you may have made to this request in the NOTES section below and click SAVE before Approving.</td>
+                  </tr>
+                </table>
+                <xsl:call-template name="notes" />
+                <br />
+                <br />
+                <xsl:call-template name="annotation" />
+                <xsl:call-template name="buttons" />
+              </form>
+              <table align="center" width="80%">
+                <tr>
+                  <td align="center">For assistance with this request form please email CIT Security Administration at bis-secadmin@bisrt.cit.cornell.edu.</td>
+                </tr>
+              </table>
+              <xsl:call-template name="footer" />
+            </body>
+          </html>
+        </xsl:template>
+      </xsl:stylesheet>
+    </style>
+  </styles>
+</data>
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	CU Customization (KFSUPGRADE-19): Copied the PostalCodeMaintenanceDocument and
+	converted it into the CynergyPostalCodeMaintenanceDocument workflow doc type.
+ -->
+<data xsi:schemaLocation="ns:workflow resource:WorkflowData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ns:workflow">
+	<documentTypes xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType" xmlns="ns:workflow/DocumentType">
+		<documentType>
+			<name>CynergyPostalCodeMaintenanceDocument</name>
+			<parent>RiceDocument</parent>
+			<label>CynergyPostalCodeMaintenanceDocument</label>
+			<docHandler>${kr.url}/maintenance.do?methodToCall=docHandler</docHandler>
+			<helpDefinitionURL>default.htm?turl=WordDocuments%2Fpostalcode.htm</helpDefinitionURL>
+			<active>true</active>
+			<routingVersion>2</routingVersion>
+		</documentType>
+	</documentTypes>
+</data>

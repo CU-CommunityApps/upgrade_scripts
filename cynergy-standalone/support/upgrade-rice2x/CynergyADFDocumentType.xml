@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    A base document type that all Cynergy ADF apps' doc types can derive from. This can help with setting up
+    common properties and KIM permissions for the ADF apps' documents.
+ -->
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>CynergyADFDocument</name>
+      <parent>RiceDocument</parent>
+      <description>The base document type that is generally used as the parent of all doc types for the Cynergy Application Development Framework (ADF) apps.</description>
+      <label>Cynergy ADF Document</label>
+      <postProcessorName>org.kuali.rice.krad.workflow.postprocessor.KualiPostProcessor</postProcessorName>
+      <superUserGroupName namespace="PERMIT">cit.cynergy.global.admins</superUserGroupName>
+      <blanketApproveGroupName namespace="PERMIT">cit.cynergy.global.admins</blanketApproveGroupName>
+      <defaultExceptionGroupName namespace="PERMIT">cit.cynergy.global.admins</defaultExceptionGroupName>
+      <policies>
+        <policy>
+          <name>LOOK_FUTURE</name>
+          <value>true</value>
+        </policy>
+      </policies>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing" />
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This document type was originally developed by rSmart for the KSR module,
+    which is now needed for Cynergy standalone and KFS (CYNERGY-2290).
+    Some Cornell-specific tweaks have been made, such as adding a searchable attribute
+    and adding some basic DataDictionarySearchableAttribute bootstrap.
+ -->
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>SecurityRequestDocument</name>
+      <parent>RiceDocument</parent>
+      <description>Create a Security Request Document</description>
+      <label>Security Request Document</label>
+      <postProcessorName>org.kuali.rice.krad.workflow.postprocessor.KualiPostProcessor</postProcessorName>
+      <docHandler>${kr.krad.url}/securityRequestDocument?methodToCall=docHandler</docHandler>
+      <active>true</active>
+      <routingVersion>1</routingVersion>
+      <attributes>
+        <attribute>
+          <name>DataDictionarySearchableAttribute</name>
+        </attribute>
+      </attributes>
+      <routePaths>
+        <routePath>
+          <start name="AdHoc" nextNode="DistributedAuthorizer" />
+          <role name="DistributedAuthorizer" nextNode="AdditionalAuthorizer" />
+          <role name="AdditionalAuthorizer" nextNode="CentralAuthorizer" />
+          <role name="CentralAuthorizer" />
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="AdHoc">
+          <activationType>P</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <role name="DistributedAuthorizer">
+          <qualifierResolverClass>org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver</qualifierResolverClass>
+          <activationType>P</activationType>
+        </role>  
+        <role name="AdditionalAuthorizer">
+          <qualifierResolverClass>org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver</qualifierResolverClass>
+          <activationType>P</activationType>
+        </role>  
+        <role name="CentralAuthorizer">
+          <qualifierResolverClass>org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver</qualifierResolverClass>
+          <activationType>P</activationType>
+        </role>                       
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+  <ruleAttributes xmlns="ns:workflow/RuleAttribute" xsi:schemaLocation="ns:workflow/RuleAttribute resource:RuleAttribute">
+    <ruleAttribute>
+      <name>DataDictionarySearchableAttribute</name>
+      <className>org.kuali.rice.kns.workflow.attribute.DataDictionarySearchableAttribute</className>
+      <label>Data Dictionary Searchable Attribute</label>
+      <description>Data Dictionary Searchable Attribute</description>
+      <type>SearchableAttribute</type>
+    </ruleAttribute>
+  </ruleAttributes>
+</data>

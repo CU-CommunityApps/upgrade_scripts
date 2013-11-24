@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<data xmlns="ns:workflow" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <!--
+        This document type was originally developed by rSmart, but the Cynergy team has
+        customized it to include a doc handler URL (CYNERGY-2290).
+     -->
+    <documentType>
+      <name>SecurityProvisioningGroupDocumentType</name>
+      <parent>RiceDocument</parent>
+      <label>Security Provisioning</label>
+      <docHandler>${kr.krad.url}/maintenance?methodToCall=docHandler</docHandler>
+    </documentType>
+  </documentTypes>
+</data>
