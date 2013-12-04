@@ -103,7 +103,7 @@
         </category>
         <category name="INCOMPLETE STATUSES">
           <status>In Process</status>
-          <status>Awaiting Fiscal Officer Review</status>
+          <status>Awaiting Fiscal Officer</status>
           <status>Awaiting New Unordered Item Review</status>
           <status>Disapproved New Unordered Item Review</status>
           <status>Awaiting Purchasing Approval</status>
@@ -223,7 +223,7 @@
         </category>
         <category name="INCOMPLETE STATUSES">
           <status>In Process</status>
-          <status>Awaiting Fiscal Officer Review</status>
+          <status>Awaiting Fiscal Officer</status>
           <status>Awaiting New Unordered Item Review</status>
           <status>Disapproved New Unordered Item Review</status>
           <status>Awaiting Purchasing Approval</status>
@@ -256,7 +256,7 @@
             </branch>
             <join name="JoinNewUnorderedItems" />
           </split>
-          <role name="SubAccount" nextNode="Account" nextAppDocStatus="Awaiting Fiscal Officer Review" />
+          <role name="SubAccount" nextNode="Account" nextAppDocStatus="Awaiting Fiscal Officer" />
           <role name="Account" nextNode="RequiresAwardReview" nextAppDocStatus="Awaiting C and G Approval" />
           <split name="RequiresAwardReview" nextNode="Commodity" nextAppDocStatus="Awaiting Commodity Code Approval">
             <branch name="True">
@@ -295,7 +295,7 @@
             </branch>
             <join name="JoinRequiresBudgetReview" />
           </split>
-          <role name="AccountingOrganizationHierarchy" nextNode="NoOpFinal" />
+          <role name="AccountingOrganizationHierarchy" nextNode="NoOpFinal"  nextAppDocStatus="Pending cxml"/>
           <simple name="NoOpFinal" />
         </routePath>
       </routePaths>
