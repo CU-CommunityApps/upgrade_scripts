@@ -37,6 +37,7 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => kfs_changel
             {:name => "custom/kfs/vnd", :version => 3, :changelogs => ['vendor_extension.xml'] },
             {:name => "custom/kfs/fp", :version => 3, :changelogs => ['capital_asset_conversion.xml'] },
             {:name => "custom/kfs/purap", :version => 3, :changelogs => ['app_doc_status.xml'] },
+            {:name => "custom/kfs/gl", :version => 3, :changelogs => ['iaa-offset-defn.xml'] },
           ]
           
 folders.each do |folder|
