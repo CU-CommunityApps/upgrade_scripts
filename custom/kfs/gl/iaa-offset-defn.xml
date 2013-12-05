@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="srb55" id="KFSUPGRADE-492" failOnError="false">
+		<comment>New Doc Type Offset Definitions: IAA IntraAccountAdjustment</comment>
+      <insert tableName="GL_OFFSET_DEFN_T">
+          <column name="UNIV_FISCAL_YR" value="2014" />
+    			<column name="OBJ_ID" valueNumeric="SYS_GUID() " />
+    			<column name="VER_NBR" valueNumeric="1" />
+    			<column name="FIN_COA_CD" value="IT" />
+    			<column name="FDOC_TYP_CD" value="IAA" />
+    			<column name="FIN_BALANCE_TYP_CD" value="AC" />
+    			<column name="FIN_OBJECT_CD" value="1000" />
+      </insert>
+	</changeSet>
+</databaseChangeLog>
