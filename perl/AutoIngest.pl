@@ -92,6 +92,7 @@ foreach my $xmlFile (@fullFileList) {
 
   # Request the page, following redirects
   my $response=$ua->request(HTTP::Request->new(GET=> $server)) ;
+  print $response->decoded_content ;
   my $form=HTML::Form->parse($response->decoded_content,$response->base) ;
 
   # At CUWA login page?
