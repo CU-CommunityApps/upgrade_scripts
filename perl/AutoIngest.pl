@@ -102,14 +102,18 @@ foreach my $xmlFile (@fullFileList) {
     $form->value(netid => $netid) ;
     $form->value(password => $pass) ;
     $response = $ua->request($form->click) ;
+    print "Cuwa form submitted." ;
     $form = HTML::Form->parse($response->decoded_content,$response->base) ;
 	}
 
   # Put XML file in edit field
+  print "Looking for file_0 name element" ;
   $form->value('file[0]'=> $xmlFile) ;
+  print "Set file_0 name element" ;
 
   # submit
   $response = $ua->request($form->click) ;
+  print "Ingest form submitted" ;
 
   @status = $response->content =~ /<pre>(.*?)<\/pre>/gs ;
   if ("Ingestion failed" ne $status[0]) {
