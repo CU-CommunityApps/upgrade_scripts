@@ -92,7 +92,6 @@ foreach my $xmlFile (@fullFileList) {
 
   # Request the page, following redirects
   my $response=$ua->request(HTTP::Request->new(GET=> $server)) ;
-  print $response->decoded_content ;
   my $form=HTML::Form->parse($response->decoded_content,$response->base) ;
 
   # At CUWA login page?
@@ -102,21 +101,14 @@ foreach my $xmlFile (@fullFileList) {
     $form->value(netid => $netid) ;
     $form->value(password => $pass) ;
     $response = $ua->request($form->click) ;
-    print "Cuwa form submitted.\n" ;
     $form = HTML::Form->parse($response->decoded_content,$response->base) ;
-    print "********************************** Response Starts ********************************* \n" ;
-    print $response->decoded_content ;
-    print "********************************** Response Starts ********************************* \n" ;
 	}
 
   # Put XML file in edit field
-  print "Looking for file_0 name element" ;
   $form->value('file[0]'=> $xmlFile) ;
-  print "Set file_0 name element\n" ;
 
   # submit
   $response = $ua->request($form->click) ;
-  print "Ingest form submitted\n" ;
 
   @status = $response->content =~ /<pre>(.*?)<\/pre>/gs ;
   if ("Ingestion failed" ne $status[0]) {
