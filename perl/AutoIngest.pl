@@ -1,6 +1,5 @@
 #! /usr/bin/perl
 
-use File::Find::Rule ;
 use Cwd ;
 use HTML::Form ;
 use LWP::UserAgent ;
@@ -28,6 +27,33 @@ my @kfsFiles = (
   "custom/kfs/workflow/cu_purchasing_document_updates.xml"
 	) ;
 
+my @riceFiles = (
+  "12-06-2011-ComponentMaintenanceDocument-doctype.xml",
+  "AgendaEditorDocument.xml",
+  "AgendaMaintenanceDocument.xml",
+  "ContextMaintenanceDocument.xml",
+  "PeopleFlowMaintenanceDocument.xml",
+  "RuleMaintenanceDocument.xml",
+  "TermMaintenanceDocument.xml",
+  "TermSpecificationMaintenanceDocument.xml"
+  ) ;
+
+my @cynergyFiles = (
+  "103_to_200_perm_resp_upgrade.sql",
+  "CynergyADFDocumentType.xml",
+  "CynergyCountryMaintenanceDocument.xml",
+  "CynergyCountyMaintenanceDocument.xml",
+  "CynergyPostalCodeMaintenanceDocument.xml",
+  "CynergyStateMaintenanceDocument.xml",
+  "Default.xml",
+  "ParameterMaintenanceDocument_Cynergy.xml",
+  "SecurityGroupDocumentType.xml",
+  "SecurityProvisioningGroupDocumentType.xml",
+  "SecurityRequestDocument.xml",
+  "cmProcessRequest_xsl.xml",
+  "cynergy-widgets.xml"
+  ) ;
+
 my $redir=[qw(GET HEAD POST)] ;
 my $cookiefile="cookiejar" ;
 my $nomnom = HTTP::Cookies->new(FILE => $cookiefile, AUTOSAVE => 1) ;
@@ -41,21 +67,27 @@ my @fullFileList ;
 # Create full paths for KFS files
 my $baseDirKfs = $baseDir . "/" ;
 foreach my $xmlFile (@kfsFiles) {
-	my $fullPathSpec = $baseDirKfs . $xmlFile ;
-	push(@fullFileList, $fullPathSpec) ;
+  my $fullPathSpec = $baseDirKfs . $xmlFile ;
+  push(@fullFileList, $fullPathSpec) ;
 } 
 
 # Create full paths for Rice files
-my @cynergyFiles = &buildXmlListFromDir($baseDir . "/rice/workflow") ;
-push(@fullFileList, @cynergyFiles) ;
+my $baseDirRice = $baseDir . "/rice/workflow/" ;
+foreach my $xmlFile (@riceFiles) {
+  my $fullPathSpec = $baseDirRice . $xmlFile ;
+  push(@fullFileList, $fullPathSpec) ;
+}
 
-# Get Cynergy files via a search (as we'll use them all)
-my @cynergyFiles = &buildXmlListFromDir($baseDir . "/cynergy-standalone/support/upgrade-rice2x") ;
-push(@fullFileList, @cynergyFiles) ;
+# Create full paths for Cynergy files
+my $baseDirCynergy = $baseDir . "/cynergy-standalone/support/upgrade-rice2x/" ;
+foreach my $xmlFile (@cynergyFiles) {
+  my $fullPathSpec = $baseDirCynergy . $xmlFile ;
+  push(@fullFileList, $fullPathSpec) ;
+}
 
 foreach my $xmlFile (@fullFileList) {
 
-	# By default LWP won't follow a redirect after a post
+  # By default LWP won't follow a redirect after a post
   my $ua=LWP::UserAgent->new(cookie_jar => $nomnom, requests_redirectable=>$redir) ;
 
   # Request the page, following redirects
@@ -63,19 +95,19 @@ foreach my $xmlFile (@fullFileList) {
   my $form=HTML::Form->parse($response->decoded_content,$response->base) ;
 
   # At CUWA login page?
-	my $action = $form->action ;
-	if (index($action, "loginAction") != -1) {
-	  print "Form element action contiains the substring: loginAction\n" ;
-	 	$form->value(netid => $netid) ;
-		$form->value(password => $pass) ;
-	 	$response = $ua->request($form->click) ;
-		$form = HTML::Form->parse($response->decoded_content,$response->base) ;
+  my $action = $form->action ;
+  if (index($action, "loginAction") != -1) {
+    print "Form element action contiains the substring: loginAction\n" ;
+    $form->value(netid => $netid) ;
+    $form->value(password => $pass) ;
+    $response = $ua->request($form->click) ;
+    $form = HTML::Form->parse($response->decoded_content,$response->base) ;
 	}
 
-	# Put XML file in edit field
-	$form->value('file[0]'=> $xmlFile) ;
+  # Put XML file in edit field
+  $form->value('file[0]'=> $xmlFile) ;
 
-	# submit
+  # submit
   $response = $ua->request($form->click) ;
 
   @status = $response->content =~ /<pre>(.*?)<\/pre>/gs ;
@@ -85,12 +117,3 @@ foreach my $xmlFile (@fullFileList) {
     print "$xmlFile was NOT successfully uploaded.  Error: $status[1]\n" ;
   }	
 }
-
-# Get XML workflow files from a directory.
-# ----------------------------------------------------------------- #
-sub buildXmlListFromDir {	
-	
-  my $includeFiles = File::Find::Rule->file->name('*.xml'); 
-  my @xmlFiles = File::Find::Rule->or( $includeFiles )->in($_[0]);
-  return @xmlFiles ;
-	}
