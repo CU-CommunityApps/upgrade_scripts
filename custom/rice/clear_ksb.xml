@@ -17,7 +17,6 @@
     <delete tableName="KRSB_QRTZ_TRIGGERS" />
     <delete tableName="KRSB_MSG_QUE_T" />
     <delete tableName="KRSB_MSG_PYLD_T" />
-		
     <delete tableName="KRSB_SVC_DEF_T" />
   </changeSet>
 </databaseChangeLog>

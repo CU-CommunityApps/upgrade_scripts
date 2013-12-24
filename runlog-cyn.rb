@@ -29,7 +29,7 @@ custom_changelogs = ['krim_rsp_t_update.xml',
                      'parm_routing_update.xml',
                      'reindex_docs.xml',
                      'clear_ksb.xml']
-                   
+
 # folders in the correct order
 folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_upgrade.xml', 
                                                                       'rice/kns_parm_upgrade.xml', 

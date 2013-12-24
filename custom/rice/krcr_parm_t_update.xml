@@ -27,4 +27,12 @@
       <where>parm_nm = 'W9_OWNERSHIP_TYPES' AND nmspc_cd = 'KFS-FP'</where>
     </delete>
 	</changeSet>
+  <changeSet author="se10" id="KFSUPGRADE-488" failOnError="false">
+    <comment>Implemented from KDO-454, which references KFSUPGRADE-488</comment>
+    <update tableName="krcr_parm_t">
+      <column name="val" value="AGUV" />
+      <where>parm_nm = 'SUPPRESS_REJECT_REASON_CODES_ON_EIRT_APPROVAL' and nmspc_cd ='KFS-PURAP'</where>
+    </update>
+  </changeSet>
+
 </databaseChangeLog>
