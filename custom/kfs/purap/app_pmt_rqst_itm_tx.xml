@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="se10" id="KDO-456" >
+    <comment>Requested by ls693 as part of KFSUPGRADE-485</comment>
+
+		<createTable tableName="AP_PMT_RQST_ITM_TX">
+			<column name="PMT_RQST_ITM_ID" type="NUMBER(10,0)">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="AP_PMT_RQST_ITM_TX_TP1"/>
+			</column>
+			<column name="OBJ_ID" type="VARCHAR2(36) NOT NULL">
+				<constraints nullable="false" unique="true" uniqueConstraintName="AP_PMT_RQST_ITM_TX_TC0" />
+			</column>
+			<column name="VER_NBR" type="NUMBER(8)">
+				<constraints nullable="false" />
+			</column>
+			<column name="INV_ITM_LN_NBR" type="NUMBER(3,0)" defaultValueNumeric="1">
+			</column>
+		</createTable>
+
+    <sql>
+      insert into AP_PMT_RQST_ITM_TX (PMT_RQST_ITM_ID, OBJ_ID, VER_NBR, INV_ITM_LN_NBR) 
+      select PMT_RQST_ITM_ID, sys_guid(), 1, INV_ITM_LN_NBR from AP_PMT_RQST_ITM_T
+		</sql>
+	</changeSet>
+
+</databaseChangeLog>
