@@ -247,12 +247,12 @@
       <routePaths>
         <routePath>
           <start name="AdHoc" nextNode="HasNewUnorderedItems" nextAppDocStatus="Awaiting New Unordered Item Review" />
-          <split name="HasNewUnorderedItems" nextNode="SubAccount"  nextAppDocStatus="Awaiting Sub Account">
+          <split name="HasNewUnorderedItems" nextNode="SubAccount" >
             <branch name="True">
-              <role name="NewUnorderedItems" nextNode="JoinNewUnorderedItems" />
+              <role name="NewUnorderedItems" nextNode="JoinNewUnorderedItems"  nextAppDocStatus="Awaiting Sub Account"/>
             </branch>
             <branch name="False">
-              <simple name="NoOpNewUnorderedItems" nextNode="JoinNewUnorderedItems" />
+              <simple name="NoOpNewUnorderedItems" nextNode="JoinNewUnorderedItems"  nextAppDocStatus="Awaiting Sub Account"/>
             </branch>
             <join name="JoinNewUnorderedItems" />
           </split>
@@ -1025,12 +1025,12 @@
               <role name="SubAccount" nextNode="Account"  nextAppDocStatus="Awaiting Fiscal Officer"/>
               <role name="Account" nextNode="AccountingOrganizationHierarchy" nextAppDocStatus="Awaiting Base Org Review" />
               <role name="AccountingOrganizationHierarchy" nextNode="RequiresAwardReview" nextAppDocStatus="Awaiting C and G Approval" />
-              <split name="RequiresAwardReview" nextNode="Commodity"   nextAppDocStatus="Awaiting Commodity Review">
+              <split name="RequiresAwardReview" nextNode="Commodity"   >
                 <branch name="True">
-                  <role name="Award" nextNode="JoinRequiresAwardReview" />
+                  <role name="Award" nextNode="JoinRequiresAwardReview"  nextAppDocStatus="Awaiting Commodity Review" />
                 </branch>
                 <branch name="False">
-                  <simple name="NoOpRequiresAwardReview" nextNode="JoinRequiresAwardReview" />
+                  <simple name="NoOpRequiresAwardReview" nextNode="JoinRequiresAwardReview" nextAppDocStatus="Awaiting Commodity Review"  />
                 </branch>
                 <join name="JoinRequiresAwardReview" />
               </split>
