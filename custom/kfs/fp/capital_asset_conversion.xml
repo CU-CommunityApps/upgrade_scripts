@@ -24,6 +24,8 @@
            and t2.doc_hdr_id= t1.fdoc_nbr
            and t2.DOC_HDR_STAT_CD in('X','I' )))
         /
+	commit
+	/
         delete
         from fp_cptl_ast_info_dtl_t  t1 
         where t1.campus_cd is null or (t1.fdoc_nbr = (select t.fdoc_nbr
@@ -39,6 +41,8 @@
            and t2.doc_hdr_id= t1.fdoc_nbr
            and t2.DOC_HDR_STAT_CD in('X','I' )))
         /
+	commit
+	/
   		]]>
    	</sql>
   </changeSet>
