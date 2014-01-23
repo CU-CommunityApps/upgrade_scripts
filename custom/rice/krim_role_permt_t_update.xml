@@ -11,4 +11,17 @@
       <where>role_id = '41' AND perm_id = '212'</where>
     </delete>
 	</changeSet>
+	<changeSet author="srb55" id="KFSUPGRADE-75" failOnError="false">
+		<comment>Add PERM to favorite account role</comment>
+		
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+      insert into krim_role_perm_t (role_perm_id, obj_id, ver_nbr, role_id, perm_id, actv_ind) 
+        values (KRIM_ROLE_PERM_ID_S.nextval, sys_guid(), 1, 
+          (select role_id from krim_role_t where nmspc_cd='KFS-SYS' and role_nm = 'Favorite Account Manager'), 
+          (select perm_id from krim_perm_t where nmspc_cd = 'KFS-SYS' and nm = 'Maintain Favorite Account'), 'Y')
+      /
+  		]]>
+   	</sql>
+ 	</changeSet>
 </databaseChangeLog>

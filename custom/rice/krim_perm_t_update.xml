@@ -1,0 +1,21 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+ 	
+ 	<changeSet author="srb55" id="KFSUPGRADE-75" failOnError="false">
+		<comment>add favorite account perm</comment>
+		
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+        insert into krim_perm_t (perm_id, obj_id, ver_nbr, perm_tmpl_id, nmspc_cd, nm, desc_txt, actv_ind) 
+        values (KRIM_PERM_ID_S.nextval,sys_guid(), 1, 
+          (select perm_tmpl_id from krim_perm_tmpl_t where nmspc_cd='KUALI' and nm = 'Default'), 'KFS-SYS', 'Maintain Favorite Account', 'Allows Manager to maintain other users favorite acccounts', 'Y')
+      /
+  		]]>
+   	</sql>
+ 	
+ 	</changeSet>
+</databaseChangeLog>
