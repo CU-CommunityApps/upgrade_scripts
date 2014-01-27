@@ -34,5 +34,12 @@
       <where>parm_nm = 'SUPPRESS_REJECT_REASON_CODES_ON_EIRT_APPROVAL' and nmspc_cd ='KFS-PURAP'</where>
     </update>
   </changeSet>
+  <changeSet author="se10" id="KFSUPGRADE-348" failOnError="false">
+    <comment>Implemented from KDO-475, which references KFSUPGRADE-348</comment>
+    <update tableName="krcr_parm_t">
+      <column name="val" value="\d{3}-\d{3}-\d{4};\(\d{3}\)\s\d{3}-\d{4};\d{3}\s\d{3}\s\d{4};\d{10}" />
+      <where>parm_nm = 'GENERIC_PHONE_NUMBER_FORMATS' and nmspc_cd ='KFS-VND'</where>
+    </update>
+  </changeSet>
 
 </databaseChangeLog>
