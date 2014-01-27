@@ -18,4 +18,16 @@
    	</sql>
  	
  	</changeSet>
+ 	<changeSet author="srb55" id="KFSUPGRADE-429" failOnError="false">
+		<comment>add B2B eshop perm</comment>
+		
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+      insert into CYNERGY.krim_perm_t (perm_id, obj_id, ver_nbr, perm_tmpl_id, nmspc_cd, nm, desc_txt, actv_ind) 
+        values ('KFS_PURAP_SUBMIT_ESHOP_CART',sys_guid(), 1, (select perm_tmpl_id from CYNERGY.krim_perm_tmpl_t where nmspc_cd='KUALI' and nm = 'Default'), 'KFS-PURAP', 'B2B Submit Eshop Cart', '', 'Y')
+      /
+  		]]>
+   	</sql>
+ 	
+ 	</changeSet>
 </databaseChangeLog>

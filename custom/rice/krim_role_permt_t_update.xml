@@ -24,4 +24,18 @@
   		]]>
    	</sql>
  	</changeSet>
+ 	<changeSet author="srb55" id="KFSUPGRADE-429" failOnError="false">
+		<comment>Add B2B eshop perm to eshop roles</comment>
+		
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+      insert into CYNERGY.krim_role_perm_t (role_perm_id, obj_id, ver_nbr, role_id, perm_id, actv_ind) 
+        values ('ESHOP_SUPER_USER_SUBMIT', sys_guid(), 1, (select role_id from CYNERGY.krim_role_t where nmspc_cd='KFS-PURAP' and role_nm = 'eShop User (cu)'), 'KFS_PURAP_SUBMIT_ESHOP_CART', 'Y')
+      /
+      insert into CYNERGY.krim_role_perm_t (role_perm_id, obj_id, ver_nbr, role_id, perm_id, actv_ind) 
+        values ('ESHOP_USER_SUBMIT', sys_guid(), 1, (select role_id from CYNERGY.krim_role_t where nmspc_cd='KFS-PURAP' and role_nm = 'eShop Plus User(cu)'), 'KFS_PURAP_SUBMIT_ESHOP_CART', 'Y')
+      /
+  		]]>
+   	</sql>
+ 	</changeSet>
 </databaseChangeLog>
