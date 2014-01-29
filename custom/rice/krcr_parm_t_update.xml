@@ -41,5 +41,17 @@
       <where>parm_nm = 'GENERIC_PHONE_NUMBER_FORMATS' and nmspc_cd ='KFS-VND'</where>
     </update>
   </changeSet>
-
+ 	<changeSet author="se10" id="KFSUPGRADE-481" failOnError="false">
+		<comment>Implemented from KDO-457, which references KFSUPGRADE-481</comment>		
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+        insert into krcr_parm_t (NMSPC_CD,CMPNT_CD,PARM_NM, OBJ_ID, PARM_TYP_CD, VAL, PARM_DESC_TXT, EVAL_OPRTR_CD, APPL_ID) 
+          values ('KFS-PURAP', 'ElectronicInvoiceStep', 'DEFAULT_PROCESSING_CAMPUS', sys_guid(), 'CONFG', 'IT', 
+            'This parameter is to determine the campus for electronic invoice payments. If parameter value is populated, set the processing campus on the eInvoice generated PREQ to the parameter value if initiator''s campus is missing and OVERRIDE is not set up. ', 
+          'D', 'KFS')
+      /
+  		]]>
+   	</sql> 	
+ 	</changeSet>
+	
 </databaseChangeLog>
