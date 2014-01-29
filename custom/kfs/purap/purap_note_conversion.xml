@@ -1,0 +1,77 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="srb55" id="KFSUPGRADE-291" failOnError="false">
+		<comment>SQL needed to convert purap notes</comment>
+		
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+      update krns_nte_t n
+      set n.rmt_obj_id = (select h.obj_id
+                          from krns_doc_hdr_t h,
+                               pur_po_t p
+                          where p.obj_id = n.rmt_obj_id
+                          and p.fdoc_nbr = h.doc_hdr_id)
+      where exists (select 'Y'
+                    from pur_po_t x
+                    where x.obj_id = n.rmt_obj_id)
+      /
+      update krns_nte_t n
+      set n.rmt_obj_id = (select h.obj_id
+                          from krns_doc_hdr_t h,
+                               pur_reqs_t p
+                          where p.obj_id = n.rmt_obj_id
+                          and p.fdoc_nbr = h.doc_hdr_id)
+      where exists (select 'Y'
+                    from pur_reqs_t x
+                    where x.obj_id = n.rmt_obj_id)     
+      /
+      update krns_nte_t n
+      set n.rmt_obj_id = (select h.obj_id
+                          from krns_doc_hdr_t h,
+                               pur_rcvng_ln_t p
+                          where p.obj_id = n.rmt_obj_id
+                          and p.fdoc_nbr = h.doc_hdr_id)
+      where exists (select 'Y'
+                    from pur_rcvng_ln_t x
+                    where x.obj_id = n.rmt_obj_id)           
+      /
+      update krns_nte_t n
+      set n.rmt_obj_id = (select h.obj_id
+                          from krns_doc_hdr_t h,
+                               ap_pmt_rqst_t p
+                          where p.obj_id = n.rmt_obj_id
+                          and p.fdoc_nbr = h.doc_hdr_id)
+      where exists (select 'Y'
+                    from ap_pmt_rqst_t x
+                    where x.obj_id = n.rmt_obj_id)
+      /
+      update krns_nte_t n
+      set n.rmt_obj_id = (select h.obj_id
+                          from krns_doc_hdr_t h,
+                               ap_elctrnc_inv_rjt_doc_t p
+                          where p.obj_id = n.rmt_obj_id
+                          and p.fdoc_nbr = h.doc_hdr_id)
+      where exists (select 'Y'
+                    from ap_elctrnc_inv_rjt_doc_t x
+                    where x.obj_id = n.rmt_obj_id)
+      /
+      update krns_nte_t n
+      set n.rmt_obj_id = (select h.obj_id
+                          from krns_doc_hdr_t h,
+                               ap_crdt_memo_t p
+                          where p.obj_id = n.rmt_obj_id
+                          and p.fdoc_nbr = h.doc_hdr_id)
+      where exists (select 'Y'
+                    from ap_crdt_memo_t x
+                    where x.obj_id = n.rmt_obj_id)
+      /
+  		]]>
+   	</sql>
+ 	
+ 	</changeSet>
+</databaseChangeLog>
