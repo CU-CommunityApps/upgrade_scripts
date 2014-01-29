@@ -1,0 +1,19 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet author="se10" id="KDO-481" failOnError="false">
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+        update CA_HIGHR_ED_FUNC_T t1 set t1.FIN_HGH_ED_FUNC_DESC = (select REPLACE(ASCIISTR(t2.FIN_HGH_ED_FUNC_DESC),'\00A0',' ') 
+        from CA_HIGHR_ED_FUNC_T t2 where t2.fin_hgh_ed_func_cd=t1.fin_hgh_ed_func_cd ) 
+        where INSTR(ASCIISTR(t1.FIN_HGH_ED_FUNC_DESC), '\00A0')>0 
+      /
+  		]]>
+   	</sql> 	
+	</changeSet>
+
+</databaseChangeLog>
