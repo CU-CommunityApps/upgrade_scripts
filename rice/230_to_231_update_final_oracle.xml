@@ -1,0 +1,44 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="cah292" id="230-231" failOnError="false">
+		<comment>rice conversion for 2.3.0 to 2.3.1</comment>
+	    <sql stripComments="true" endDelimiter="/">
+			<![CDATA[
+      INSERT INTO krcr_cmpnt_t (nmspc_cd, cmpnt_cd, obj_id, ver_nbr, nm, actv_ind)
+        VALUES ('KR-KRAD', 'Lookup', SYS_GUID(), 1, 'Lookup', 'Y')
+      /
+      INSERT INTO KRCR_PARM_T
+        (NMSPC_CD, CMPNT_CD, PARM_NM, OBJ_ID, VER_NBR, PARM_TYP_CD, VAL, PARM_DESC_TXT, EVAL_OPRTR_CD, APPL_ID)
+        VALUES ('KR-KRAD', 'Lookup', 'RESULTS_LIMIT', SYS_GUID(), 1, 'CONFG', '200',
+                'Maximum number of results returned in a look-up query.', 'A', 'KUALI')
+      /
+      ALTER TABLE KREN_NTFCTN_T ADD DOC_TYP_NM VARCHAR2(64)
+      /
+      DELETE FROM krim_perm_attr_data_t
+      WHERE attr_val = 'KRMS_TEST' AND perm_id =
+        (
+          SELECT
+            perm_id
+          FROM krim_perm_t
+          WHERE nm = 'Maintain KRMS Agenda' AND nmspc_cd = 'KR-RULE-TEST'
+        )
+      /
+      UPDATE krim_perm_attr_data_t SET attr_val='RiceDocument'
+      WHERE attr_val = '*' AND perm_id =
+        (
+          SELECT perm_id FROM krim_perm_t WHERE nm='Recall Document' AND nmspc_cd='KR-WKFLW'
+        )
+      /
+      UPDATE krms_attr_defn_t SET nmspc_cd = 'KR-RULE' WHERE nm = 'peopleFlowName' AND nmspc_cd = 'KR_RULE'
+      /
+      ALTER TABLE krlc_cntry_t MODIFY ( postal_cntry_nm VARCHAR2(255) )
+      /
+			]]>
+	 	</sql>
+	</changeSet>
+</databaseChangeLog>
