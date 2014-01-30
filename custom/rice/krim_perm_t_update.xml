@@ -18,6 +18,7 @@
    	</sql>
  	
  	</changeSet>
+ 	<!-- This comes over from 3.0.1 
  	<changeSet author="srb55" id="KFSUPGRADE-429" failOnError="false">
 		<comment>add B2B eshop perm</comment>
 		
@@ -29,5 +30,5 @@
   		]]>
    	</sql>
  	
- 	</changeSet>
+ 	</changeSet> -->
 </databaseChangeLog>
