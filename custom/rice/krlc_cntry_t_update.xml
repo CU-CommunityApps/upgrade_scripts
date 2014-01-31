@@ -1,0 +1,35 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet author="se10" id="KDO-483" failOnError="false">
+    <sql stripComments="true" endDelimiter="/">
+      <![CDATA[
+        UPDATE KRLC_CNTRY_T t1 SET t1.postal_cntry_nm = 
+        (SELECT REPLACE(ASCIISTR(t2.postal_cntry_nm),'\00C5','A') 
+        FROM KRLC_CNTRY_T t2 
+        WHERE t2.POSTAL_CNTRY_CD=t1.POSTAL_CNTRY_CD) 
+        WHERE INSTR(ASCIISTR(t1.postal_cntry_nm), '\00C5')>0
+        /
+        UPDATE KRLC_CNTRY_T t1 SET t1.postal_cntry_nm = 
+        (SELECT REPLACE(ASCIISTR(t2.postal_cntry_nm),'\00F4','o') 
+        FROM KRLC_CNTRY_T t2 
+        WHERE t2.POSTAL_CNTRY_CD=t1.POSTAL_CNTRY_CD) 
+        WHERE INSTR(ASCIISTR(t1.postal_cntry_nm), '\00F4')>0
+        /
+        UPDATE KRLC_CNTRY_T t1 SET t1.postal_cntry_nm = 
+        (SELECT REPLACE(ASCIISTR(t2.postal_cntry_nm),'\00E9','e') 
+        FROM KRLC_CNTRY_T t2 
+        WHERE t2.POSTAL_CNTRY_CD=t1.POSTAL_CNTRY_CD) 
+        WHERE INSTR(ASCIISTR(t1.postal_cntry_nm), '\00E9')>0
+        /
+        commit
+        /
+      ]]>
+    </sql> 	
+  </changeSet>
+  
+</databaseChangeLog>
