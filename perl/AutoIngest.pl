@@ -39,13 +39,11 @@ my @riceFiles = (
   ) ;
 
 my @cynergyFiles = (
-  "103_to_200_perm_resp_upgrade.sql",
   "CynergyADFDocumentType.xml",
   "CynergyCountryMaintenanceDocument.xml",
   "CynergyCountyMaintenanceDocument.xml",
   "CynergyPostalCodeMaintenanceDocument.xml",
   "CynergyStateMaintenanceDocument.xml",
-  "Default.xml",
   "ParameterMaintenanceDocument_Cynergy.xml",
   "SecurityGroupDocumentType.xml",
   "SecurityProvisioningGroupDocumentType.xml",
