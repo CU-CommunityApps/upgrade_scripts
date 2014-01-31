@@ -90,6 +90,7 @@
           <status>Disapproved Commodity Code</status>
           <status>Disapproved Purchasing</status>
           <status>Disapproved Tax</status>
+		  <status>Disapproved Base Org Review</status>
           <status>Open</status>
           <status>Pending Amendment</status>
           <status>Pending Close</status>
@@ -205,11 +206,14 @@
           <status>Change in Process</status>
           <status>Closed</status>
           <status>Disapproved Budget</status>
+		  <status>Disapproved Fiscal</status>
           <status>Disapproved C and G</status>
           <status>Disapproved Change</status>
+		  <status>Disapproved Sub Account</status>
           <status>Disapproved Commodity Code</status>
           <status>Disapproved Purchasing</status>
           <status>Disapproved Tax</status>
+		  <status>Disapproved Base Org Review</status>
           <status>Open</status>
           <status>Pending Amendment</status>
           <status>Pending Close</status>
@@ -230,7 +234,8 @@
           <status>Awaiting Commodity Code Approval</status>
           <status>Awaiting C and G Approval</status>
           <status>Awaiting Budget Approval</status>
-	  <status>Awaiting Sub Account</status>
+          <status>Awaiting Base Org Review</status>
+    	  <status>Awaiting Sub Account</status>
           <status>Awaiting Tax Approval</status>
           <status>Awaiting Separation of Duties</status>
           <status>Error occurred sending cxml</status>
@@ -246,10 +251,10 @@
       </validApplicationStatuses>
       <routePaths>
         <routePath>
-          <start name="AdHoc" nextNode="HasNewUnorderedItems" nextAppDocStatus="Awaiting New Unordered Item Review" />
+          <start name="AdHoc" nextNode="HasNewUnorderedItems" nextAppDocStatus="Awaiting New Unordered Item Review"/>
           <split name="HasNewUnorderedItems" nextNode="SubAccount" >
             <branch name="True">
-              <role name="NewUnorderedItems" nextNode="JoinNewUnorderedItems"  nextAppDocStatus="Awaiting Sub Account"/>
+              <role name="NewUnorderedItems" nextNode="JoinNewUnorderedItems"  nextAppDocStatus="Awaiting Sub Account" />
             </branch>
             <branch name="False">
               <simple name="NoOpNewUnorderedItems" nextNode="JoinNewUnorderedItems"  nextAppDocStatus="Awaiting Sub Account"/>
@@ -277,25 +282,25 @@
             </branch>
             <join name="JoinSOD" />
           </split>
-          <split name="RequiresContractManagementReview" nextNode="RequiresBudgetReview" >
+          <split name="RequiresContractManagementReview" nextNode="RequiresBudgetReview">
             <branch name="True">
-              <role name="ContractManagement" nextNode="JoinRequiresContractManagementReview" nextAppDocStatus="Awaiting Budget Approval"/>
+              <role name="ContractManagement" nextNode="JoinRequiresContractManagementReview"  nextAppDocStatus="Awaiting Budget Approval"/>
             </branch>
             <branch name="False">
-              <simple name="NoOpRequiresContractManagementReview" nextNode="JoinRequiresContractManagementReview" nextAppDocStatus="Awaiting Budget Approval"/>
+              <simple name="NoOpRequiresContractManagementReview" nextNode="JoinRequiresContractManagementReview"  nextAppDocStatus="Awaiting Budget Approval"/>
             </branch>
             <join name="JoinRequiresContractManagementReview" />
           </split>
           <split name="RequiresBudgetReview" nextNode="AccountingOrganizationHierarchy">
             <branch name="True">
-              <role name="Budget" nextNode="JoinRequiresBudgetReview" />
+              <role name="Budget" nextNode="JoinRequiresBudgetReview"  nextAppDocStatus="Awaiting Base Org Review"/>
             </branch>
             <branch name="False">
-              <simple name="NoOpBudget" nextNode="JoinRequiresBudgetReview" />
+              <simple name="NoOpBudget" nextNode="JoinRequiresBudgetReview"  nextAppDocStatus="Awaiting Base Org Review"/>
             </branch>
             <join name="JoinRequiresBudgetReview" />
           </split>
-          <role name="AccountingOrganizationHierarchy" nextNode="NoOpFinal"  nextAppDocStatus="Pending cxml"/>
+          <role name="AccountingOrganizationHierarchy" nextNode="NoOpFinal"  nextAppDocStatus="Pending cxml" />
           <simple name="NoOpFinal" />
         </routePath>
       </routePaths>
@@ -1283,16 +1288,13 @@
          <routingVersion>2</routingVersion>
          <routePaths>
    				<routePath>
-   					<start name="AdHoc" nextNode="RequiresImageAttachment"
-   						nextAppDocStatus="Awaiting AP Review" />
+   					<start name="AdHoc" nextNode="RequiresImageAttachment" nextAppDocStatus="Awaiting AP Review" />
    					<split name="RequiresImageAttachment" nextNode="PurchaseWasReceived">
    						<branch name="True">
-   							<role name="ImageAttachment" nextNode="JoinRequiresImageAttachment"
-   								nextAppDocStatus="Awaiting AP Review" />
+   							<role name="ImageAttachment" nextNode="JoinRequiresImageAttachment" nextAppDocStatus="Awaiting Receiving" />
    						</branch>
    						<branch name="False">
-   							<simple name="NoOpRequiresImageAttachment" nextNode="JoinRequiresImageAttachment"
-   								nextAppDocStatus="Awaiting Receiving" />
+   							<simple name="NoOpRequiresImageAttachment" nextNode="JoinRequiresImageAttachment" nextAppDocStatus="Awaiting Receiving" />
    						</branch>
    						<join name="JoinRequiresImageAttachment" />
    					</split>
@@ -1301,23 +1303,19 @@
    							<role name="Receiving" nextNode="JoinReceiving"  nextAppDocStatus="Awaiting Sub-Account Manager Approval"/>
    						</branch>
    						<branch name="False">
-   							<simple name="NoOpReceiving" nextNode="JoinReceiving" />
+   							<simple name="NoOpReceiving" nextNode="JoinReceiving"  nextAppDocStatus="Awaiting Sub-Account Manager Approval"/>
    						</branch>
    						<join name="JoinReceiving" />
    					</split>
-   					<role name="SubAccount" nextNode="Account"
-   						nextAppDocStatus="Awaiting Fiscal Officer Approval" />
-   					<role name="Account" nextNode="AccountingOrganizationHierarchy"
-   						nextAppDocStatus="Awaiting Chart Approval" />
-   					<role name="AccountingOrganizationHierarchy" nextNode="VendorIsEmployeeOrNonResidentAlien"
-   						nextAppDocStatus="Awaiting Tax Approval" />
+   					<role name="SubAccount" nextNode="Account" nextAppDocStatus="Awaiting Fiscal Officer Approval" />
+   					<role name="Account" nextNode="AccountingOrganizationHierarchy" nextAppDocStatus="Awaiting Chart Approval" />
+   					<role name="AccountingOrganizationHierarchy" nextNode="VendorIsEmployeeOrNonResidentAlien" nextAppDocStatus="Awaiting Tax Approval" />
    					<split name="VendorIsEmployeeOrNonResidentAlien">
    						<branch name="True">
    							<role name="Tax" nextNode="JoinVendorIsEmployeeOrNonResidentAlien" />
    						</branch>
    						<branch name="False">
-   							<simple name="NoOpVendorIsEmployeeOrNonResidentAlien"
-   								nextNode="JoinVendorIsEmployeeOrNonResidentAlien" />
+   							<simple name="NoOpVendorIsEmployeeOrNonResidentAlien" nextNode="JoinVendorIsEmployeeOrNonResidentAlien" />
    						</branch>
    						<join name="JoinVendorIsEmployeeOrNonResidentAlien" />
    					</split>
