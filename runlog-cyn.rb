@@ -71,6 +71,7 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_
             {:name => "kfs/5.0.3_5.0.4", :version => 2, :changelogs => rice_changelogs },
             {:name => "kfs/5.0.4_5.0.5", :version => 2, :changelogs => rice_changelogs },
             {:name => "kfs/5.0.5_5.1", :version => 2, :changelogs => rice_changelogs },
+            {:name => "kfs/5.1_5.1.1", :version => 2, :changelogs => rice_changelogs },
             {:name => "custom/rice", :version => 3, :changelogs => custom_changelogs },
             {:name => "custom/rice/access_security", :version => 3, :changelogs => ['access-security-customizations.xml'] },
           ]
