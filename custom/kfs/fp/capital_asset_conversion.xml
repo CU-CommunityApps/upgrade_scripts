@@ -463,4 +463,18 @@
   		]]>
    	</sql>
   </changeSet>
+  
+  <changeSet author="se10" id="KDO-499" failOnError="false">
+    <comment>Related to KFSUPGRADE-534</comment>
+    <sql stripComments="true" endDelimiter="/">
+      <![CDATA[
+      alter table FP_CPTL_AST_INFO_DTL_EXT_T add  CPTLAST_LINE_NBR NUMBER(7,0) default 1 not null;
+      alter table FP_CPTL_AST_INFO_DTL_EXT_T drop constraint "FP_CPTL_AST_INFO_DTL_EXT_TP1" CASCADE;
+      drop index FP_CPTL_AST_INFO_DTL_EXT_TP1;
+      alter table FP_CPTL_AST_INFO_DTL_EXT_T add CONSTRAINT "FP_CPTL_AST_INFO_DTL_EXT_TP1" PRIMARY KEY ("FDOC_NBR", "CPTLAST_LINE_NBR", "ITM_LN_NBR");
+      /
+      ]]>
+    </sql>
+  </changeSet>
+  
 </databaseChangeLog>
