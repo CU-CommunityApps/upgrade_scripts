@@ -33,6 +33,7 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => kfs_changel
             {:name => "kfs/5.0.5_5.1", :version => 2, :changelogs => kfs_changelogs_with_rice_client },   
             {:name => "kfs/5.1_5.1.1", :version => 2, :changelogs => kfs_changelogs_with_rice_client }, 
             {:name => "custom/kfs/coa", :version => 3, :changelogs => ['code_cleanup.xml', 'higher_ed.xml'] },
+            {:name => "custom/kfs/cam", :version => 3, :changelogs => ['tag_number.xml'] },
             {:name => "custom/kfs/ld", :version => 3, :changelogs => ['ld-module-customizations.xml'] },
             {:name => "custom/kfs/access_security", :version => 3, :changelogs => ['access-security-customizations.xml'] },
             {:name => "custom/kfs/vnd", :version => 3, :changelogs => ['vendor_extension.xml'] },
