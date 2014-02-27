@@ -98,4 +98,13 @@
             <where>parm_nm = 'RECEIVING_DOCUMENT_REQUIRED_IND' and nmspc_cd ='KFS-PURAP'</where>
         </update>
     </changeSet>
+
+    <changeSet author="srb55" id="KFSUPGRADE-648" failOnError="false">
+        <comment>Purap parameter change needed: receiving document required indicator</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="val" value="P" />
+            <where>parm_nm = 'DISTRIBUTION_METHOD_FOR_ACCOUNTING_LINES' and nmspc_cd ='KFS-PURAP'</where>
+        </update>
+    </changeSet>
 </databaseChangeLog>
