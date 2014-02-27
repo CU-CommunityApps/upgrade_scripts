@@ -53,5 +53,14 @@
   		]]>
    	</sql> 	
  	</changeSet>
+
+	 <changeSet author="srb55" id="KFSUPGRADE-659" failOnError="false">
+		<comment>COA Parameter Change needed: RUN DATE</comment>
+	
+        <update tableName="krcr_parm_t">
+            <column name="val" value="6/30/2013" />
+            <where>parm_nm = 'RUN_DATE' and nmspc_cd ='KFS-COA'</where>
+        </update>
+    </changeSet>
 	
 </databaseChangeLog>
