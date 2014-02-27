@@ -64,11 +64,20 @@
     </changeSet>
 
 	<changeSet author="srb55" id="KFSUPGRADE-658" failOnError="false">
-		<comment>FP Parameter Change needed: OBJECT_CONSOLIDATIONS</comment>
+		<comment>FP Parameter Change needed: OBJECT_CONSOLIDATIONS, CreditCardReceipt</comment>
 	
         <update tableName="krcr_parm_t">
             <column name="val" value="FBAL" />
             <where>parm_nm = 'OBJECT_CONSOLIDATIONS' and nmspc_cd ='KFS-FP' and CMPNT_CD = 'CreditCardReceipt'</where>
+        </update>
+    </changeSet>
+
+    <changeSet author="srb55" id="KFSUPGRADE-657" failOnError="false">
+        <comment>FP Parameter Change needed: OBJECT_CONSOLIDATIONS, AdvanceDeposit</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="val" value="FBAL" />
+            <where>parm_nm = 'OBJECT_CONSOLIDATIONS' and nmspc_cd ='KFS-FP' and CMPNT_CD = 'AdvanceDeposit'</where>
         </update>
     </changeSet>
 
