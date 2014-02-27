@@ -89,5 +89,13 @@
             <where>parm_nm = 'SENSITIVE_DATA_NOTE_IND' and nmspc_cd ='KFS-PURAP'</where>
         </update>
     </changeSet>
-	
+
+    <changeSet author="srb55" id="KFSUPGRADE-649" failOnError="false">
+        <comment>Purap parameter change needed: receiving document required indicator</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="val" value="N" />
+            <where>parm_nm = 'RECEIVING_DOCUMENT_REQUIRED_IND' and nmspc_cd ='KFS-PURAP'</where>
+        </update>
+    </changeSet>
 </databaseChangeLog>
