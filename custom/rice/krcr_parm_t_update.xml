@@ -64,11 +64,20 @@
     </changeSet>
 
 	<changeSet author="srb55" id="KFSUPGRADE-658" failOnError="false">
-		<comment>COA Parameter Change needed: RUN DATE</comment>
+		<comment>FP Parameter Change needed: OBJECT_CONSOLIDATIONS</comment>
 	
         <update tableName="krcr_parm_t">
             <column name="val" value="FBAL" />
             <where>parm_nm = 'OBJECT_CONSOLIDATIONS' and nmspc_cd ='KFS-FP' and CMPNT_CD = 'CreditCardReceipt'</where>
+        </update>
+    </changeSet>
+
+    <changeSet author="srb55" id="KFSUPGRADE-652" failOnError="false">
+        <comment>Purap Parameter changed needed: Sensitive data note ind</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="val" value="Y" />
+            <where>parm_nm = 'SENSITIVE_DATA_NOTE_IND' and nmspc_cd ='KFS-PURAP'</where>
         </update>
     </changeSet>
 	
