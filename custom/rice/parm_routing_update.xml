@@ -5,16 +5,16 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-	 <changeSet author="srb55" id="KFSUPGRADE-452" failOnError="false">
+	 <changeSet author="srb55" id="KFSUPGRADE-452,KFSUPGRADE-647" failOnError="false">
 		<comment>Paramter Routing changes</comment>
-    <update tableName="KRIM_ATTR_DEFN_T">
-      <column name="NM" value="applicationId" />
-      <column name="LBL" value="Application ID" />
-      <where>NM = 'Application Namespace'</where>
-    </update>
-    <update tableName="KRIM_TYP_T">
-      <column name="NM" value="Application ID" />
-      <where>NM = 'Application Namespace'</where>
-    </update>
+        <update tableName="KRIM_ATTR_DEFN_T">
+          <column name="NM" value="applicationId" />
+          <column name="LBL" value="Application ID" />
+          <where>NM = 'parameterApplicationNamespaceCode'</where>
+        </update>
+        <update tableName="KRIM_TYP_T">
+          <column name="NM" value="Application ID" />
+          <where>NM = 'Application Namespace'</where>
+        </update>
 	</changeSet>
 </databaseChangeLog>
