@@ -107,12 +107,22 @@
             <where>parm_nm = 'DISTRIBUTION_METHOD_FOR_ACCOUNTING_LINES' and nmspc_cd ='KFS-PURAP'</where>
         </update>
     </changeSet>
+
     <changeSet author="srb55" id="KFSUPGRADE-650" failOnError="false">
         <comment>Purap Parameter change needed: Trade in Object Code for Capital Assets</comment>
 
         <update tableName="krcr_parm_t">
             <column name="val" value="7099" />
             <where>parm_nm = 'TRADE_IN_OBJECT_CODE_FOR_CAPITAL_ASSET' and nmspc_cd ='KFS-PURAP'</where>
+        </update>
+    </changeSet>
+
+    <changeSet author="srb55" id="KFSUPGRADE-662" failOnError="false">
+        <comment>Parameter Change needed: KFS KIM_PRIORITY_ON_DOC_TYP_PERMS_IND</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="val" value="N" />
+            <where>parm_nm = 'KIM_PRIORITY_ON_DOC_TYP_PERMS_IND' and nmspc_cd ='KR-WKFLW'</where>
         </update>
     </changeSet>
 
