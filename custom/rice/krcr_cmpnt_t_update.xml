@@ -1,0 +1,151 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+		<changeSet author="srb55" id="KFSUPGRADE-651" failOnError="false">
+			<comment>Updating component name to reflect change from com.rsmart to org.kuali</comment>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-AR" />
+                <column name="CMPNT_CD" value="All" />
+                <column name="NM" value="All" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-CAB" />
+                <column name="CMPNT_CD" value="All" />
+                <column name="NM" value="All" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-CAM" />
+                <column name="CMPNT_CD" value="All" />
+                <column name="NM" value="All" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-COA" />
+                <column name="CMPNT_CD" value="All" />
+                <column name="NM" value="All" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-EC" />
+                <column name="CMPNT_CD" value="All" />
+                <column name="NM" value="All" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-FP" />
+                <column name="CMPNT_CD" value="All" />
+                <column name="NM" value="All" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-GL" />
+                <column name="CMPNT_CD" value="All" />
+                <column name="NM" value="All" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-LD" />
+                <column name="CMPNT_CD" value="All" />
+                <column name="NM" value="All" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-VND" />
+                <column name="CMPNT_CD" value="All" />
+                <column name="NM" value="All" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert> 
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-GL" />
+                <column name="CMPNT_CD" value="EncumbranceForwardStep" />
+                <column name="NM" value="EncumbranceForwardStep" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-GL" />
+                <column name="CMPNT_CD" value="BalanceForwardStep" />
+                <column name="NM" value="BalanceForwardStep" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KR-NS" />
+                <column name="CMPNT_CD" value="ScheduleStep" />
+                <column name="NM" value="Schedule Step" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-VND" />
+                <column name="CMPNT_CD" value="Lookup" />
+                <column name="NM" value="Lookup" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-LD" />
+                <column name="CMPNT_CD" value="Document" />
+                <column name="NM" value="Document" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-PURAP" />
+                <column name="CMPNT_CD" value="PurchaseOrderAmendment" />
+                <column name="NM" value="PurchaseOrderAmendment" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-PURAP" />
+                <column name="CMPNT_CD" value="CuPaymentRequest" />
+                <column name="NM" value="CuPaymentRequest" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KR-NS" />
+                <column name="CMPNT_CD" value="PurgePendingAttachmentsStep" />
+                <column name="NM" value="PurgePendingAttachmentsStep" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KR-NS" />
+                <column name="CMPNT_CD" value="PurgeSessionDocumentsStep" />
+                <column name="NM" value="PurgeSessionDocumentsStep" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-COA" />
+                <column name="CMPNT_CD" value="AccountDelegateGlobal" />
+                <column name="NM" value="AccountDelegateGlobal" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+            <insert tableName="KRCR_CMPNT_T">
+                <column name="NMSPC_CD" value="KFS-BC" />
+                <column name="CMPNT_CD" value="PSBudgetFeedStep" />
+                <column name="NM" value="PSBudgetFeedStep" />
+                <column name="OBJ_ID" valueNumeric="sys_guid() " />
+                <column name="ACTV_IND" value="Y" />
+            </insert>
+		</changeSet>
+</databaseChangeLog>
