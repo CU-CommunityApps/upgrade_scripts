@@ -126,4 +126,13 @@
         </update>
     </changeSet>
 
+    <changeSet author="srb55" id="KFSUPGRADE-663" failOnError="false">
+        <comment>Parameter Change Needed: PCARD_UPLOAD_ERROR_EMAIL_ADDR</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="val" value="pcard@cornell.edu" />
+            <where>parm_nm = 'PCARD_UPLOAD_ERROR_EMAIL_ADDR' and nmspc_cd ='KFS-FP'</where>
+        </update>
+    </changeSet>
+
 </databaseChangeLog>
