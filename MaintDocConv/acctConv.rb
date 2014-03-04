@@ -43,7 +43,7 @@ conn2 = OCI8.new("cynergy", cyn_pass, cyndb)
 
 docIds = Array.new
 
-cursor2 = conn2.exec("select DOC_HDR_ID from KREW_DOC_HDR_T where DOC_TYP_ID = '1849556'#{")
+cursor2 = conn2.exec("select DOC_HDR_ID from KREW_DOC_HDR_T where DOC_TYP_ID = '1849556'")
 
 while r2 = cursor2.fetch()
   docIds.push(r2)
