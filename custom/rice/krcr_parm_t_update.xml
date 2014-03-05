@@ -142,4 +142,16 @@
         </delete>
     </changeSet>
 
+    <changeSet author="srb55" id="KFSUPGRADE-709" failOnError="false">
+        <comment>Duplicate LD parameters with different names</comment>
+        <delete tableName="krcr_parm_t">
+          <where>parm_nm = 'GENERATE_FRINGE_BENEFIT_ENCUMBRANCE' and nmspc_cd ='KFS-LD'</where>
+        </delete>
+        <delete tableName="krcr_parm_t">
+          <where>parm_nm = 'LABOR_BENEFIT_CALCULATION_OFFSET' and nmspc_cd ='KFS-LD'</where>
+        </delete>
+        <delete tableName="krcr_parm_t">
+          <where>parm_nm = 'ENABLE_FRINGE_BENEFIT_CALC_BY_BENEFIT_RATE_CATEGORY' and nmspc_cd ='KFS-LD'</where>
+        </delete>
+    </changeSet>
 </databaseChangeLog>
