@@ -2,16 +2,12 @@
 
 require 'rubygems'
 require 'oci8'
-
-
-
 require 'xmlsimple'
 require 'base64'
 require 'fast-aes'
 require 'pp'
 require 'prettyprint'
 require "rexml/document"
-#require "xpath"
 include REXML
 
 
@@ -63,10 +59,10 @@ cursor = conn.exec("SELECT DOC_CNTNT from KRNS_MAINT_DOC_T WHERE
 r = cursor.fetch_hash()
 
 
-good = decrypt(r['DOC_CNTNT'].read)
-good.gsub!("><", ">zz1<")
+xml_in = decrypt(r['DOC_CNTNT'].read)
+xml_in.gsub!("><", ">zz1<")
 
-doc_contnt = XmlSimple.xml_in(good)
+doc_contnt = XmlSimple.xml_in(xml_in)
 
 lbrCodeOld = doc_contnt['oldMaintainableObject'][0]['org.kuali.kfs.coa.businessobject.Account'][0]['extension'][0]['laborBenefitRateCategoryCode']
 lbrCodeNew = doc_contnt['newMaintainableObject'][0]['org.kuali.kfs.coa.businessobject.Account'][0]['extension'][0]['laborBenefitRateCategoryCode']
@@ -77,14 +73,14 @@ newICRCd = doc_contnt['newMaintainableObject'][0]['org.kuali.kfs.coa.businessobj
 oldICRCd = doc_contnt['oldMaintainableObject'][0]['org.kuali.kfs.coa.businessobject.Account'][0]['indirectCostRcvyFinCoaCode']
 newaccountNumber = doc_contnt['newMaintainableObject'][0]['org.kuali.kfs.coa.businessobject.Account'][0]['accountNumber']
 oldaccountNumber = doc_contnt['oldMaintainableObject'][0]['org.kuali.kfs.coa.businessobject.Account'][0]['accountNumber']
+newaccountChart = doc_contnt['newMaintainableObject'][0]['org.kuali.kfs.coa.businessobject.Account'][0]['chartOfAccountsCode']
+oldaccountChart = doc_contnt['oldMaintainableObject'][0]['org.kuali.kfs.coa.businessobject.Account'][0]['chartOfAccountsCode']
 
 oldICRAccts = Element.new "indirectCostRecoveryAccounts"
 oldICRAccts.attributes["class"] = "org.apache.ojb.broker.core.proxy.ListProxyDefaultImpl"
 newICRAccts = Element.new "indirectCostRecoveryAccounts"
 newICRAccts.attributes["class"] = "org.apache.ojb.broker.core.proxy.ListProxyDefaultImpl"
 
-purpOld = doc_contnt['oldMaintainableObject'][0]['org.kuali.kfs.coa.businessobject.Account'][0]['accountGuideline'][0]['accountPurposeText']
-purpNew = doc_contnt['newMaintainableObject'][0]['org.kuali.kfs.coa.businessobject.Account'][0]['accountGuideline'][0]['accountPurposeText']
 
 oldAcctNum = Element.new "accountNumber"
 oldAcctNum.text = oldaccountNumber
@@ -113,7 +109,7 @@ version.text = "1"
 xml = XmlSimple.xml_out(doc_contnt)
 
 
-doc = REXML::Document.new good
+doc = REXML::Document.new xml_in
 
 XPath.each( doc, "//laborBenefitRateCategoryCode") { |element| element.text ="ZZ" }
 XPath.each( doc, "//accountGuideline") { |element| element.add_element version }
@@ -168,12 +164,12 @@ docString.gsub!("<indirectCostRecoveryAccounts class='org.apache.ojb.broker.core
 
 docString.gsub!("<indirectCostRecoveryAccounts class='org.apache.ojb.broker.core.proxy.ListProxyDefaultImpl'/>", "<indirectCostRecoveryAccounts class='org.apache.ojb.broker.core.proxy.ListProxyDefaultImpl'/>\n")
 
-docString.gsub!("<accountNumber>#{newaccountNumber}</accountNumber><indirectCostRecoveryAccountNumber>#{newICRAcct}</indirectCostRecoveryAccountNumber><indirectCostRecoveryFinCoaCode>#{newICRCd}</indirectCostRecoveryFinCoaCode></indirectCostRecoveryAccounts></org.kuali.kfs.coa.businessobject.Account>", "    <org.kuali.kfs.coa.businessobject.IndirectCostRecoveryAccount>\n      <chartOfAccountsCode>IT</chartOfAccountsCode>\n      <accountNumber>#{newaccountNumber}</accountNumber>\n      <indirectCostRecoveryAccountNumber>#{newICRAcct}</indirectCostRecoveryAccountNumber>\n      <indirectCostRecoveryFinCoaCode>#{newICRCd}</indirectCostRecoveryFinCoaCode>\n      <accountLinePercent>100</accountLinePercent>\n      <active>true</active>\n      <newCollectionRecord>false</newCollectionRecord>\n    </org.kuali.kfs.coa.businessobject.IndirectCostRecoveryAccount>\n  </indirectCostRecoveryAccounts>\n</org.kuali.kfs.coa.businessobject.Account>")
+docString.gsub!("<accountNumber>#{newaccountNumber}</accountNumber><indirectCostRecoveryAccountNumber>#{newICRAcct}</indirectCostRecoveryAccountNumber><indirectCostRecoveryFinCoaCode>#{newICRCd}</indirectCostRecoveryFinCoaCode></indirectCostRecoveryAccounts></org.kuali.kfs.coa.businessobject.Account>", "    <org.kuali.kfs.coa.businessobject.IndirectCostRecoveryAccount>\n      <chartOfAccountsCode>#{oldaccountChart}</chartOfAccountsCode>\n      <accountNumber>#{newaccountNumber}</accountNumber>\n      <indirectCostRecoveryAccountNumber>#{newICRAcct}</indirectCostRecoveryAccountNumber>\n      <indirectCostRecoveryFinCoaCode>#{newICRCd}</indirectCostRecoveryFinCoaCode>\n      <accountLinePercent>100</accountLinePercent>\n      <active>true</active>\n      <newCollectionRecord>false</newCollectionRecord>\n    </org.kuali.kfs.coa.businessobject.IndirectCostRecoveryAccount>\n  </indirectCostRecoveryAccounts>\n</org.kuali.kfs.coa.businessobject.Account>")
 
 if ((oldaccountNumber.eql? newaccountNumber) && (oldICRAcct.eql? newICRAcct) && (oldICRCd.eql? newICRCd))
   puts "ICR values are equal"
 else
-docString.gsub!("<accountNumber>#{oldaccountNumber}</accountNumber><indirectCostRecoveryAccountNumber>#{oldICRAcct}</indirectCostRecoveryAccountNumber><indirectCostRecoveryFinCoaCode>#{oldICRCd}</indirectCostRecoveryFinCoaCode></indirectCostRecoveryAccounts></org.kuali.kfs.coa.businessobject.Account>", "    <org.kuali.kfs.coa.businessobject.IndirectCostRecoveryAccount>\n      <chartOfAccountsCode>IT</chartOfAccountsCode>\n      <accountNumber>#{oldaccountNumber}</accountNumber>\n      <indirectCostRecoveryAccountNumber>#{oldICRAcct}</indirectCostRecoveryAccountNumber>\n      <indirectCostRecoveryFinCoaCode>#{oldICRCd}</indirectCostRecoveryFinCoaCode>\n      <accountLinePercent>100</accountLinePercent>\n      <active>true</active>\n      <newCollectionRecord>false</newCollectionRecord>\n    </org.kuali.kfs.coa.businessobject.IndirectCostRecoveryAccount>\n  </indirectCostRecoveryAccounts>\n</org.kuali.kfs.coa.businessobject.Account>")
+docString.gsub!("<accountNumber>#{oldaccountNumber}</accountNumber><indirectCostRecoveryAccountNumber>#{oldICRAcct}</indirectCostRecoveryAccountNumber><indirectCostRecoveryFinCoaCode>#{oldICRCd}</indirectCostRecoveryFinCoaCode></indirectCostRecoveryAccounts></org.kuali.kfs.coa.businessobject.Account>", "    <org.kuali.kfs.coa.businessobject.IndirectCostRecoveryAccount>\n      <chartOfAccountsCode>#{newaccountChart}</chartOfAccountsCode>\n      <accountNumber>#{oldaccountNumber}</accountNumber>\n      <indirectCostRecoveryAccountNumber>#{oldICRAcct}</indirectCostRecoveryAccountNumber>\n      <indirectCostRecoveryFinCoaCode>#{oldICRCd}</indirectCostRecoveryFinCoaCode>\n      <accountLinePercent>100</accountLinePercent>\n      <active>true</active>\n      <newCollectionRecord>false</newCollectionRecord>\n    </org.kuali.kfs.coa.businessobject.IndirectCostRecoveryAccount>\n  </indirectCostRecoveryAccounts>\n</org.kuali.kfs.coa.businessobject.Account>")
 end
 
 docString.gsub!(">zz1<", "><")
