@@ -135,4 +135,11 @@
         </update>
     </changeSet>
 
+    <changeSet author="srb55" id="KFSUPGRADE-719" failOnError="false">
+        <comment>Obsolete Parameter: EMPLOYEE_STATUSES CG module</comment>
+        <delete tableName="krcr_parm_t">
+          <where>parm_nm = 'EMPLOYEE_STATUSES' and nmspc_cd ='KFS-CG'</where>
+        </delete>
+    </changeSet>
+
 </databaseChangeLog>
