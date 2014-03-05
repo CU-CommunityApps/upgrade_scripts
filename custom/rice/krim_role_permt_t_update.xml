@@ -5,12 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-	 <changeSet author="srb55" id="KFSUPGRADE-426" failOnError="false">
+	<changeSet author="srb55" id="KFSUPGRADE-426" failOnError="false">
 		<comment>take the edit mode "travelEntry" from the FO Role</comment>
-    <delete tableName="krim_role_perm_t">
-      <where>role_id = '41' AND perm_id = '212'</where>
-    </delete>
-	</changeSet>
+        <delete tableName="krim_role_perm_t">
+          <where>role_id = '41' AND perm_id = '212'</where>
+        </delete>
+	 </changeSet>
+
 	<changeSet author="srb55" id="KFSUPGRADE-75" failOnError="false">
 		<comment>Add PERM to favorite account role</comment>
 		
@@ -24,19 +25,16 @@
   		]]>
    	</sql>
  	</changeSet>
- 	 	<!-- This comes over from 3.0.1 
- 	<changeSet author="srb55" id="KFSUPGRADE-429" failOnError="false">
-		<comment>Add B2B eshop perm to eshop roles</comment>
-		
-  	<sql stripComments="true" endDelimiter="/">
-  		<![CDATA[
-      insert into CYNERGY.krim_role_perm_t (role_perm_id, obj_id, ver_nbr, role_id, perm_id, actv_ind) 
-        values ('ESHOP_SUPER_USER_SUBMIT', sys_guid(), 1, (select role_id from CYNERGY.krim_role_t where nmspc_cd='KFS-PURAP' and role_nm = 'eShop User (cu)'), 'KFS_PURAP_SUBMIT_ESHOP_CART', 'Y')
-      /
-      insert into CYNERGY.krim_role_perm_t (role_perm_id, obj_id, ver_nbr, role_id, perm_id, actv_ind) 
-        values ('ESHOP_USER_SUBMIT', sys_guid(), 1, (select role_id from CYNERGY.krim_role_t where nmspc_cd='KFS-PURAP' and role_nm = 'eShop Plus User(cu)'), 'KFS_PURAP_SUBMIT_ESHOP_CART', 'Y')
-      /
-  		]]>
-   	</sql>
- 	</changeSet> -->
+
+    <changeSet author="srb55" id="KFSUPGRADE-715" failOnError="false">
+        <comment>Premission: Modify Maintenance Document Section SubAccount indirectCostRecoveryAccounts</comment>
+        <insert tableName="krim_role_perm_t">
+            <column name="role_perm_id" value="KFSUPGRADE-715" />
+            <column name="perm_id" value="KFSMI8342-PRM" />
+            <column name="role_id" value="54" />
+            <column name="ver_nbr" value="1" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+    </changeSet>
 </databaseChangeLog>
