@@ -174,7 +174,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_TR1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_TR1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_T DROP CONSTRAINT KREW_RULE_TR1';
 			END IF;
@@ -192,7 +192,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'EN_RTE_NODE_CFG_PARM_TR1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'EN_RTE_NODE_CFG_PARM_TR1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RTE_NODE_CFG_PARM_T DROP CONSTRAINT EN_RTE_NODE_CFG_PARM_TR1';
 			END IF;
@@ -217,7 +217,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_ACTN_ITM_EXT_TR1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_ACTN_ITM_EXT_TR1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_ACTN_ITM_EXT_T DROP CONSTRAINT KREW_ACTN_ITM_EXT_TR1';
 			END IF;
@@ -226,7 +226,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_ACTN_ITM_EXT_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_ACTN_ITM_EXT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_ACTN_ITM_EXT_T DROP CONSTRAINT KREW_ACTN_ITM_EXT_TP1';
 			END IF;
@@ -245,7 +245,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_ACTN_ITM_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_ACTN_ITM_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_ACTN_ITM_T DROP CONSTRAINT KREW_ACTN_ITM_TP1';
 			END IF;
@@ -377,7 +377,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_ACTN_RQST_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_ACTN_RQST_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_ACTN_RQST_T DROP CONSTRAINT KREW_ACTN_RQST_TP1';
 			END IF;
@@ -546,7 +546,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_ACTN_TKN_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_ACTN_TKN_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_ACTN_TKN_T DROP CONSTRAINT KREW_ACTN_TKN_TP1';
 			END IF;
@@ -656,7 +656,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_APP_DOC_STAT_TRAN_TC0' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_APP_DOC_STAT_TRAN_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_APP_DOC_STAT_TRAN_T DROP CONSTRAINT KREW_APP_DOC_STAT_TRAN_TC0';
 			END IF;
@@ -674,7 +674,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_APP_DOC_STAT_TRAN_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_APP_DOC_STAT_TRAN_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_APP_DOC_STAT_TRAN_T DROP CONSTRAINT KREW_APP_DOC_STAT_TRAN_TP1';
 			END IF;
@@ -757,7 +757,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_CNTNT_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_CNTNT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_HDR_CNTNT_T DROP CONSTRAINT KREW_DOC_HDR_CNTNT_TP1';
 			END IF;
@@ -789,7 +789,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_EXT_DT_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_EXT_DT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_HDR_EXT_DT_T DROP CONSTRAINT KREW_DOC_HDR_EXT_DT_TP1';
 			END IF;
@@ -866,7 +866,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_EXT_LONG_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_EXT_LONG_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_HDR_EXT_LONG_T DROP CONSTRAINT KREW_DOC_HDR_EXT_LONG_TP1';
 			END IF;
@@ -943,7 +943,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_EXT_FLT_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_EXT_FLT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_HDR_EXT_FLT_T DROP CONSTRAINT KREW_DOC_HDR_EXT_FLT_TP1';
 			END IF;
@@ -1020,7 +1020,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_EXT_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_EXT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_HDR_EXT_T DROP CONSTRAINT KREW_DOC_HDR_EXT_TP1';
 			END IF;
@@ -1098,7 +1098,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_TC0' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_HDR_T DROP CONSTRAINT KREW_DOC_HDR_TC0';
 			END IF;
@@ -1116,7 +1116,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_HDR_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_HDR_T DROP CONSTRAINT KREW_DOC_HDR_TP1';
 			END IF;
@@ -1335,7 +1335,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_NTE_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_NTE_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE TEMP_KREW_DOC_NTE_T DROP CONSTRAINT KREW_DOC_NTE_TP1';
 			END IF;
@@ -1383,7 +1383,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_TC0' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_TYP_T DROP CONSTRAINT KREW_DOC_TYP_TC0';
 			END IF;
@@ -1401,7 +1401,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_TI1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_TYP_T DROP CONSTRAINT KREW_DOC_TYP_TI1';
 			END IF;
@@ -1420,7 +1420,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_TYP_T DROP CONSTRAINT KREW_DOC_TYP_TP1';
 			END IF;
@@ -1566,7 +1566,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_EDL_DMP_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_EDL_DMP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_EDL_DMP_T DROP CONSTRAINT KREW_EDL_DMP_TP1';
 			END IF;
@@ -1619,7 +1619,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_EDL_FLD_DMP_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_EDL_FLD_DMP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_EDL_FLD_DMP_T DROP CONSTRAINT KREW_EDL_FLD_DMP_TP1';
 			END IF;
@@ -1658,7 +1658,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_INIT_RTE_NODE_INSTN_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_INIT_RTE_NODE_INSTN_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_INIT_RTE_NODE_INSTN_T DROP CONSTRAINT KREW_INIT_RTE_NODE_INSTN_TP1';
 			END IF;
@@ -1723,7 +1723,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_OUT_BOX_ITM_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_OUT_BOX_ITM_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_OUT_BOX_ITM_T DROP CONSTRAINT KREW_OUT_BOX_ITM_TP1';
 			END IF;
@@ -1820,7 +1820,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RMV_RPLC_DOC_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RMV_RPLC_DOC_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RMV_RPLC_DOC_T DROP CONSTRAINT KREW_RMV_RPLC_DOC_TP1';
 			END IF;
@@ -1856,7 +1856,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RMV_RPLC_GRP_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RMV_RPLC_GRP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RMV_RPLC_GRP_T DROP CONSTRAINT KREW_RMV_RPLC_GRP_TP1';
 			END IF;
@@ -1889,7 +1889,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RMV_RPLC_RULE_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RMV_RPLC_RULE_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RMV_RPLC_RULE_T DROP CONSTRAINT KREW_RMV_RPLC_RULE_TP1';
 			END IF;
@@ -1921,7 +1921,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RTE_NODE_INSTN_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RTE_NODE_INSTN_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RTE_NODE_INSTN_T DROP CONSTRAINT KREW_RTE_NODE_INSTN_TP1';
 			END IF;
@@ -2023,7 +2023,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_TC0' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_T DROP CONSTRAINT KREW_RULE_TC0';
 			END IF;
@@ -2041,7 +2041,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_T DROP CONSTRAINT KREW_RULE_TP1';
 			END IF;
@@ -2099,7 +2099,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_LNK_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_LNK_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_LNK_T DROP CONSTRAINT KREW_DOC_LNK_TP1';
 			END IF;
@@ -3031,7 +3031,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KRSB_SVC_DEF_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KRSB_SVC_DEF_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KRSB_SVC_DEF_T DROP CONSTRAINT KRSB_SVC_DEF_TP1';
 			END IF;
@@ -3221,7 +3221,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_PLCY_RELN_TC0' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_PLCY_RELN_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_TYP_PLCY_RELN_T DROP CONSTRAINT KREW_DOC_TYP_PLCY_RELN_TC0';
 			END IF;
@@ -3239,7 +3239,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_PLCY_RELN_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_PLCY_RELN_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_TYP_PLCY_RELN_T DROP CONSTRAINT KREW_DOC_TYP_PLCY_RELN_TP1';
 			END IF;
@@ -3286,7 +3286,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_APP_DOC_STAT_TC0' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_APP_DOC_STAT_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_TYP_APP_DOC_STAT_T DROP CONSTRAINT KREW_DOC_TYP_APP_DOC_STAT_TC0';
 			END IF;
@@ -3304,7 +3304,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_APP_DOC_STAT_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_APP_DOC_STAT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_TYP_APP_DOC_STAT_T DROP CONSTRAINT KREW_DOC_TYP_APP_DOC_STAT_TP1';
 			END IF;
@@ -3365,7 +3365,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_ATTR_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_ATTR_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_TYP_ATTR_T DROP CONSTRAINT KREW_DOC_TYP_ATTR_TP1';
 			END IF;
@@ -3420,7 +3420,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RTE_NODE_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RTE_NODE_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RTE_NODE_T DROP CONSTRAINT KREW_RTE_NODE_TP1';
 			END IF;
@@ -3520,7 +3520,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_PROC_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DOC_TYP_PROC_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DOC_TYP_PROC_T DROP CONSTRAINT KREW_DOC_TYP_PROC_TP1';
 			END IF;
@@ -3833,7 +3833,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_ATT_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_ATT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE TEMP_KREW_ATT_T DROP CONSTRAINT KREW_ATT_TP1';
 			END IF;
@@ -3884,7 +3884,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_TMPL_TC0' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_TMPL_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_TMPL_T DROP CONSTRAINT KREW_RULE_TMPL_TC0';
 			END IF;
@@ -3902,7 +3902,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_TMPL_TI1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_TMPL_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_TMPL_T DROP CONSTRAINT KREW_RULE_TMPL_TI1';
 			END IF;
@@ -3922,7 +3922,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_TMPL_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_TMPL_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE TEMP_KREW_RULE_TMPL_T DROP CONSTRAINT KREW_RULE_TMPL_TP1';
 			END IF;
@@ -3967,7 +3967,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_TMPL_ATTR_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_TMPL_ATTR_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_TMPL_ATTR_T DROP CONSTRAINT KREW_RULE_TMPL_ATTR_TP1';
 			END IF;
@@ -4005,7 +4005,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_TMPL_ATTR_TC0' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_TMPL_ATTR_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE TEMP_KREW_RULE_TMPL_ATTR_T DROP CONSTRAINT KREW_RULE_TMPL_ATTR_TC0';
 			END IF;
@@ -4062,7 +4062,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DLGN_RSP_TC0' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DLGN_RSP_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DLGN_RSP_T DROP CONSTRAINT KREW_DLGN_RSP_TC0';
 			END IF;
@@ -4080,7 +4080,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_DLGN_RSP_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_DLGN_RSP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_DLGN_RSP_T DROP CONSTRAINT KREW_DLGN_RSP_TP1';
 			END IF;
@@ -4127,7 +4127,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_RSP_TC0' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_RSP_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_RSP_T DROP CONSTRAINT KREW_RULE_RSP_TC0';
 			END IF;
@@ -4145,7 +4145,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_RSP_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_RSP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_RSP_T DROP CONSTRAINT KREW_RULE_RSP_TP1';
 			END IF;
@@ -4209,7 +4209,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_EXT_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_EXT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_EXT_T DROP CONSTRAINT KREW_RULE_EXT_TP1';
 			END IF;
@@ -4265,7 +4265,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RTE_NODE_INSTN_LNK_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RTE_NODE_INSTN_LNK_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RTE_NODE_INSTN_LNK_T DROP CONSTRAINT KREW_RTE_NODE_INSTN_LNK_TP1';
 			END IF;
@@ -4324,7 +4324,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RTE_BRCH_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RTE_BRCH_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RTE_BRCH_T DROP CONSTRAINT KREW_RTE_BRCH_TP1';
 			END IF;
@@ -4429,7 +4429,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RTE_BRCH_ST_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RTE_BRCH_ST_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RTE_BRCH_ST_T DROP CONSTRAINT KREW_RTE_BRCH_ST_TP1';
 			END IF;
@@ -4506,7 +4506,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RTE_NODE_INSTN_ST_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RTE_NODE_INSTN_ST_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RTE_NODE_INSTN_ST_T DROP CONSTRAINT KREW_RTE_NODE_INSTN_ST_TP1';
 			END IF;
@@ -4584,7 +4584,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_ATTR_TC0' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_ATTR_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_ATTR_T DROP CONSTRAINT KREW_RULE_ATTR_TC0';
 			END IF;
@@ -4602,7 +4602,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_ATTR_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_ATTR_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_ATTR_T DROP CONSTRAINT KREW_RULE_ATTR_TP1';
 			END IF;
@@ -4649,7 +4649,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_TMPL_OPTN_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_TMPL_OPTN_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_TMPL_OPTN_T DROP CONSTRAINT KREW_RULE_TMPL_OPTN_TP1';
 			END IF;
@@ -4688,7 +4688,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RTE_NODE_CFG_PARM_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RTE_NODE_CFG_PARM_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RTE_NODE_CFG_PARM_T DROP CONSTRAINT KREW_RTE_NODE_CFG_PARM_TP1';
 			END IF;
@@ -4740,7 +4740,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RTE_BRCH_PROTO_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RTE_BRCH_PROTO_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RTE_BRCH_PROTO_T DROP CONSTRAINT KREW_RTE_BRCH_PROTO_TP1';
 			END IF;
@@ -4789,7 +4789,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_HLP_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_HLP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_HLP_T DROP CONSTRAINT KREW_HLP_TP1';
 			END IF;
@@ -4838,7 +4838,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_EXT_VAL_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_EXT_VAL_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_EXT_VAL_T DROP CONSTRAINT KREW_RULE_EXT_VAL_TP1';
 			END IF;
@@ -4902,7 +4902,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_EXPR_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_EXPR_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_RULE_EXPR_T DROP CONSTRAINT KREW_RULE_EXPR_TP1';
 			END IF;
@@ -4922,7 +4922,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RULE_EXPR_TC0' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RULE_EXPR_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE TEMP_KREW_RULE_EXPR_T DROP CONSTRAINT KREW_RULE_EXPR_TC0';
 			END IF;
@@ -4995,7 +4995,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_RTE_NODE_LNK_TP1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_RTE_NODE_LNK_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE TEMP_KREW_RTE_NODE_LNK_T DROP CONSTRAINT KREW_RTE_NODE_LNK_TP1';
 			END IF;
@@ -5576,7 +5576,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_constraints where CONSTRAINT_NAME = 'KREW_PPL_FLW_MBR_TC1' ;
+			select count(*) into c from user_constraints where CONSTRAINT_NAME = 'KREW_PPL_FLW_MBR_TC1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'ALTER TABLE KREW_PPL_FLW_MBR_T DROP CONSTRAINT KREW_PPL_FLW_MBR_TC1';
 			END IF;
