@@ -62,7 +62,7 @@
 				DECLARE
 				c NUMBER;
 				BEGIN
-				select count(*) into c from all_indexes where INDEX_NAME = 'KRAD_MSG_TP1' ;
+				select count(*) into c from user_indexes where INDEX_NAME = 'KRAD_MSG_TP1' ;
 				IF c>0 THEN
 				EXECUTE IMMEDIATE 'DROP INDEX KRAD_MSG_TP1';
 				END IF;
@@ -72,7 +72,7 @@
 				DECLARE
 				c NUMBER;
 				BEGIN
-				select count(*) into c from all_indexes where INDEX_NAME = 'KRAD_MSG_TC1' ;
+				select count(*) into c from user_indexes where INDEX_NAME = 'KRAD_MSG_TC1' ;
 				IF c>0 THEN
 				EXECUTE IMMEDIATE 'DROP INDEX KRAD_MSG_TC1';
 				END IF;
@@ -82,7 +82,7 @@
 				DECLARE
 				c NUMBER;
 				BEGIN
-				select count(*) into c from all_indexes where INDEX_NAME = 'KRAD_MSG_TC2' ;
+				select count(*) into c from user_indexes where INDEX_NAME = 'KRAD_MSG_TC2' ;
 				IF c>0 THEN
 				EXECUTE IMMEDIATE 'DROP INDEX KRAD_MSG_TC2';
 				END IF;

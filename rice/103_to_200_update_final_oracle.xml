@@ -183,7 +183,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_TR1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_TR1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_TR1';
 			END IF;
@@ -201,7 +201,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'EN_RTE_NODE_CFG_PARM_TR1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'EN_RTE_NODE_CFG_PARM_TR1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX EN_RTE_NODE_CFG_PARM_TR1';
 			END IF;
@@ -235,7 +235,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_EXT_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_ITM_EXT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_EXT_TP1';
 			END IF;
@@ -254,49 +254,49 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TP1';
 			END IF;
 			END;
 			/
 			-- ==== CU Customization: Indexes have gone missing
-			--DECLARE
-			--c NUMBER;
-			--BEGIN
-			--select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI1' ;
-			--IF c>0 THEN
-			--EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI1';
-			--END IF;
-			--END;
-			--/
-			--DECLARE
-			--c NUMBER;
-			--BEGIN
-			--select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI2' ;
-			--IF c>0 THEN
-			--EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI2';
-			--END IF;
-			--END;
-			--/
-			--DECLARE
-			--c NUMBER;
-			--BEGIN
-			--select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI3' ;
-			--IF c>0 THEN
-			--EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI3';
-			--END IF;
-			--END;
-			--/
-			--DECLARE
-			--c NUMBER;
-			--BEGIN
-			--select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI5' ;
-			--IF c>0 THEN
-			--EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI5';
-			--END IF;
-			--END;
-			--/
+			DECLARE
+			c NUMBER;
+			BEGIN
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI1' ;
+			IF c>0 THEN
+			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI1';
+			END IF;
+			END;
+			/
+			DECLARE
+			c NUMBER;
+			BEGIN
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI2' ;
+		  IF c>0 THEN
+			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI2';
+			END IF;
+			END;
+			/
+			DECLARE
+			c NUMBER;
+			BEGIN
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI3' ;
+			IF c>0 THEN
+			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI3';
+			END IF;
+			END;
+			/
+			DECLARE
+			c NUMBER;
+			BEGIN
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI5' ;
+			IF c>0 THEN
+			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI5';
+			END IF;
+			END;
+			/
 			-- ==== END CU Customization
 			ALTER TABLE KREW_ACTN_ITM_T RENAME TO TEMP_KREW_ACTN_ITM_T
 			/
@@ -386,7 +386,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_RQST_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_RQST_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_RQST_TP1';
 			END IF;
@@ -395,7 +395,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T11' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T11' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_RQST_T11';
 			END IF;
@@ -404,7 +404,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T12' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T12' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_RQST_T12';
 			END IF;
@@ -413,7 +413,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T13' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T13' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_RQST_T13';
 			END IF;
@@ -422,7 +422,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T14' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T14' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_RQST_T14';
 			END IF;
@@ -431,7 +431,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T15' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T15' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_RQST_T15';
 			END IF;
@@ -440,7 +440,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T16' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T16' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_RQST_T16';
 			END IF;
@@ -449,7 +449,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T17' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T17' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_RQST_T17';
 			END IF;
@@ -458,7 +458,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T19' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_RQST_T19' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_RQST_T19';
 			END IF;
@@ -555,7 +555,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_TKN_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_TKN_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_TKN_TP1';
 			END IF;
@@ -564,7 +564,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_TKN_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_TKN_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_TKN_TI1';
 			END IF;
@@ -573,7 +573,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_TKN_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_TKN_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_TKN_TI2';
 			END IF;
@@ -582,7 +582,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_TKN_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_TKN_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_TKN_TI3';
 			END IF;
@@ -591,7 +591,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_TKN_TI4' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_TKN_TI4' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_TKN_TI4';
 			END IF;
@@ -600,7 +600,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_TKN_TI5' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ACTN_TKN_TI5' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_TKN_TI5';
 			END IF;
@@ -665,7 +665,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_APP_DOC_STAT_TRAN_TC0' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_APP_DOC_STAT_TRAN_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_APP_DOC_STAT_TRAN_TC0';
 			END IF;
@@ -683,7 +683,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_APP_DOC_STAT_TRAN_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_APP_DOC_STAT_TRAN_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_APP_DOC_STAT_TRAN_TP1';
 			END IF;
@@ -692,7 +692,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_APP_DOC_STAT_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_APP_DOC_STAT_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_APP_DOC_STAT_TI1';
 			END IF;
@@ -701,7 +701,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_APP_DOC_STAT_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_APP_DOC_STAT_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_APP_DOC_STAT_TI2';
 			END IF;
@@ -710,7 +710,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_APP_DOC_STAT_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_APP_DOC_STAT_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_APP_DOC_STAT_TI3';
 			END IF;
@@ -766,7 +766,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_CNTNT_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_CNTNT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_CNTNT_TP1';
 			END IF;
@@ -798,7 +798,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_DT_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_DT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_DT_TP1';
 			END IF;
@@ -807,7 +807,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_DT_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_DT_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_DT_TI1';
 			END IF;
@@ -816,7 +816,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_DT_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_DT_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_DT_TI2';
 			END IF;
@@ -825,7 +825,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_DT_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_DT_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_DT_TI3';
 			END IF;
@@ -875,7 +875,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_LONG_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_LONG_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_LONG_TP1';
 			END IF;
@@ -884,7 +884,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_LONG_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_LONG_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_LONG_TI1';
 			END IF;
@@ -893,7 +893,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_LONG_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_LONG_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_LONG_TI2';
 			END IF;
@@ -902,7 +902,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_LONG_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_LONG_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_LONG_TI3';
 			END IF;
@@ -952,7 +952,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_FLT_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_FLT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_FLT_TP1';
 			END IF;
@@ -961,7 +961,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_FLT_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_FLT_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_FLT_TI1';
 			END IF;
@@ -970,7 +970,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_FLT_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_FLT_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_FLT_TI2';
 			END IF;
@@ -979,7 +979,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_FLT_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_FLT_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_FLT_TI3';
 			END IF;
@@ -1029,7 +1029,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_TP1';
 			END IF;
@@ -1038,7 +1038,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_TI1';
 			END IF;
@@ -1047,7 +1047,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_TI2';
 			END IF;
@@ -1056,7 +1056,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_EXT_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_EXT_TI3';
 			END IF;
@@ -1107,7 +1107,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_TC0' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_TC0';
 			END IF;
@@ -1125,7 +1125,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_TP1';
 			END IF;
@@ -1134,7 +1134,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_TI1';
 			END IF;
@@ -1143,7 +1143,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_TI2';
 			END IF;
@@ -1152,7 +1152,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_TI3';
 			END IF;
@@ -1161,7 +1161,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI4' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI4' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_TI4';
 			END IF;
@@ -1170,7 +1170,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI5' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI5' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_TI5';
 			END IF;
@@ -1179,7 +1179,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI6' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI6' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_TI6';
 			END IF;
@@ -1188,7 +1188,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI7' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI7' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_TI7';
 			END IF;
@@ -1197,7 +1197,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI8' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI8' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_TI8';
 			END IF;
@@ -1206,7 +1206,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI9' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_TI9' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_TI9';
 			END IF;
@@ -1215,7 +1215,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_T10' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_T10' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_T10';
 			END IF;
@@ -1224,7 +1224,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_HDR_T12' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_HDR_T12' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_HDR_T12';
 			END IF;
@@ -1344,7 +1344,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_NTE_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_NTE_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_NTE_TP1';
 			END IF;
@@ -1353,7 +1353,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_NTE_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_NTE_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_NTE_TI1';
 			END IF;
@@ -1392,7 +1392,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_TC0' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_TC0';
 			END IF;
@@ -1410,7 +1410,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_TI1';
 			END IF;
@@ -1429,7 +1429,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_TP1';
 			END IF;
@@ -1438,7 +1438,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_TI2';
 			END IF;
@@ -1447,7 +1447,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_TI3';
 			END IF;
@@ -1456,7 +1456,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_TI4' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_TI4' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_TI4';
 			END IF;
@@ -1465,7 +1465,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_TI5' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_TI5' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_TI5';
 			END IF;
@@ -1474,7 +1474,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_TI6' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_TI6' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_TI6';
 			END IF;
@@ -1575,7 +1575,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_EDL_DMP_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_EDL_DMP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_EDL_DMP_TP1';
 			END IF;
@@ -1584,7 +1584,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_EDL_DMP_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_EDL_DMP_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_EDL_DMP_TI1';
 			END IF;
@@ -1628,7 +1628,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_EDL_FLD_DMP_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_EDL_FLD_DMP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_EDL_FLD_DMP_TP1';
 			END IF;
@@ -1667,7 +1667,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_INIT_RTE_NODE_INSTN_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_INIT_RTE_NODE_INSTN_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_INIT_RTE_NODE_INSTN_TP1';
 			END IF;
@@ -1676,7 +1676,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_INIT_RTE_NODE_INSTN_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_INIT_RTE_NODE_INSTN_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_INIT_RTE_NODE_INSTN_TI1';
 			END IF;
@@ -1685,7 +1685,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_INIT_RTE_NODE_INSTN_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_INIT_RTE_NODE_INSTN_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_INIT_RTE_NODE_INSTN_TI2';
 			END IF;
@@ -1732,7 +1732,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_OUT_BOX_ITM_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_OUT_BOX_ITM_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_OUT_BOX_ITM_TP1';
 			END IF;
@@ -1741,7 +1741,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_OUT_BOX_ITM_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_OUT_BOX_ITM_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_OUT_BOX_ITM_TI1';
 			END IF;
@@ -1750,7 +1750,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_OUT_BOX_ITM_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_OUT_BOX_ITM_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_OUT_BOX_ITM_TI2';
 			END IF;
@@ -1759,7 +1759,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_OUT_BOX_ITM_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_OUT_BOX_ITM_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_OUT_BOX_ITM_TI3';
 			END IF;
@@ -1829,7 +1829,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RMV_RPLC_DOC_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RMV_RPLC_DOC_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RMV_RPLC_DOC_TP1';
 			END IF;
@@ -1865,7 +1865,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RMV_RPLC_GRP_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RMV_RPLC_GRP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RMV_RPLC_GRP_TP1';
 			END IF;
@@ -1898,7 +1898,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RMV_RPLC_RULE_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RMV_RPLC_RULE_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RMV_RPLC_RULE_TP1';
 			END IF;
@@ -1930,7 +1930,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_INSTN_TP1';
 			END IF;
@@ -1939,7 +1939,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_INSTN_TI1';
 			END IF;
@@ -1948,7 +1948,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_INSTN_TI2';
 			END IF;
@@ -1957,7 +1957,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_INSTN_TI3';
 			END IF;
@@ -1966,7 +1966,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_TI4' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_TI4' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_INSTN_TI4';
 			END IF;
@@ -2032,7 +2032,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_TC0' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_TC0';
 			END IF;
@@ -2050,7 +2050,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_TP1';
 			END IF;
@@ -2108,7 +2108,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_LNK_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_LNK_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_LNK_TP1';
 			END IF;
@@ -2117,7 +2117,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_LNK_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_LNK_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_LNK_TI1';
 			END IF;
@@ -3040,7 +3040,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KRSB_SVC_DEF_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KRSB_SVC_DEF_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KRSB_SVC_DEF_TP1';
 			END IF;
@@ -3049,7 +3049,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KRSB_SVC_DEF_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KRSB_SVC_DEF_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KRSB_SVC_DEF_TI1';
 			END IF;
@@ -3058,7 +3058,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KRSB_SVC_DEF_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KRSB_SVC_DEF_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KRSB_SVC_DEF_TI2';
 			END IF;
@@ -3230,7 +3230,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_PLCY_RELN_TC0' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_PLCY_RELN_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_PLCY_RELN_TC0';
 			END IF;
@@ -3248,7 +3248,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_PLCY_RELN_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_PLCY_RELN_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_PLCY_RELN_TP1';
 			END IF;
@@ -3295,7 +3295,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_APP_DOC_STAT_TC0' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_APP_DOC_STAT_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_APP_DOC_STAT_TC0';
 			END IF;
@@ -3313,7 +3313,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_APP_DOC_STAT_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_APP_DOC_STAT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_APP_DOC_STAT_TP1';
 			END IF;
@@ -3322,7 +3322,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_APP_DOC_STAT_T1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_APP_DOC_STAT_T1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_APP_DOC_STAT_T1';
 			END IF;
@@ -3374,7 +3374,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_ATTR_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_ATTR_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_ATTR_TP1';
 			END IF;
@@ -3383,7 +3383,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_ATTR_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_ATTR_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_ATTR_TI1';
 			END IF;
@@ -3429,7 +3429,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_TP1';
 			END IF;
@@ -3438,7 +3438,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_TI1';
 			END IF;
@@ -3447,7 +3447,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_TI2';
 			END IF;
@@ -3456,7 +3456,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_TI3';
 			END IF;
@@ -3465,7 +3465,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_TI4' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_TI4' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_TI4';
 			END IF;
@@ -3529,7 +3529,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_PROC_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_PROC_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_PROC_TP1';
 			END IF;
@@ -3538,7 +3538,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_PROC_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_PROC_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_PROC_TI1';
 			END IF;
@@ -3547,7 +3547,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_PROC_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_PROC_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_PROC_TI2';
 			END IF;
@@ -3556,7 +3556,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DOC_TYP_PROC_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DOC_TYP_PROC_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DOC_TYP_PROC_TI3';
 			END IF;
@@ -3842,7 +3842,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ATT_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ATT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ATT_TP1';
 			END IF;
@@ -3851,7 +3851,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ATT_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_ATT_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_ATT_TI1';
 			END IF;
@@ -3893,7 +3893,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_TMPL_TC0' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_TMPL_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_TMPL_TC0';
 			END IF;
@@ -3911,7 +3911,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_TMPL_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_TMPL_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_TMPL_TI1';
 			END IF;
@@ -3931,7 +3931,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_TMPL_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_TMPL_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_TMPL_TP1';
 			END IF;
@@ -3976,7 +3976,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_TMPL_ATTR_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_TMPL_ATTR_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_TMPL_ATTR_TP1';
 			END IF;
@@ -3985,7 +3985,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_TMPL_ATTR_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_TMPL_ATTR_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_TMPL_ATTR_TI1';
 			END IF;
@@ -3994,7 +3994,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_TMPL_ATTR_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_TMPL_ATTR_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_TMPL_ATTR_TI2';
 			END IF;
@@ -4014,7 +4014,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_TMPL_ATTR_TC0' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_TMPL_ATTR_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_TMPL_ATTR_TC0';
 			END IF;
@@ -4071,7 +4071,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DLGN_RSP_TC0' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DLGN_RSP_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DLGN_RSP_TC0';
 			END IF;
@@ -4089,7 +4089,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_DLGN_RSP_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_DLGN_RSP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_DLGN_RSP_TP1';
 			END IF;
@@ -4136,7 +4136,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_RSP_TC0' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_RSP_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_RSP_TC0';
 			END IF;
@@ -4154,7 +4154,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_RSP_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_RSP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_RSP_TP1';
 			END IF;
@@ -4163,7 +4163,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_RSP_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_RSP_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_RSP_TI1';
 			END IF;
@@ -4218,7 +4218,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_EXT_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_EXT_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_EXT_TP1';
 			END IF;
@@ -4227,7 +4227,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_EXT_T1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_EXT_T1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_EXT_T1';
 			END IF;
@@ -4274,7 +4274,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_LNK_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_LNK_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_INSTN_LNK_TP1';
 			END IF;
@@ -4283,7 +4283,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_LNK_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_LNK_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_INSTN_LNK_TI1';
 			END IF;
@@ -4292,7 +4292,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_LNK_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_LNK_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_INSTN_LNK_TI2';
 			END IF;
@@ -4333,7 +4333,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_BRCH_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_BRCH_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_BRCH_TP1';
 			END IF;
@@ -4342,7 +4342,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_BRCH_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_BRCH_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_BRCH_TI1';
 			END IF;
@@ -4351,7 +4351,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_BRCH_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_BRCH_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_BRCH_TI2';
 			END IF;
@@ -4360,7 +4360,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_BRCH_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_BRCH_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_BRCH_TI3';
 			END IF;
@@ -4369,7 +4369,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_BRCH_TI4' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_BRCH_TI4' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_BRCH_TI4';
 			END IF;
@@ -4378,7 +4378,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_BRCH_TI5' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_BRCH_TI5' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_BRCH_TI5';
 			END IF;
@@ -4438,7 +4438,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_BRCH_ST_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_BRCH_ST_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_BRCH_ST_TP1';
 			END IF;
@@ -4447,7 +4447,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_BRCH_ST_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_BRCH_ST_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_BRCH_ST_TI1';
 			END IF;
@@ -4456,7 +4456,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_BRCH_ST_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_BRCH_ST_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_BRCH_ST_TI2';
 			END IF;
@@ -4465,7 +4465,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_BRCH_ST_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_BRCH_ST_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_BRCH_ST_TI3';
 			END IF;
@@ -4515,7 +4515,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_ST_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_ST_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_INSTN_ST_TP1';
 			END IF;
@@ -4524,7 +4524,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_ST_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_ST_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_INSTN_ST_TI1';
 			END IF;
@@ -4533,7 +4533,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_ST_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_ST_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_INSTN_ST_TI2';
 			END IF;
@@ -4542,7 +4542,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_ST_TI3' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_INSTN_ST_TI3' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_INSTN_ST_TI3';
 			END IF;
@@ -4593,7 +4593,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_ATTR_TC0' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_ATTR_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_ATTR_TC0';
 			END IF;
@@ -4611,7 +4611,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_ATTR_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_ATTR_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_ATTR_TP1';
 			END IF;
@@ -4658,7 +4658,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_TMPL_OPTN_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_TMPL_OPTN_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_TMPL_OPTN_TP1';
 			END IF;
@@ -4697,7 +4697,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_CFG_PARM_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_CFG_PARM_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_CFG_PARM_TP1';
 			END IF;
@@ -4706,7 +4706,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_CFG_PARM_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_CFG_PARM_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_CFG_PARM_TI1';
 			END IF;
@@ -4749,7 +4749,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_BRCH_PROTO_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_BRCH_PROTO_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_BRCH_PROTO_TP1';
 			END IF;
@@ -4758,7 +4758,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_BRCH_PROTO_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_BRCH_PROTO_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_BRCH_PROTO_TI1';
 			END IF;
@@ -4798,7 +4798,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_HLP_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_HLP_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_HLP_TP1';
 			END IF;
@@ -4807,7 +4807,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_HLP_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_HLP_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_HLP_TI1';
 			END IF;
@@ -4847,7 +4847,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_EXT_VAL_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_EXT_VAL_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_EXT_VAL_TP1';
 			END IF;
@@ -4856,7 +4856,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_EXT_VAL_T1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_EXT_VAL_T1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_EXT_VAL_T1';
 			END IF;
@@ -4865,7 +4865,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_EXT_VAL_T2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_EXT_VAL_T2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_EXT_VAL_T2';
 			END IF;
@@ -4911,7 +4911,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_EXPR_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_EXPR_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_EXPR_TP1';
 			END IF;
@@ -4931,7 +4931,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RULE_EXPR_TC0' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RULE_EXPR_TC0' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RULE_EXPR_TC0';
 			END IF;
@@ -5004,7 +5004,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_LNK_TP1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_LNK_TP1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_LNK_TP1';
 			END IF;
@@ -5013,7 +5013,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_LNK_TI1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_LNK_TI1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_LNK_TI1';
 			END IF;
@@ -5022,7 +5022,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_RTE_NODE_LNK_TI2' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_RTE_NODE_LNK_TI2' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_RTE_NODE_LNK_TI2';
 			END IF;
@@ -5585,7 +5585,7 @@
 			DECLARE
 			c NUMBER;
 			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_PPL_FLW_MBR_TC1' ;
+			select count(*) into c from user_indexes where INDEX_NAME = 'KREW_PPL_FLW_MBR_TC1' ;
 			IF c>0 THEN
 			EXECUTE IMMEDIATE 'DROP INDEX KREW_PPL_FLW_MBR_TC1';
 			END IF;
@@ -6224,7 +6224,7 @@
 
 			DECLARE temp NUMBER;
 			BEGIN
-				SELECT COUNT(*) INTO temp FROM all_indexes WHERE index_name ='KREW_ACTN_ITM_TI6';
+				SELECT COUNT(*) INTO temp FROM user_indexes WHERE index_name ='KREW_ACTN_ITM_TI6';
 				IF temp > 0 THEN EXECUTE IMMEDIATE
 					'DROP INDEX KREW_ACTN_ITM_TI6';
 				END IF;
@@ -6286,7 +6286,7 @@
 
 			DECLARE temp NUMBER;
 			BEGIN
-				SELECT COUNT(*) INTO temp FROM all_indexes WHERE index_name ='KRIM_ROLE_MBR_TI2';
+				SELECT COUNT(*) INTO temp FROM user_indexes WHERE index_name ='KRIM_ROLE_MBR_TI2';
 				IF temp > 0 THEN EXECUTE IMMEDIATE
 					'DROP INDEX KRIM_ROLE_MBR_TI2';
 				END IF;
