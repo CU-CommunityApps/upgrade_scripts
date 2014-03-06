@@ -260,42 +260,44 @@
 			END IF;
 			END;
 			/
-			DECLARE
-			c NUMBER;
-			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI1' ;
-			IF c>0 THEN
-			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI1';
-			END IF;
-			END;
-			/
-			DECLARE
-			c NUMBER;
-			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI2' ;
-			IF c>0 THEN
-			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI2';
-			END IF;
-			END;
-			/
-			DECLARE
-			c NUMBER;
-			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI3' ;
-			IF c>0 THEN
-			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI3';
-			END IF;
-			END;
-			/
-			DECLARE
-			c NUMBER;
-			BEGIN
-			select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI5' ;
-			IF c>0 THEN
-			EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI5';
-			END IF;
-			END;
-			/
+			-- ==== CU Customization: Indexes have gone missing
+			--DECLARE
+			--c NUMBER;
+			--BEGIN
+			--select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI1' ;
+			--IF c>0 THEN
+			--EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI1';
+			--END IF;
+			--END;
+			--/
+			--DECLARE
+			--c NUMBER;
+			--BEGIN
+			--select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI2' ;
+			--IF c>0 THEN
+			--EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI2';
+			--END IF;
+			--END;
+			--/
+			--DECLARE
+			--c NUMBER;
+			--BEGIN
+			--select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI3' ;
+			--IF c>0 THEN
+			--EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI3';
+			--END IF;
+			--END;
+			--/
+			--DECLARE
+			--c NUMBER;
+			--BEGIN
+			--select count(*) into c from all_indexes where INDEX_NAME = 'KREW_ACTN_ITM_TI5' ;
+			--IF c>0 THEN
+			--EXECUTE IMMEDIATE 'DROP INDEX KREW_ACTN_ITM_TI5';
+			--END IF;
+			--END;
+			--/
+			-- ==== END CU Customization
 			ALTER TABLE KREW_ACTN_ITM_T RENAME TO TEMP_KREW_ACTN_ITM_T
 			/
 			CREATE TABLE KREW_ACTN_ITM_T AS SELECT
