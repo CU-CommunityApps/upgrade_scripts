@@ -154,4 +154,15 @@
           <where>parm_nm = 'ENABLE_FRINGE_BENEFIT_CALC_BY_BENEFIT_RATE_CATEGORY' and nmspc_cd ='KFS-LD'</where>
         </delete>
     </changeSet>
+
+    <changeSet author="srb55" id="KFSUPGRADE-751" failOnError="false">
+        <comment>GL Parameter change needed: Plant fund organization object sub types</comment>
+        
+        <update tableName="krcr_parm_t">
+            <column name="val" value="AC;BK;CL;CM;CT;CV;CS;UC;CM;FM" />
+            <where>parm_nm = 'PLANT_FUND_ORGANIZATION_OBJECT_SUB_TYPES' and nmspc_cd ='KFS-GL'</where>
+        </update>
+
+    </changeSet>
+
 </databaseChangeLog>
