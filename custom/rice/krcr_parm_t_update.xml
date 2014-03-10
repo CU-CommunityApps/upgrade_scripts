@@ -191,5 +191,13 @@
         </update>
     </changeSet>
 
+    <changeSet author="srb55" id="KFSUPGRADE-746" failOnError="false">
+        <comment>CAM Parameter change needed: Vendor required for non moveable asset indicator</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="val" value="N" />
+            <where>parm_nm = 'VENDOR_REQUIRED_FOR_NON_MOVEABLE_ASSET_IND' and nmspc_cd ='KFS-CAM'</where>
+        </update>
+    </changeSet>
 
 </databaseChangeLog>
