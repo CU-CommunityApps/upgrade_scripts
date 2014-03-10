@@ -162,7 +162,14 @@
             <column name="val" value="AC;BK;CL;CM;CT;CV;CS;UC;CM;FM" />
             <where>parm_nm = 'PLANT_FUND_ORGANIZATION_OBJECT_SUB_TYPES' and nmspc_cd ='KFS-GL'</where>
         </update>
-
     </changeSet>
 
+    <changeSet author="srb55" id="KFSUPGRADE-750" failOnError="false">
+        <comment>CAM Parameter change needed: Non new acquisition codes</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="val" value="F;T" />
+            <where>parm_nm = 'NON_NEW_ACQUISITION_CODES' and nmspc_cd ='KFS-CAM'</where>
+        </update>
+    </changeSet>
 </databaseChangeLog>
