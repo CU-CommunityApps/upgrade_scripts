@@ -174,11 +174,22 @@
     </changeSet>
 
     <changeSet author="srb55" id="KFSUPGRADE-749" failOnError="false">
-        <comment>CAM Parameter change needed: Non new acquisition codes</comment>
+        <comment>CAM Parameter change needed: New acquisition codes</comment>
 
         <update tableName="krcr_parm_t">
             <column name="val" value="N" />
             <where>parm_nm = 'NEW_ACQUISITION_CODE' and nmspc_cd ='KFS-CAM'</where>
         </update>
     </changeSet>
+
+    <changeSet author="srb55" id="KFSUPGRADE-748" failOnError="false">
+        <comment>CAM Parameter change needed: Capital object acquisition codes</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="val" value="F;G;C;T" />
+            <where>parm_nm = 'CAPITAL_OBJECT_ACQUISITION_CODES' and nmspc_cd ='KFS-CAM'</where>
+        </update>
+    </changeSet>
+
+
 </databaseChangeLog>
