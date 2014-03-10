@@ -172,4 +172,13 @@
             <where>parm_nm = 'NON_NEW_ACQUISITION_CODES' and nmspc_cd ='KFS-CAM'</where>
         </update>
     </changeSet>
+
+    <changeSet author="srb55" id="KFSUPGRADE-749" failOnError="false">
+        <comment>CAM Parameter change needed: Non new acquisition codes</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="val" value="N" />
+            <where>parm_nm = 'NEW_ACQUISITION_CODE' and nmspc_cd ='KFS-CAM'</where>
+        </update>
+    </changeSet>
 </databaseChangeLog>
