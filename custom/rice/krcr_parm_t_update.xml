@@ -209,4 +209,13 @@
         </update>
     </changeSet>
 
+    <changeSet author="srb55" id="KFSUPGRADE-758" failOnError="false">
+        <comment>Duplicate Parameter : Capitalization Fund Balance Object Code</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="val" value="3160" />
+            <where>parm_nm = 'CAPITALIZATION_OFFSET_CODE' and nmspc_cd ='KFS-GL'</where>
+        </update>
+    </changeSet>
+
 </databaseChangeLog>
