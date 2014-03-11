@@ -11,11 +11,13 @@ require "rexml/document"
 include REXML
 
 
-kfsdb = ARGV[0]
+kfsdb = ARGV[2]
 kfs_pass = ARGV[1]
-cyndb = ARGV[2]
-cyn_pass = ARGV[3]
-key = ARGV[4]
+kfsusername = ARGV[0]
+cyndb = ARGV[5]
+cyn_pass = ARGV[4]
+cynusername = ARGV[3]
+key = ARGV[6]
 KEY = key.ljust(16)
 
 def decrypt(encoded_data)
@@ -34,8 +36,8 @@ def encrypt(unencoded_data)
 end
 
 
-conn = OCI8.new("kfs", kfs_pass, kfsdb)
-conn2 = OCI8.new("cynergy", cyn_pass, cyndb)
+conn = OCI8.new(kfsusername, kfs_pass, kfsdb)
+conn2 = OCI8.new(cynusername, cyn_pass, cyndb)
 
 docIds = Array.new
 
