@@ -39,7 +39,7 @@ conn2 = OCI8.new("cynergy", cyn_pass, cyndb)
 
 docIds = Array.new
 
-cursor2 = conn2.exec("select DOC_HDR_ID from KREW_DOC_HDR_T where DOC_TYP_ID = '1849556'")
+cursor2 = conn2.exec("select DOC_HDR_ID from KREW_DOC_HDR_T where DOC_TYP_ID = '1849556' and DOC_HDR_STAT_CD != 'I' and DOC_HDR_STAT_CD != 'E'")
 
 while r2 = cursor2.fetch()
   docIds.push(r2)
@@ -57,7 +57,10 @@ cursor = conn.exec("SELECT DOC_CNTNT from KRNS_MAINT_DOC_T WHERE
 
 
 r = cursor.fetch_hash()
-
+if r.nil?
+   puts "no maint doc"
+   next
+end
 
 xml_in = decrypt(r['DOC_CNTNT'].read)
 xml_in.gsub!("><", ">zz1<")
@@ -106,7 +109,14 @@ lbrElNew.text = lbrCodeNew
 version = Element.new "versionNumber"
 version.text = "1"
 
-xml = XmlSimple.xml_out(doc_contnt)
+lbr_done = doc_contnt['oldMaintainableObject'][0]['org.kuali.kfs.coa.businessobject.Account'][0]['laborBenefitRateCategoryCode']
+
+if !(lbr_done.nil?)
+    puts "Already done"
+    next
+else
+   puts "1st run\n"
+end
 
 
 doc = REXML::Document.new xml_in
