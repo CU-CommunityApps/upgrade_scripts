@@ -13,8 +13,8 @@ kfsusername = ARGV[0]
 cyndb = ARGV[5]
 cyn_pass = ARGV[4]
 cynusername = ARGV[3]
-key = ARGV[6]
-KEY = key.ljust(16)
+in_key = ARGV[6]
+KEY = in_key.ljust(16)
 
 
 
@@ -179,7 +179,7 @@ file2 = File.open("xml_out.xml", "w")
 file2.write(docString)
 file2.close
 
-newDoc = `/eig/sys/software/java/jdk1.7.0_51/jre/bin/java -cp encrypt-helper-1.0-SNAPSHOT-jar-with-dependencies.jar edu.cornell.cynergy.MainApp xml_out.xml genico4e`
+newDoc = `/eig/sys/software/java/jdk1.7.0_51/jre/bin/java -cp encrypt-helper-1.0-SNAPSHOT-jar-with-dependencies.jar edu.cornell.cynergy.MainApp xml_out.xml #{in_key}`
 newDoc.gsub!("\n", "")
 
 clob = OCI8::CLOB.new(conn, newDoc)
