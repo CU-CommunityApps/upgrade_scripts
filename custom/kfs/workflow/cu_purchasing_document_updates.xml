@@ -1002,6 +1002,7 @@
 				<status>Cancelled</status>
 				<status>In Process</status>
 				<status>Awaiting C and G Approval</status>
+				<status>Awaiting Commodity Code</status>
 			</validApplicationStatuses>
       <policies>
         <policy>
