@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>CITTravelRequest</name>
+	  <parent>PDFDocument</parent>
+      <description>CIT's Travel Request form.</description>
+      <label>CIT Travel/Training Request Document</label>
+      <superUserGroupName namespace="KR-WKFLW">WorkflowAdmin</superUserGroupName>
+      <blanketApproveGroupName namespace="KR-WKFLW">WorkflowAdmin</blanketApproveGroupName>
+      <defaultExceptionGroupName namespace="KR-WKFLW">WorkflowAdmin</defaultExceptionGroupName>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing" nextNode="Traveler Approval" />
+          <requests name="Traveler Approval" nextNode="Supervisor Approval" />
+          <requests name="Supervisor Approval" nextNode="Director Approval" />
+          <requests name="Director Approval" nextNode="CIT Fin BA Approval" />
+          <requests name="CIT Fin BA Approval" nextNode="CIT BSC Approval" />
+          <requests name="CIT BSC Approval" />
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="Traveler Approval">
+          <activationType>S</activationType>
+		  <routeModule>edu.cornell.cynergy.app.routemodule.PDFDocumentRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+		  <name>routeToUsers</name>
+		  <value>//Traveler</value>
+		  <!-- User, "Traveler", Approve -->
+        </requests>
+        <requests name="Supervisor Approval">
+          <activationType>S</activationType>
+		  <routeModule>edu.cornell.cynergy.app.routemodule.PDFDocumentRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+		  <name>routeToSupervisors</name>
+		  <value>//Traveler</value>
+		  <!-- Supervisor of "Traveler", Approve, routeToDirectPrimaryJobSupervisorOtherwiseNoOneIfNoNetIdValue -->
+        </requests>
+        <requests name="Director Approval">
+          <activationType>S</activationType>
+		  <routeModule>edu.cornell.cynergy.app.routemodule.PDFDocumentRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+		  <name>routeToUsers</name>
+		  <value>//Director</value>
+		  <!-- User, "Director", Approve -->
+        </requests>
+        <requests name="CIT Fin BA Approval">
+          <activationType>S</activationType>
+		  <routeModule>edu.cornell.cynergy.routemodule.CynergySingleRecipientRouteModule</routeModule>
+		  <name>routeToGroup</name>
+		  <value>cit.ata</value>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="CIT BSC Approval">
+          <activationType>S</activationType>
+		  <routeModule>edu.cornell.cynergy.routemodule.CynergySingleRecipientRouteModule</routeModule>
+		  <name>routeToGroup</name>
+		  <value>cit.cynergy.global.admins</value>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>true</finalApproval>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

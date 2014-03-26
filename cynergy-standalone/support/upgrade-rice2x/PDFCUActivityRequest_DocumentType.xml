@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>PDFCUActivityRequest</name>
+      <parent>PDFDocument</parent>
+      <label>PDFCUActivityRequest</label>
+      <description>ISActivityRequestForm</description>
+      <active>true</active>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing" nextNode="ISActReq1DocTypeNode" />
+          <requests name="ISActReq1DocTypeNode" nextNode="ISActReqtoInitiatorTypeNode" />
+          <requests name="ISActReqtoInitiatorTypeNode" />
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="ISActReq1DocTypeNode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergySingleRecipientRouteModule</routeModule>
+		  <name>routeToGroup</name>
+		  <value>workflow.CIT.IS.activityrequest</value>
+          <mandatoryRoute>true</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="ISActReqtoInitiatorTypeNode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergyInitiatorFYIRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

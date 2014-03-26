@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>PDFCUMigrationRequest</name>
+      <parent>PDFDocument</parent>
+      <label>PDFCUMigrationRequest</label>
+      <description>PDF Migration Request Form</description>
+      <defaultExceptionGroupName namespace="PERMIT">workflow.cit.pdfcuexceptions</defaultExceptionGroupName>
+      <active>true</active>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing" nextNode="MigrationRequestToCM" />
+          <requests name="MigrationRequestToCM" nextNode="FYIToInitiator" />
+          <requests name="FYIToInitiator" />
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="MigrationRequestToCM">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergySingleRecipientRouteModule</routeModule>
+		  <name>routeToGroup</name>
+		  <value>cit.id.cm</value>
+          <mandatoryRoute>true</mandatoryRoute>
+        </requests>
+        <requests name="FYIToInitiator">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergyInitiatorFYIRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

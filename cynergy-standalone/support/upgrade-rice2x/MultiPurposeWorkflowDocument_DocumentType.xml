@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	A Rice-2.x-remediated version of the MultiPurposeWorkflowDocument doc type.
+ -->
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>MultiPurposeWorkflowDocument</name>
+      <parent>CynergyAppsDocument</parent>
+      <description>Base document type for Multi-Purpose Workflow Documents</description>
+      <label>Multi-Purpose Workflow Document</label>
+      <docHandler>${kr.krad.url}/multiPurposeWorkflowDocument?methodToCall=docHandler</docHandler>
+      <attributes>
+        <attribute>
+          <name>MPWDEmailAttribute</name>
+        </attribute>
+        <attribute>
+          <name>MPWDSearchableAttribute</name>
+        </attribute>
+      </attributes>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing" />
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+
+  <ruleAttributes xmlns="ns:workflow/RuleAttribute" xsi:schemaLocation="ns:workflow/RuleAttribute resource:RuleAttribute">
+    <ruleAttribute>
+      <name>MPWDEmailAttribute</name>
+      <className>edu.cornell.cynergy.app.mail.MPWDEmailAttribute</className>
+      <label>MultiPurposeWorkflowDocument Email Attribute</label>
+      <description>Email attribute implementation specifically intended for usage by MPWD doc types.</description>
+      <type>EmailAttribute</type>
+      <applicationId>CYN_APPS</applicationId>
+    </ruleAttribute>
+    <ruleAttribute>
+      <name>MPWDSearchableAttribute</name>
+      <className>edu.cornell.cynergy.app.workflow.MPWDSearchableAttribute</className>
+      <label>MultiPurposeWorkflowDocument Searchable Attribute</label>
+      <description>Searchable attribute implementation specifically intended for usage by MPWD doc types.</description>
+      <type>SearchableAttribute</type>
+      <applicationId>CYN_APPS</applicationId>
+    </ruleAttribute>
+  </ruleAttributes>
+
+</data>

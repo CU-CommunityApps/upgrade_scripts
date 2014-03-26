@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	A Rice-2.x-remediated version of the PDFDocument doc type.
+ -->
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>PDFDocument</name>
+      <parent>CynergyAppsDocument</parent>
+      <description>Base document type for Cynergy-Apps PDF workflow documents</description>
+      <label>PDF Document</label>
+      <docHandler>${kr.krad.url}/pdfDocument?methodToCall=docHandler</docHandler>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing" />
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

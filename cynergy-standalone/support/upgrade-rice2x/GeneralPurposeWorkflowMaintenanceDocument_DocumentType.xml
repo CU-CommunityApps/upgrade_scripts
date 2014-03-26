@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	A Rice-2.x-remediated version of the GeneralPurposeWorkflowMaintenanceDocument doc type.
+ -->
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>GeneralPurposeWorkflowMaintenanceDocument</name>
+      <parent>CynergyAppsDocument</parent>
+      <description>The General Purpose Workflow Document can be used to securely route a message and any file attachment to one or more persons or groups in an ad hoc fashion for approval, acknowledgment, or fyi purposes. This document can also be used for "dropbox" purposes.&lt;br /&gt;&lt;br /&gt;&lt;a href="https://confluence.cornell.edu/x/CAZVBQ"&gt;User Documentation&lt;/a&gt;</description>
+      <label>General Purpose Workflow Document</label>
+	  <blanketApprovePolicy>NONE</blanketApprovePolicy>
+      <docHandler>${kr.krad.url}/maintenance?methodToCall=docHandler</docHandler>
+      <attributes>
+        <attribute>
+          <name>CynergyAppsDataDictionarySearchableAttribute</name>
+        </attribute>
+      </attributes>
+      <security>
+        <initiator>true</initiator>
+        <routeLogAuthenticated>true</routeLogAuthenticated>
+        <groupName namespace="PERMIT">cit.cynergy.apps.gpwd.admins</groupName>
+      </security>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing" nextNode="GPWDSupervisorRoutingRuleNode" />
+          <requests name="GPWDSupervisorRoutingRuleNode" />
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>P</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="GPWDSupervisorRoutingRuleNode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.supervisor.routemodule.SupervisorRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

@@ -51,7 +51,17 @@ my @cynergyFiles = (
   "SecurityProvisioningGroupDocumentType.xml",
   "SecurityRequestDocument.xml",
   "cmProcessRequest_xsl.xml",
-  "cynergy-widgets.xml"
+  "cynergy-widgets.xml",
+  "CynergyAppsDocument_DocumentType.xml",
+  "PDFDocument_DocumentType.xml",
+  "MultiPurposeWorkflowDocument_DocumentType.xml",
+  "CITTravelRequest_DocumentType.xml",
+  "GeneralPurposeWorkflowMaintenanceDocument_DocumentType.xml",
+  "MPWDDocTypeMapMaintenanceDocument_DocumentType.xml",
+  "PDFCUActivityRequest_DocumentType.xml",
+  "PDFCUMigrationRequest_DocumentType.xml",
+  "PDFCUSOProcChngRequest_DocumentType.xml",
+  "PDFDocTypeMapMaintenanceDocument_DocumentType.xml"
   ) ;
 
 my $redir=[qw(GET HEAD POST)] ;
