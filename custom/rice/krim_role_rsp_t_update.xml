@@ -1,0 +1,25 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="srb55" id="KFSUPGRADE-661" failOnError="false">
+        <comment>DV Separation of Duties - Move Permission to Disb Method Reviewer</comment>
+
+        <delete tableName="krim_role_rsp_t">
+            <where>role_id = '55' AND rsp_id = '126'</where>
+        </delete>
+
+        <insert tableName="krim_role_rsp_t">
+            <column name="ROLE_RSP_ID" valueComputed="KRIM_ROLE_RSP_ID_S.NEXTVAL" />
+            <column name="ROLE_ID" value="12" />
+            <column name="RSP_ID" value="126" />
+            <column name="VER_NBR" value="1" /> 
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
