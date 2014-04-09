@@ -1,0 +1,35 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+     <changeSet author="cah292" id="cynapps-namespace" failOnError="false">
+        <comment>namespace updates for cynergy apps</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+                INSERT INTO KRCR_NMSPC_T (NMSPC_CD, OBJ_ID, VER_NBR, NM, ACTV_IND, APPL_ID) VALUES ('CYN_APPS', SYS_GUID(), 1, 'Cynergy-Apps', 'Y', 'CYN_APPS')
+                /
+                INSERT INTO KRCR_NMSPC_T (NMSPC_CD, OBJ_ID, VER_NBR, NM, ACTV_IND, APPL_ID) VALUES ('IAS', SYS_GUID(), 1, 'InfoAccess Shared', 'Y', 'ias')
+                /
+                INSERT INTO KRCR_NMSPC_T (NMSPC_CD, OBJ_ID, VER_NBR, NM, ACTV_IND, APPL_ID) VALUES ('CONFAGREE', SYS_GUID(), 1, 'Confidentiality Agreement', 'Y', 'confagree')
+                /
+                INSERT INTO KRCR_NMSPC_T (NMSPC_CD, OBJ_ID, VER_NBR, NM, ACTV_IND, APPL_ID) VALUES ('BSCMS', SYS_GUID(), 1, 'BSC Management System', 'Y', 'bscms')
+                /
+                INSERT INTO KRCR_NMSPC_T (NMSPC_CD, OBJ_ID, VER_NBR, NM, ACTV_IND, APPL_ID) VALUES ('DFA', SYS_GUID(), 1, 'DFA InfoAccess', 'Y', 'dfa')
+                /
+                INSERT INTO KRCR_NMSPC_T (NMSPC_CD, OBJ_ID, VER_NBR, NM, ACTV_IND, APPL_ID) VALUES ('SDA', SYS_GUID(), 1, 'Student Data Access', 'Y', 'sda')
+                /
+                INSERT INTO KRCR_NMSPC_T (NMSPC_CD, OBJ_ID, VER_NBR, NM, ACTV_IND, APPL_ID) VALUES ('CYNERGYDFA', SYS_GUID(), 1, 'SMS Request', 'Y', 'cynergyDFA')
+                /
+                INSERT INTO KRCR_NMSPC_T (NMSPC_CD, OBJ_ID, VER_NBR, NM, ACTV_IND, APPL_ID) VALUES ('ITEMTYPE', SYS_GUID(), 1, 'Bursar ItemType', 'Y', 'ItemType')
+                /
+                INSERT INTO KRCR_NMSPC_T (NMSPC_CD, OBJ_ID, VER_NBR, NM, ACTV_IND, APPL_ID) VALUES ('CREDITCARD', SYS_GUID(), 1, 'Credit Card Update', 'Y', 'creditcard')
+                /
+                UPDATE KRCR_NMSPC_T SET APPL_ID = 'hrda' WHERE NMSPC_CD = 'HRDA'
+                /
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

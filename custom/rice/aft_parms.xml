@@ -37,7 +37,6 @@
                <column name="PARM_DESC_TXT" value="Default chart code for automated functional testing" />
                <column name="EVAL_OPRTR_CD" value="A" />
           </insert>
-    </changeSet>
     <insert tableName="KRCR_PARM_T">
           <column name="NMSPC_CD" value="KFS-AFTEST"/>
           <column name="CMPNT_CD" value="All"/>
