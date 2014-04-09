@@ -123,7 +123,6 @@ foreach my $xmlFile (@fullFileList) {
   @status = $response->content =~ /<pre>(.*?)<\/pre>/gs ;
   if ("Ingestion failed" ne $status[0]) {
     print "$xmlFile was successfully uploaded\n" ;
-    print "$status[0]\n";
   } else {
     print "$xmlFile was NOT successfully uploaded.  Error: $status[1]\n" ;
   }	
