@@ -1,0 +1,146 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+     <changeSet author="cah292" id="223-224-cleanup" failOnError="false">
+        <comment>rice conversion for 2.2.3 to 2.2.4</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+-- Upgrade CYNERGY_MPWD_DOC_T
+DECLARE
+c NUMBER;
+BEGIN
+select count(*) into c from all_constraints where CONSTRAINT_NAME = 'CYNERGY_MPWD_DOC_PK';
+IF c>0 THEN
+EXECUTE IMMEDIATE 'ALTER TABLE CYNERGY_MPWD_DOC_T DROP CONSTRAINT CYNERGY_MPWD_DOC_PK';
+END IF;
+END;
+/
+DECLARE
+c NUMBER;
+BEGIN
+select count(*) into c from all_indexes where INDEX_NAME = 'CYNERGY_MPWD_DOC_PK';
+IF c>0 THEN
+EXECUTE IMMEDIATE 'DROP INDEX CYNERGY_MPWD_DOC_PK';
+END IF;
+END;
+/
+
+ALTER TABLE CYNERGY_MPWD_DOC_T RENAME TO OLD_CYNERGY_MPWD_DOC_T
+/
+CREATE TABLE CYNERGY_MPWD_DOC_T AS SELECT
+    CAST(FDOC_NBR AS VARCHAR2(40)) AS FDOC_NBR,
+    MPWD_DOC_TYPE_MAP_ID,
+    OBJ_ID,
+    VER_NBR
+        FROM OLD_CYNERGY_MPWD_DOC_T
+/
+ALTER TABLE CYNERGY_MPWD_DOC_T ADD CONSTRAINT CYNERGY_MPWD_DOC_TP1 PRIMARY KEY (FDOC_NBR)
+/
+ALTER TABLE CYNERGY_MPWD_DOC_T MODIFY (
+    OBJ_ID DEFAULT SYS_GUID(),
+    VER_NBR DEFAULT 1
+)
+/
+
+
+
+-- Upgrade CYNERGY_MPWD_DOC_ROW_T
+DECLARE
+c NUMBER;
+BEGIN
+select count(*) into c from all_constraints where CONSTRAINT_NAME = 'CYNERGY_MPWD_ROW_PK';
+IF c>0 THEN
+EXECUTE IMMEDIATE 'ALTER TABLE CYNERGY_MPWD_DOC_ROW_T DROP CONSTRAINT CYNERGY_MPWD_ROW_PK';
+END IF;
+END;
+/
+DECLARE
+c NUMBER;
+BEGIN
+select count(*) into c from all_indexes where INDEX_NAME = 'CYNERGY_MPWD_ROW_PK';
+IF c>0 THEN
+EXECUTE IMMEDIATE 'DROP INDEX CYNERGY_MPWD_ROW_PK';
+END IF;
+END;
+/
+
+ALTER TABLE CYNERGY_MPWD_DOC_ROW_T RENAME TO OLD_CYNERGY_MPWD_DOC_ROW_T
+/
+CREATE TABLE CYNERGY_MPWD_DOC_ROW_T AS SELECT
+    CAST(FDOC_NBR AS VARCHAR2(40)) AS FDOC_NBR,
+    ROW_KEY,
+    ROW_VALUE
+        FROM OLD_CYNERGY_MPWD_DOC_ROW_T
+/
+ALTER TABLE CYNERGY_MPWD_DOC_ROW_T ADD CONSTRAINT CYNERGY_MPWD_DOC_ROW_TP1 PRIMARY KEY (FDOC_NBR, ROW_KEY)
+/
+
+
+
+-- Upgrade CYNERGY_PDF_DOC_T
+DECLARE
+c NUMBER;
+BEGIN
+select count(*) into c from all_constraints where CONSTRAINT_NAME = 'CYNERGY_PDF_DOC_PK';
+IF c>0 THEN
+EXECUTE IMMEDIATE 'ALTER TABLE CYNERGY_PDF_DOC_T DROP CONSTRAINT CYNERGY_PDF_DOC_PK';
+END IF;
+END;
+/
+DECLARE
+c NUMBER;
+BEGIN
+select count(*) into c from all_indexes where INDEX_NAME = 'CYNERGY_PDF_DOC_PK';
+IF c>0 THEN
+EXECUTE IMMEDIATE 'DROP INDEX CYNERGY_PDF_DOC_PK';
+END IF;
+END;
+/
+
+ALTER TABLE CYNERGY_PDF_DOC_T RENAME TO OLD_CYNERGY_PDF_DOC_T
+/
+CREATE TABLE CYNERGY_PDF_DOC_T AS SELECT
+    CAST(FDOC_NBR AS VARCHAR2(40)) AS FDOC_NBR,
+    XML_CONTENT,
+    PDF_DOC_TYPE_NAME,
+    OBJ_ID,
+    VER_NBR
+        FROM OLD_CYNERGY_PDF_DOC_T
+/
+ALTER TABLE CYNERGY_PDF_DOC_T ADD CONSTRAINT CYNERGY_PDF_DOC_TP1 PRIMARY KEY (FDOC_NBR)
+/
+ALTER TABLE CYNERGY_PDF_DOC_T MODIFY (
+    OBJ_ID DEFAULT SYS_GUID(),
+    VER_NBR DEFAULT 1
+)
+/
+
+
+
+-- Drop temporary tables.
+DECLARE temp NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO temp FROM user_tables WHERE table_name = 'OLD_CYNERGY_MPWD_DOC_T';
+    IF temp > 0 THEN EXECUTE IMMEDIATE 'DROP TABLE OLD_CYNERGY_MPWD_DOC_T CASCADE CONSTRAINTS PURGE'; END IF;
+END;
+/
+DECLARE temp NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO temp FROM user_tables WHERE table_name = 'OLD_CYNERGY_MPWD_DOC_ROW_T';
+    IF temp > 0 THEN EXECUTE IMMEDIATE 'DROP TABLE OLD_CYNERGY_MPWD_DOC_ROW_T CASCADE CONSTRAINTS PURGE'; END IF;
+END;
+/
+DECLARE temp NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO temp FROM user_tables WHERE table_name = 'OLD_CYNERGY_PDF_DOC_T';
+    IF temp > 0 THEN EXECUTE IMMEDIATE 'DROP TABLE OLD_CYNERGY_PDF_DOC_T CASCADE CONSTRAINTS PURGE'; END IF;
+END;
+/
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

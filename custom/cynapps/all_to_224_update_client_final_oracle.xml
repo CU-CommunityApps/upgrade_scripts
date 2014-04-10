@@ -1,0 +1,131 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+     <changeSet author="cah292" id="223-224-cleanup" failOnError="false">
+        <comment>rice conversion for 2.2.3 to 2.2.4</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+ALTER TABLE KRNS_ATT_T MODIFY (MIME_TYP VARCHAR2(255))
+/
+ALTER TABLE KRNS_MAINT_DOC_ATT_T MODIFY (CNTNT_TYP VARCHAR2(255))
+/
+
+ALTER TABLE krns_sesn_doc_t ADD (OBJ_ID VARCHAR2(36))
+/
+ALTER TABLE krns_sesn_doc_t ADD (VER_NBR NUMBER(8) DEFAULT 0)
+/
+ALTER TABLE KRSB_MSG_QUE_T RENAME COLUMN SVC_NMSPC TO APPL_ID
+/
+ALTER TABLE KRNS_DOC_HDR_T MODIFY (FDOC_DESC varchar2(255))
+/
+
+INSERT INTO KRSB_QRTZ_LOCKS (LOCK_NAME) VALUES ('CALENDAR_ACCESS')
+/
+INSERT INTO KRSB_QRTZ_LOCKS (LOCK_NAME) VALUES ('JOB_ACCESS')
+/
+INSERT INTO KRSB_QRTZ_LOCKS (LOCK_NAME) VALUES ('MISFIRE_ACCESS')
+/
+INSERT INTO KRSB_QRTZ_LOCKS (LOCK_NAME) VALUES ('STATE_ACCESS')
+/
+INSERT INTO KRSB_QRTZ_LOCKS (LOCK_NAME) VALUES ('TRIGGER_ACCESS')
+/
+
+CREATE TABLE KRNS_MAINT_DOC_ATT_LST_T  (
+    ATT_ID      VARCHAR2(40) NOT NULL,
+    DOC_HDR_ID  VARCHAR2(14) NOT NULL,
+    ATT_CNTNT   blob NOT NULL,
+    FILE_NM     VARCHAR2(150) NULL,
+    CNTNT_TYP   VARCHAR2(255) NULL,
+    OBJ_ID      VARCHAR2(36) NOT NULL,
+    VER_NBR     NUMBER(8) DEFAULT 0 NOT NULL,
+    PRIMARY KEY(ATT_ID),
+    CONSTRAINT KRNS_MAINT_DOC_ATT_LST_FK1 foreign key (DOC_HDR_ID) references KRNS_MAINT_DOC_T (DOC_HDR_ID)
+)
+/
+ALTER TABLE KRNS_MAINT_DOC_ATT_LST_T
+    ADD CONSTRAINT KRNS_MAINT_DOC_ATT_LST_TC0
+    UNIQUE (OBJ_ID)
+/
+CREATE INDEX KRNS_MAINT_DOC_ATT_LST_TI1 on KRNS_MAINT_DOC_ATT_LST_T (DOC_HDR_ID)
+/
+CREATE SEQUENCE KRNS_MAINT_DOC_ATT_S INCREMENT BY 1 START WITH 10000 NOMAXVALUE NOCYCLE NOCACHE ORDER
+/
+create index KRNS_NTE_TI1 on KRNS_NTE_T (RMT_OBJ_ID)
+/
+ALTER TABLE KRNS_PESSIMISTIC_LOCK_T ADD SESN_ID VARCHAR2(40) DEFAULT '' NOT NULL
+/
+DECLARE temp NUMBER;
+BEGIN
+  select count(*) into temp from user_tables where table_name = upper('krad_msg_t');
+    IF temp = 0 THEN EXECUTE IMMEDIATE
+        'CREATE TABLE krad_msg_t ( nmspc_cd VARCHAR2(20) NOT NULL,  cmpnt_cd VARCHAR2(100) NOT NULL, msg_key VARCHAR2(100) NOT NULL, loc VARCHAR2(255) NOT NULL, obj_id VARCHAR2(36) NOT NULL, ver_nbr DECIMAL(8) DEFAULT 1 NOT NULL, msg_desc VARCHAR2(255), txt VARCHAR2(4000) )';
+    END IF;
+END;
+/
+ALTER TABLE KRAD_MSG_T RENAME TO OLD_KRAD_MSG_T
+/
+
+CREATE TABLE krad_msg_t
+(
+    nmspc_cd VARCHAR2(20) NOT NULL,
+    cmpnt_cd VARCHAR2(100) NOT NULL,
+    msg_key VARCHAR2(100) NOT NULL,
+    loc VARCHAR2(80) NOT NULL,
+    obj_id VARCHAR2(36) NOT NULL,
+    ver_nbr DECIMAL(8) DEFAULT 1 NOT NULL,
+    msg_desc VARCHAR2(255),
+    txt VARCHAR2(4000)
+)
+/
+
+INSERT INTO KRAD_MSG_T SELECT * FROM OLD_KRAD_MSG_T
+/
+
+DECLARE temp NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO temp FROM user_constraints WHERE constraint_name = 'KRAD_MSG_TP1';
+    IF temp > 0 THEN EXECUTE IMMEDIATE
+        'ALTER TABLE OLD_KRAD_MSG_T DROP CONSTRAINT KRAD_MSG_TP1';
+    END IF;
+END;
+/
+
+DECLARE temp NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO temp FROM user_constraints WHERE constraint_name = 'KRAD_MSG_TC1';
+    IF temp > 0 THEN EXECUTE IMMEDIATE
+        'ALTER TABLE OLD_KRAD_MSG_T DROP CONSTRAINT KRAD_MSG_TC1';
+    END IF;
+END;
+/
+
+DECLARE temp NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO temp FROM user_constraints WHERE constraint_name = 'KRAD_MSG_TC2';
+    IF temp > 0 THEN EXECUTE IMMEDIATE
+        'ALTER TABLE OLD_KRAD_MSG_T DROP CONSTRAINT KRAD_MSG_TC2';
+    END IF;
+END;
+/
+
+
+ALTER TABLE krad_msg_t ADD CONSTRAINT krad_msg_tp1 PRIMARY KEY (nmspc_cd,cmpnt_cd,msg_key,loc)
+/
+
+ALTER TABLE krad_msg_t ADD CONSTRAINT krad_msg_tc0 UNIQUE (obj_id)
+/
+drop table old_krad_msg_t
+/
+
+UPDATE KRNS_PESSIMISTIC_LOCK_T SET SESN_ID = 'undefined' WHERE SESN_ID IS NULL OR SESN_ID = ''
+/
+ALTER TABLE KRNS_PESSIMISTIC_LOCK_T MODIFY (SESN_ID DEFAULT 'undefined')
+/
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>
