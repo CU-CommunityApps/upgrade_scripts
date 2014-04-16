@@ -46,6 +46,7 @@ cursor2 = conn2.exec("select DOC_HDR_ID from KREW_DOC_HDR_T where DOC_TYP_ID = '
 while r2 = cursor2.fetch()
   docIds.push(r2)
 end
+cursor2.close()
 
 docId = ""
 
@@ -59,6 +60,7 @@ cursor = conn.exec("SELECT DOC_CNTNT from KRNS_MAINT_DOC_T WHERE
 
 
 r = cursor.fetch_hash()
+cursor.close()
 if r.nil?
    puts "no maint doc"
    next
