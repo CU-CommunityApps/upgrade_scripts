@@ -24,7 +24,7 @@
         <sql stripComments="true" endDelimiter="/">
             <![CDATA[
             insert into krim_role_rsp_actn_t (ROLE_RSP_ACTN_ID, OBJ_ID, VER_NBR, ACTN_TYP_CD, PRIORITY_NBR, ACTN_PLCY_CD, ROLE_MBR_ID, ROLE_RSP_ID, FRC_ACTN) 
-                values (KRIM_ROLE_RSP_ACTN_ID_S.nextval, sys_guid(), 1, 'A', null, 'F', '*', (select role_rsp_id from CYNERGY.krim_role_rsp_t where rsp_id = '126' and role_id = '12'), 'N')
+                values (KRIM_ROLE_RSP_ACTN_ID_S.nextval, sys_guid(), 1, 'A', null, 'F', '*', (select role_rsp_id from krim_role_rsp_t where rsp_id = '126' and role_id = '12'), 'N')
             /
             ]]>
         </sql>
