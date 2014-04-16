@@ -60,13 +60,14 @@ cursor = conn.exec("SELECT DOC_CNTNT from KRNS_MAINT_DOC_T WHERE
 
 
 r = cursor.fetch_hash()
-cursor.close()
 if r.nil?
    puts "no maint doc"
    next
 end
 
 xml_in = decrypt(r['DOC_CNTNT'].read)
+cursor.close()
+
 xml_in.gsub!("><", ">zz1<")
 
 doc_contnt = XmlSimple.xml_in(xml_in)
