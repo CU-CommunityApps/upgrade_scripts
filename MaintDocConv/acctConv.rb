@@ -62,6 +62,7 @@ cursor = conn.exec("SELECT DOC_CNTNT from KRNS_MAINT_DOC_T WHERE
 r = cursor.fetch_hash()
 if r.nil?
    puts "no maint doc"
+   cursor.close()
    next
 end
 
