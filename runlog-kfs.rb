@@ -38,7 +38,7 @@ folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => kfs_changel
             {:name => "custom/kfs/access_security", :version => 3, :changelogs => ['access-security-customizations.xml'] },
             {:name => "custom/kfs/vnd", :version => 3, :changelogs => ['vendor_extension.xml', 'delete_vendor_type.xml'] },
             {:name => "custom/kfs/fp", :version => 3, :changelogs => ['capital_asset_conversion.xml'] },
-            {:name => "custom/kfs/purap", :version => 3, :changelogs => ['app_doc_status.xml', 'app_pmt_rqst_itm_tx.xml'] },
+            {:name => "custom/kfs/purap", :version => 3, :changelogs => ['app_doc_status.xml', 'app_pmt_rqst_itm_tx.xml', 'purap_po_v.xml'] },
             {:name => "custom/kfs/gl", :version => 3, :changelogs => ['iaa-offset-defn.xml'] },
             #{:name => "custom/kfs/purap", :version => 3, :changelogs => ['purap_note_conversion.xml'] },
           ]

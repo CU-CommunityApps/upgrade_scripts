@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="srb55" id="KFSUPGRADE-871">
+        <comment>add app doc status to view</comment>
+        <createView viewName="PUR_PO_V" replaceIfExists="true">
+            select p.AP_PUR_DOC_LNK_ID, 
+                p.PO_ID, 
+                p.PO_CUR_IND, 
+                p.FDOC_NBR, 
+                p.OBJ_ID, 
+                p.PO_STAT_CD, 
+                p.RECUR_PMT_TYP_CD, 
+                p.PO_VNDR_CHC_CD, 
+                p.PO_END_DT, 
+                e.TOTAL_ENCUMBRANCE, 
+                summation.TOTAL_AMOUNT, 
+                k.APP_DOC_STAT 
+            from pur_po_t p, 
+               pur_po_itm_tot_enc_v e, 
+               pur_po_itm_tot_amt_v summation, 
+               cynergy.krew_doc_hdr_t k 
+            where p.FDOC_NBR = e.FDOC_NBR 
+            and p.FDOC_NBR = summation.FDOC_NBR 
+            and p.FDOC_NBR = k.doc_hdr_id
+        </createView>
+    </changeSet>
+</databaseChangeLog>
