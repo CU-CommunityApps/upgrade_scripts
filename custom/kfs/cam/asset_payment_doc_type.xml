@@ -1,0 +1,95 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+     <changeSet author="srb55" id="KFSUPGRADE-849" failOnError="false">
+        <comment>Add Asset Payment Document Types to tables</comment>
+        <insert tableName="CM_AST_PMT_DOC_TYP_T">
+            <column name="DOC_TYP_ID"  valueComputed="CM_AST_PMT_DOC_TYP_SEQ.NEXTVAL" />
+            <column name="DOC_TYP_NM" value="CLCS" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="VER_NBR" value="1" />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+        <insert tableName="CM_AST_PMT_DOC_TYP_T">
+            <column name="DOC_TYP_ID"  valueComputed="CM_AST_PMT_DOC_TYP_SEQ.NEXTVAL" />
+            <column name="DOC_TYP_NM" value="PRNC" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="VER_NBR" value="1" />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+        <insert tableName="CM_AST_PMT_DOC_TYP_T">
+            <column name="DOC_TYP_ID"  valueComputed="CM_AST_PMT_DOC_TYP_SEQ.NEXTVAL" />
+            <column name="DOC_TYP_NM" value="CRKA" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="VER_NBR" value="1" />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+        <insert tableName="CM_AST_PMT_DOC_TYP_T">
+            <column name="DOC_TYP_ID"  valueComputed="CM_AST_PMT_DOC_TYP_SEQ.NEXTVAL" />
+            <column name="DOC_TYP_NM" value="CRKB" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="VER_NBR" value="1" />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+        <insert tableName="CM_AST_PMT_DOC_TYP_T">
+            <column name="DOC_TYP_ID"  valueComputed="CM_AST_PMT_DOC_TYP_SEQ.NEXTVAL" />
+            <column name="DOC_TYP_NM" value="CRKC" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="VER_NBR" value="1" />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+        <insert tableName="CM_AST_PMT_DOC_TYP_T">
+            <column name="DOC_TYP_ID"  valueComputed="CM_AST_PMT_DOC_TYP_SEQ.NEXTVAL" />
+            <column name="DOC_TYP_NM" value="CRKE" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="VER_NBR" value="1" />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+        <insert tableName="CM_AST_PMT_DOC_TYP_T">
+            <column name="DOC_TYP_ID"  valueComputed="CM_AST_PMT_DOC_TYP_SEQ.NEXTVAL" />
+            <column name="DOC_TYP_NM" value="CRKP" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="VER_NBR" value="1" />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+        <insert tableName="CM_AST_PMT_DOC_TYP_T">
+            <column name="DOC_TYP_ID"  valueComputed="CM_AST_PMT_DOC_TYP_SEQ.NEXTVAL" />
+            <column name="DOC_TYP_NM" value="CRKR" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="VER_NBR" value="1" />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+        <insert tableName="CM_AST_PMT_DOC_TYP_T">
+            <column name="DOC_TYP_ID"  valueComputed="CM_AST_PMT_DOC_TYP_SEQ.NEXTVAL" />
+            <column name="DOC_TYP_NM" value="CRKS" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="VER_NBR" value="1" />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+        <insert tableName="CM_AST_PMT_DOC_TYP_T">
+            <column name="DOC_TYP_ID"  valueComputed="CM_AST_PMT_DOC_TYP_SEQ.NEXTVAL" />
+            <column name="DOC_TYP_NM" value="CRKV" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="VER_NBR" value="1" />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+        <insert tableName="CM_AST_PMT_DOC_TYP_T">
+            <column name="DOC_TYP_ID"  valueComputed="CM_AST_PMT_DOC_TYP_SEQ.NEXTVAL" />
+            <column name="DOC_TYP_NM" value="CRKL" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="VER_NBR" value="1" />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+        <insert tableName="CM_AST_PMT_DOC_TYP_T">
+            <column name="DOC_TYP_ID"  valueComputed="CM_AST_PMT_DOC_TYP_SEQ.NEXTVAL" />
+            <column name="DOC_TYP_NM" value="CRKN" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="VER_NBR" value="1" />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+    </changeSet>
+</databaseChangeLog>
