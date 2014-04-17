@@ -1,0 +1,14 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="srb55" id="KFSUPGRADE-870" failOnError="false">
+        <comment>Delete Vendor Type that will not work and has never been used in Production</comment>
+        <delete tableName="PUR_VNDR_TYP_T">
+            <where>VNDR_TYP_CD = 'DN'</where>
+        </delete>
+    </changeSet>
+</databaseChangeLog>
