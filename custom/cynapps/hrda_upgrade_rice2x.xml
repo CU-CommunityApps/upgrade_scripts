@@ -1,0 +1,19 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+     <changeSet author="cah292" id="KFSUPGRADE-876" failOnError="false">
+        <comment>hrda upgrade</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+ALTER TABLE HRDA_REQ_ROLE_T ADD (
+  CONSTRAINT HRDA_REQ_ROLE_PK
+  PRIMARY KEY (REQ_ID, ROLE_ID))
+/
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

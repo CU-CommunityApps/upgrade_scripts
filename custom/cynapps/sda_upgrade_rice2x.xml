@@ -1,0 +1,48 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+     <changeSet author="cah292" id="KFSUPGRADE-876" failOnError="false">
+        <comment>sda upgrade</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+ALTER TABLE SDA_DOC_T MODIFY (
+    FDOC_NBR VARCHAR2(40),
+    ADMNS_FDOC_NBR VARCHAR2(40),
+    FIN_AID_FDOC_NBR VARCHAR2(40),
+    STUD_RECS_FDOC_NBR VARCHAR2(40),
+    STUD_FINS_FDOC_NBR VARCHAR2(40),
+    CONF_AGREE_FDOC_NBR VARCHAR2(40)
+)
+/
+ALTER TABLE SDA_ADMNS_DOC_T MODIFY (
+    FDOC_NBR VARCHAR2(40),
+    SDA_FDOC_NBR VARCHAR2(40)
+)
+/
+ALTER TABLE SDA_FINAID_DOC_T MODIFY (
+    FDOC_NBR VARCHAR2(40),
+    SDA_FDOC_NBR VARCHAR2(40)
+)
+/
+ALTER TABLE SDA_STU_FIN_DOC_T MODIFY (
+    FDOC_NBR VARCHAR2(40),
+    SDA_FDOC_NBR VARCHAR2(40)
+)
+/
+ALTER TABLE SDA_STU_REC_DOC_T MODIFY (
+    FDOC_NBR VARCHAR2(40),
+    SDA_FDOC_NBR VARCHAR2(40)
+)
+/
+ALTER TABLE SDA_ROLES_T MODIFY (FDOC_NBR VARCHAR2(40))
+/
+ALTER TABLE SDA_ITEM_TYPE_T MODIFY (FDOC_NBR VARCHAR2(40))
+/
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

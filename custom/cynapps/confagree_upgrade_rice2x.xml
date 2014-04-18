@@ -1,0 +1,57 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+     <changeSet author="cah292" id="KFSUPGRADE-876" failOnError="false">
+        <comment>confagree upgrade</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+DECLARE
+c NUMBER;
+BEGIN
+select count(*) into c from all_constraints where CONSTRAINT_NAME = 'CONFAGREE_USER_T_PK';
+IF c>0 THEN
+EXECUTE IMMEDIATE 'ALTER TABLE CONFAGREE_USER_T DROP CONSTRAINT CONFAGREE_USER_T_PK';
+END IF;
+END;
+/
+DECLARE
+c NUMBER;
+BEGIN
+select count(*) into c from all_indexes where INDEX_NAME = 'CONFAGREE_USER_T_PK';
+IF c>0 THEN
+EXECUTE IMMEDIATE 'DROP INDEX CONFAGREE_USER_T_PK';
+END IF;
+END;
+/
+
+ALTER TABLE CONFAGREE_USER_T RENAME TO TEMP_CONFAGREE_USER_T
+/
+CREATE TABLE CONFAGREE_USER_T AS SELECT
+    CAST(FDOC_NBR AS VARCHAR2(40)) AS FDOC_NBR,
+    NET_ID,
+    CAST(MASTER_DOC_NUM AS VARCHAR2(40)) AS MASTER_DOC_NUM,
+    MASTER_NAMESPACE,
+    LAST_UPDATE,
+    OBJ_ID,
+    VER_NBR
+        FROM TEMP_CONFAGREE_USER_T
+/
+ALTER TABLE CONFAGREE_USER_T ADD CONSTRAINT CONFAGREE_USER_T_PK PRIMARY KEY (FDOC_NBR)
+/
+ALTER TABLE CONFAGREE_USER_T MODIFY (OBJ_ID DEFAULT SYS_GUID(), VER_NBR DEFAULT 1)
+/
+
+DECLARE temp NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO temp FROM user_tables WHERE table_name = 'TEMP_CONFAGREE_USER_T';
+    IF temp > 0 THEN EXECUTE IMMEDIATE 'DROP TABLE TEMP_CONFAGREE_USER_T CASCADE CONSTRAINTS PURGE'; END IF;
+END;
+/
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>
