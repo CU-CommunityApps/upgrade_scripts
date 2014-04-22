@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xsi:schemaLocation="ns:workflow resource:WorkflowData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ns:workflow">
+  <documentTypes xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType" xmlns="ns:workflow/DocumentType">
+    <documentType>
+      <name>InfoAccessSubledgerMaintenanceDocument</name>
+      <parent>IASDocument</parent>
+      <description>Create or Update Info Access Subledger</description>
+      <label>Info Access Subledger Maintenance</label>
+      <superUserGroupName namespace="PERMIT">cit.security.workflow.infoaccess.dfa</superUserGroupName>
+      <blanketApproveGroupName namespace="PERMIT">cit.security.workflow.infoaccess.dfa</blanketApproveGroupName>
+      <defaultExceptionGroupName namespace="PERMIT">cit.cynergy.global.admins</defaultExceptionGroupName>
+      <docHandler>${kr.krad.url}/maintenance?methodToCall=docHandler</docHandler>
+      <active>true</active>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing"/>
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>
