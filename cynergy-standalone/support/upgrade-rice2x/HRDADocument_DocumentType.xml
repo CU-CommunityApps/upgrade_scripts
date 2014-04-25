@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    A base document type that all doc types for the HR Data Access application can derive from. This can help with setting up
+    common properties (especially the applicationId) and KIM permissions for the HR Data Access documents.
+ -->
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>HRDADocument</name>
+      <parent>CynergyADFDocument</parent>
+      <description>The base document type that is generally used as the parent of all doc types for the HR Data Access ADF application.</description>
+      <label>HR Data Access Document</label>
+      <applicationId>hrda</applicationId>
+    </documentType>
+  </documentTypes>
+  <ruleAttributes xmlns="ns:workflow/RuleAttribute" xsi:schemaLocation="ns:workflow/RuleAttribute resource:RuleAttribute">
+    <ruleAttribute>
+      <name>HRDADataDictionarySearchableAttribute</name>
+      <className>org.kuali.rice.kns.workflow.attribute.DataDictionarySearchableAttribute</className>
+      <label>Data Dictionary Searchable Attribute</label>
+      <description>Data Dictionary Searchable Attribute</description>
+      <type>SearchableAttribute</type>
+      <applicationId>hrda</applicationId>
+    </ruleAttribute>
+  </ruleAttributes>
+</data>

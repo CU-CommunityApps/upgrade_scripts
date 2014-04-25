@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xsi:schemaLocation="ns:workflow resource:WorkflowData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ns:workflow">
+  <documentTypes xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType" xmlns="ns:workflow/DocumentType">
+    <documentType>
+      <name>ConfAgreementDocument</name>
+      <parent>ConfagreeDocument</parent>
+      <description>Approve/Sign a Confidentiality Agreement</description>
+      <label>Confidentiality Agreement Document</label>
+      <superUserGroupName namespace="PERMIT">cit.cynergy.global.admins</superUserGroupName>
+      <blanketApproveGroupName namespace="PERMIT">cit.cynergy.global.admins</blanketApproveGroupName>
+      <defaultExceptionGroupName namespace="PERMIT">cit.cynergy.global.admins</defaultExceptionGroupName>
+      <docHandler>${kr.krad.url}/confAgreementDocument?methodToCall=docHandler</docHandler>
+      <active>true</active>
+      <attributes>
+        <attribute>
+          <name>ConfagreeDataDictionarySearchableAttribute</name>
+        </attribute>
+      </attributes>
+      <routePaths>
+        <routePath>
+          <start nextNode="ConfidentialityAgreementSignerNode" name="Adhoc Routing"/>
+          <requests name="ConfidentialityAgreementSignerNode"/>
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="ConfidentialityAgreementSignerNode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.confagree.routemodule.ConfAgreementRouteModule</routeModule>
+          <mandatoryRoute>true</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

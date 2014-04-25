@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xsi:schemaLocation="ns:workflow resource:WorkflowData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ns:workflow">
+  <documentTypes xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType" xmlns="ns:workflow/DocumentType">
+    <documentType>
+      <name>HRDARequestMaintenanceDocument</name>
+      <parent>HRDADocument</parent>
+      <description>Create or Update HRDA Request</description>
+      <label>HR Data Access Request</label>
+      <superUserGroupName namespace="PERMIT">cit.security.workflow.cmsecurity</superUserGroupName>
+      <blanketApproveGroupName namespace="PERMIT">cit.security.workflow.cmsecurity</blanketApproveGroupName>
+      <defaultExceptionGroupName namespace="PERMIT">cit.cynergy.global.admins</defaultExceptionGroupName>
+      <docHandler>${kr.krad.url}/maintenance?methodToCall=docHandler</docHandler>
+      <active>true</active>
+      <policies>
+        <policy>
+          <name>DISAPPROVE</name>
+          <value>true</value>
+        </policy>
+        <policy>
+          <name>LOOK_FUTURE</name>
+          <value>true</value>
+        </policy>
+      </policies>
+      <attributes>
+        <attribute>
+          <name>HRDADataDictionarySearchableAttribute</name>
+        </attribute>
+      </attributes>
+      <routePaths>
+        <routePath>
+          <start nextNode="HRDAUnitRoutingRuleNode" name="Adhoc Routing"/>
+          <requests nextNode="HRDARoleRoutingRuleNode" name="HRDAUnitRoutingRuleNode"/>
+          <requests nextNode="HRDASecurityRoutingRuleNode" name="HRDARoleRoutingRuleNode"/>
+          <requests nextNode="HRDAFinalRoleFYIRoutingRuleNode" name="HRDASecurityRoutingRuleNode"/>
+          <requests nextNode="HRDAFinalFYINode" name="HRDAFinalRoleFYIRoutingRuleNode"/>
+          <requests name="HRDAFinalFYINode"/>
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="HRDAUnitRoutingRuleNode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.is.routemodule.InfoAccessRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+          <name>routeToUnit</name>
+          <value>HRDA</value>
+        </requests>
+        <requests name="HRDARoleRoutingRuleNode">
+          <activationType>P</activationType>
+          <routeModule>edu.cornell.cynergy.is.routemodule.InfoAccessRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+          <name>routeToRole</name>
+          <value>REGULAR</value>
+        </requests>
+        <requests name="HRDASecurityRoutingRuleNode">
+          <activationType>P</activationType>
+          <routeModule>edu.cornell.cynergy.is.routemodule.InfoAccessRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+          <name>routeToRole</name>
+          <value>SECURITY</value>
+        </requests>
+        <requests name="HRDAFinalRoleFYIRoutingRuleNode">
+          <activationType>P</activationType>
+          <routeModule>edu.cornell.cynergy.is.routemodule.InfoAccessRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+          <name>routeToRole</name>
+          <value>FYI</value>
+        </requests>
+        <requests name="HRDAFinalFYINode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergyInitiatorFYIRouteModule</routeModule>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>
