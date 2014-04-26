@@ -235,11 +235,11 @@
           / 
           INSERT INTO KRCR_PARM_T (NMSPC_CD, CMPNT_CD, PARM_NM, APPL_ID, OBJ_ID, VER_NBR, PARM_TYP_CD, VAL, PARM_DESC_TXT, EVAL_OPRTR_CD) 
               VALUES ('CONFAGREE', 'All', 'CONF_AGREEMENT_DOCLINK_CUTOFF', 'confagree', SYS_GUID(), 1, 'CONFG', 
-                  (SELECT DOC_HDR_ID FROM KREW_DOC_HDR_T WHERE CRTE_DT = (SELECT MAX(CRTE_DT) FROM KREW_DOC_HDR_T)), 
+                  (SELECT MAX(DOC_HDR_ID) FROM KREW_DOC_HDR_T WHERE CRTE_DT = (SELECT MAX(CRTE_DT) FROM KREW_DOC_HDR_T)), 
                       'The document number representing the cutoff point at which pending Conf Agreement docs are regarded as being created after the Rice 2.x conversion of Cynergy.', 'A') 
           /
     		]]>
      	</sql> 	
-   	</changeSet
+   	</changeSet>
 
 </databaseChangeLog>
