@@ -54,5 +54,31 @@
 		
 			<dropColumn tableName="CA_ACCOUNT_TX" columnName="LBR_BEN_RT_CAT_CD" />	
 		</changeSet>
-			
+
+        <changeSet author="srb55" id="KFSUPGRADE-889" failOnError="false">
+            <comment>Add BenefitsCaluction update script to nightly jobs</comment>
+
+            <sql stripComments="true" endDelimiter="/">
+                <![CDATA[
+                    UPDATE LD_BENEFITS_CALC_T t 
+                      set (OFFSET_FIN_OBJECT_CD, OFFSET_ACCOUNT_NBR) = ( SELECT 
+                        OBJ_CODE_OFF, 
+                        ACCT_CODE_OFF 
+                      FROM LD_BENEFITS_CALC_EXT_T S 
+                        WHERE t.univ_fiscal_yr = s.univ_fiscal_yr AND 
+                              t.fin_coa_cd = s.fin_coa_cd AND 
+                              t.pos_benefit_typ_cd = s.pos_benefit_typ_cd AND 
+                              t.LBR_BEN_RT_CAT_CD = s.LBR_BEN_RT_CAT_CD) 
+                    WHERE EXISTS ( 
+                        SELECT 1 
+                          FROM LD_BENEFITS_CALC_EXT_T s 
+                         WHERE t.univ_fiscal_yr = s.univ_fiscal_yr AND 
+                              t.fin_coa_cd = s.fin_coa_cd AND 
+                              t.pos_benefit_typ_cd = s.pos_benefit_typ_cd AND 
+                              t.LBR_BEN_RT_CAT_CD = s.LBR_BEN_RT_CAT_CD)
+                    /
+                ]]>
+            </sql>
+            <dropTable tableName="LD_BENEFITS_CALC_EXT_T"/>
+        </changeSet>			
 </databaseChangeLog>
