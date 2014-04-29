@@ -242,4 +242,13 @@
      	</sql> 	
    	</changeSet>
 
+    <changeSet author="srb55" id="KFSUPGRADE-896" failOnError="false">
+        <comment>Rename parm GENERATE_FRINGE_BENEFIT</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="parm_nm" value="GENERATE_FRINGE_BENEFIT_IND" />
+            <where>parm_nm = 'GENERATE_FRINGE_BENEFIT' and nmspc_cd ='KFS-LD'</where>
+        </update>
+    </changeSet>
+
 </databaseChangeLog>
