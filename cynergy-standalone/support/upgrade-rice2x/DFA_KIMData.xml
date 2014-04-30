@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <otherData xmlns="ns:workflow/OtherData" xsi:schemaLocation="ns:workflow/OtherData resource:OtherData">
+    <permissionData xmlns="ns:workflow/PermissionData" xsi:schemaLocation="ns:workflow/PermissionData resource:PermissionData">
+      <permissions>
+        <!-- DFAAdmin permissions. -->
+        <permission>
+          <name namespace="DFA">Open DFAAdmin Maintenance Document</name>
+          <templateName namespace="KR-NS">Open Document</templateName>
+          <description>Users that are authorized to open DFAAdmin maintenance docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">DFAAdminMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
+        <permission>
+          <name namespace="DFA">Initiate DFAAdmin Maintenance Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate DFAAdmin maintenance docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">DFAAdminMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
+        <!-- DFARequest doc permissions. -->
+        <permission>
+          <name namespace="DFA">Cancel Enroute DFARequest Document</name>
+          <templateName namespace="KR-WKFLW">Cancel Document</templateName>
+          <description>Users that are authorized to cancel enroute DFARequest docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">DFARequestDocument</attribute>
+            <attribute key="routeStatusCode">R</attribute>
+          </attributes>
+        </permission>
+        <!-- Procurement System doc permissions. -->
+        <permission>
+          <name namespace="DFA">Cancel Enroute ProcurementSystem Document</name>
+          <templateName namespace="KR-WKFLW">Cancel Document</templateName>
+          <description>Users that are authorized to cancel enroute ProcurementSystem docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">ProcurementSystemDocument</attribute>
+            <attribute key="routeStatusCode">R</attribute>
+          </attributes>
+        </permission>
+        <!-- ADW doc permissions. -->
+        <permission>
+          <name namespace="DFA">Cancel Enroute ADW Document</name>
+          <templateName namespace="KR-WKFLW">Cancel Document</templateName>
+          <description>Users that are authorized to cancel enroute ADW docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">ADWDocument</attribute>
+            <attribute key="routeStatusCode">R</attribute>
+          </attributes>
+        </permission>
+      </permissions>
+    </permissionData>
+    <roleData xmlns="ns:workflow/RoleData" xsi:schemaLocation="ns:workflow/RoleData resource:RoleData">
+      <roles>
+        <!-- Global DFA admin roles. -->
+        <role>
+          <name namespace="DFA">DFA-InfoAccess Administrator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>Administrative users for the DFA InfoAccess application.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">infoaccess.dfa.admins</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
+        <!-- Procurement System admin roles. -->
+        <role>
+          <name namespace="DFA">Procurement System Administrator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>Administrative users for the DFA app's Procurement System portion.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">infoaccess.dfa.admin.procure</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
+        <!-- ADW admin roles. -->
+        <role>
+          <name namespace="DFA">ADW Administrator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>Administrative users for the DFA app's ADW portion.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">infoaccess.dfa.admin.adw</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
+      </roles>
+      <rolePermissions>
+        <!-- DFAAdmin permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="DFA">Open DFAAdmin Maintenance Document</permissionName>
+          <roleName namespace="KR-SYS">Technical Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="DFA">Open DFAAdmin Maintenance Document</permissionName>
+          <roleName namespace="DFA">DFA-InfoAccess Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="DFA">Initiate DFAAdmin Maintenance Document</permissionName>
+          <roleName namespace="DFA">DFA-InfoAccess Administrator</roleName>
+        </rolePermission>
+        <!-- DFARequest doc permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="DFA">Cancel Enroute DFARequest Document</permissionName>
+          <roleName namespace="DFA">DFA-InfoAccess Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="DFA">Cancel Enroute DFARequest Document</permissionName>
+          <roleName namespace="DFA">Procurement System Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="DFA">Cancel Enroute DFARequest Document</permissionName>
+          <roleName namespace="DFA">ADW Administrator</roleName>
+        </rolePermission>
+        <!-- Procurement System doc permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="DFA">Cancel Enroute ProcurementSystem Document</permissionName>
+          <roleName namespace="DFA">DFA-InfoAccess Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="DFA">Cancel Enroute ProcurementSystem Document</permissionName>
+          <roleName namespace="DFA">Procurement System Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="DFA">Cancel Enroute ProcurementSystem Document</permissionName>
+          <roleName namespace="DFA">ADW Administrator</roleName>
+        </rolePermission>
+        <!-- ADW doc permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="DFA">Cancel Enroute ADW Document</permissionName>
+          <roleName namespace="DFA">DFA-InfoAccess Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="DFA">Cancel Enroute ADW Document</permissionName>
+          <roleName namespace="DFA">Procurement System Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="DFA">Cancel Enroute ADW Document</permissionName>
+          <roleName namespace="DFA">ADW Administrator</roleName>
+        </rolePermission>
+      </rolePermissions>
+    </roleData>
+  </otherData>
+</data>

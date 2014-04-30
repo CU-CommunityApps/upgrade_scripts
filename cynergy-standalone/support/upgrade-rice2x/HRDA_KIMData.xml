@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <otherData xmlns="ns:workflow/OtherData" xsi:schemaLocation="ns:workflow/OtherData resource:OtherData">
+    <permissionData xmlns="ns:workflow/PermissionData" xsi:schemaLocation="ns:workflow/PermissionData resource:PermissionData">
+      <permissions>
+        <!-- HRDA Maintenance Document permissions. -->
+        <permission>
+          <name namespace="HRDA">Open HRDA Maintenance Document</name>
+          <templateName namespace="KR-NS">Open Document</templateName>
+          <description>Users that are authorized to open HRDA Maintenance documents.</description>
+          <attributes>
+            <attribute key="documentTypeName">HRDARequestMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
+      </permissions>
+    </permissionData>
+    <roleData xmlns="ns:workflow/RoleData" xsi:schemaLocation="ns:workflow/RoleData resource:RoleData">
+      <rolePermissions>
+        <!-- HRDA Maintenance Document permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="HRDA">Open HRDA Maintenance Document</permissionName>
+          <roleName namespace="KR-SYS">Technical Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="HRDA">Open HRDA Maintenance Document</permissionName>
+          <roleName namespace="KR-WKFLW">Initiator or Reviewer</roleName>
+        </rolePermission>
+      </rolePermissions>
+    </roleData>
+  </otherData>
+</data>
