@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <otherData xmlns="ns:workflow/OtherData" xsi:schemaLocation="ns:workflow/OtherData resource:OtherData">
+    <permissionData xmlns="ns:workflow/PermissionData" xsi:schemaLocation="ns:workflow/PermissionData resource:PermissionData">
+      <permissions>
+        <!-- General Purpose Workflow permissions. -->
+        <permission>
+          <name namespace="CYN_APPS">Open General Purpose Workflow Document</name>
+          <templateName namespace="KR-NS">Open Document</templateName>
+          <description>Users that are authorized to open GPWDs.</description>
+          <attributes>
+            <attribute key="documentTypeName">GeneralPurposeWorkflowMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
+        <!-- PDFDocTypeMap permissions. -->
+        <permission>
+          <name namespace="CYN_APPS">Initiate PDFDocTypeMap Maintenance Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate PDFDocTypeMap maint docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">PDFDocTypeMapMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
+        <!--
+            Permissions pertaining to existing PDFDocument mappings.
+         -->
+        <!-- Base PDFDocument permissions. -->
+        <permission>
+          <name namespace="CYN_APPS">Copy PDFDocument</name>
+          <templateName namespace="KR-NS">Copy Document</templateName>
+          <description>Users that are authorized to copy PDF workflow documents.</description>
+          <attributes>
+            <attribute key="documentTypeName">PDFDocument</attribute>
+          </attributes>
+        </permission>
+        <!-- PDFCUCITFinancials permissions. -->
+        <permission>
+          <name namespace="CYN_APPS">Initiate PDFCUCITFinancials Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate PDFCUCITFinancials docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">PDFCUCITFinancials</attribute>
+          </attributes>
+        </permission>
+        <permission>
+          <name namespace="CYN_APPS">Edit ENROUTE PDFCUCITFinancials Document</name>
+          <templateName namespace="KR-NS">Edit Document</templateName>
+          <description>Users that are authorized to edit ENROUTE PDFCUCITFinancials docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">PDFCUCITFinancials</attribute>
+            <attribute key="routeStatusCode">R</attribute>
+          </attributes>
+        </permission>
+        <!-- PDFCUMigrationRequest permissions. -->
+        <permission>
+          <name namespace="CYN_APPS">Initiate PDFCUMigrationRequest Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate PDFCUMigrationRequest docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">PDFCUMigrationRequest</attribute>
+          </attributes>
+        </permission>
+        <permission>
+          <name namespace="CYN_APPS">Edit ENROUTE PDFCUMigrationRequest Document</name>
+          <templateName namespace="KR-NS">Edit Document</templateName>
+          <description>Users that are authorized to edit ENROUTE PDFCUMigrationRequest docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">PDFCUMigrationRequest</attribute>
+            <attribute key="routeStatusCode">R</attribute>
+          </attributes>
+        </permission>
+        <!-- PDFCUActivityRequest permissions. -->
+        <permission>
+          <name namespace="CYN_APPS">Initiate PDFCUActivityRequest Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate PDFCUActivityRequest docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">PDFCUActivityRequest</attribute>
+          </attributes>
+        </permission>
+        <!-- PDFCUSOProcChngReq permissions. -->
+        <permission>
+          <name namespace="CYN_APPS">Initiate PDFCUSOProcChngReq Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate PDFCUSOProcChngReq docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">PDFCUSOProcChngReq</attribute>
+          </attributes>
+        </permission>
+        <permission>
+          <name namespace="CYN_APPS">Edit ENROUTE PDFCUSOProcChngReq Document</name>
+          <templateName namespace="KR-NS">Edit Document</templateName>
+          <description>Users that are authorized to edit ENROUTE PDFCUSOProcChngReq docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">PDFCUSOProcChngReq</attribute>
+            <attribute key="routeStatusCode">R</attribute>
+          </attributes>
+        </permission>
+      </permissions>
+    </permissionData>
+    <roleData xmlns="ns:workflow/RoleData" xsi:schemaLocation="ns:workflow/RoleData resource:RoleData">
+      <roles>
+        <!-- General Purpose Workflow roles. -->
+        <role>
+          <name namespace="CYN_APPS">GPWD Administrator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>General Purpose Workflow Document authorizers aside from global technical admins.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">cit.cynergy.apps.gpwd.admins</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
+        <!-- PDFDocTypeMap roles. -->
+        <role>
+          <name namespace="CYN_APPS">PDFDocTypeMap Initiator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>The authorized initiators of PDFDocTypeMap maintenance documents.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">cit.cynergy.global.admins</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
+        <!--
+            Roles pertaining to existing PDFDocument mappings.
+         -->
+        <!-- PDFCUCITFinancials roles. -->
+        <role>
+          <name namespace="CYN_APPS">PDFCUCITFinancials Initiator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>The authorized initiators of PDFCUCITFinancials documents.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">cit.staff</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
+        <!-- PDFCUMigrationRequest roles. -->
+        <role>
+          <name namespace="CYN_APPS">PDFCUMigrationRequest Initiator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>The authorized initiators of PDFCUMigrationRequest documents.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">workflow.CIT.PDFDeveloper</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
+        <!-- PDFCUActivityRequest roles. -->
+        <role>
+          <name namespace="CYN_APPS">PDFCUActivityRequest Initiator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>The authorized initiators of PDFCUActivityRequest documents.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">workflow.CIT.PDFCUActivityRequestUsers</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
+        <!-- PDFCUSOProcChngReq roles. -->
+        <role>
+          <name namespace="CYN_APPS">PDFCUSOProcChngReq Initiator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>The authorized initiators of PDFCUSOProcChngReq documents.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">workflow.cit.SOPCU</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
+      </roles>
+      <rolePermissions>
+        <!-- General Purpose Workflow permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="CYN_APPS">Open General Purpose Workflow Document</permissionName>
+          <roleName namespace="KR-SYS">Technical Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="CYN_APPS">Open General Purpose Workflow Document</permissionName>
+          <roleName namespace="CYN_APPS">GPWD Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="CYN_APPS">Open General Purpose Workflow Document</permissionName>
+          <roleName namespace="KR-WKFLW">Initiator or Reviewer</roleName>
+        </rolePermission>
+        <!-- PDFDocTypeMap permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="CYN_APPS">Initiate PDFDocTypeMap Maintenance Document</permissionName>
+          <roleName namespace="CYN_APPS">PDFDocTypeMap Initiator</roleName>
+        </rolePermission>
+        <!--
+            Permission assignments pertaining to existing PDFDocument mappings.
+         -->
+        <!-- Base PDFDocument permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="CYN_APPS">Copy PDFDocument</permissionName>
+          <roleName namespace="KR-WKFLW">Initiator</roleName>
+        </rolePermission>
+        <!-- PDFCUCITFinancials permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="CYN_APPS">Initiate PDFCUCITFinancials Document</permissionName>
+          <roleName namespace="CYN_APPS">PDFCUCITFinancials Initiator</roleName>
+        </rolePermission>
+        <!-- PDFCUMigrationRequest permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="CYN_APPS">Initiate PDFCUMigrationRequest Document</permissionName>
+          <roleName namespace="CYN_APPS">PDFCUMigrationRequest Initiator</roleName>
+        </rolePermission>
+        <!-- PDFCUActivityRequest permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="CYN_APPS">Initiate PDFCUActivityRequest Document</permissionName>
+          <roleName namespace="CYN_APPS">PDFCUActivityRequest Initiator</roleName>
+        </rolePermission>
+        <!-- PDFCUSOProcChngReq permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="CYN_APPS">Initiate PDFCUSOProcChngReq Document</permissionName>
+          <roleName namespace="CYN_APPS">PDFCUSOProcChngReq Initiator</roleName>
+        </rolePermission>
+      </rolePermissions>
+    </roleData>
+  </otherData>
+</data>
