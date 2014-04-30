@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xsi:schemaLocation="ns:workflow resource:WorkflowData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ns:workflow">
+  <documentTypes xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType" xmlns="ns:workflow/DocumentType">
+    <documentType>
+      <name>DFAAdminMaintenanceDocument</name>
+      <parent>DFADocument</parent>
+      <description>DFAAdminMaintenanceDocument</description>
+      <label>DFAAdminMaintenanceDocument</label>
+      <superUserGroupName namespace="PERMIT">cit.cynergy.global.admins</superUserGroupName>
+      <!--<blanketApproveGroupName namespace="PERMIT">cit.cynergy.global.admins</blanketApproveGroupName>-->
+      <blanketApprovePolicy>NONE</blanketApprovePolicy>
+      <defaultExceptionGroupName namespace="PERMIT">cit.cynergy.global.admins</defaultExceptionGroupName>
+      <docHandler>${kr.krad.url}/maintenance?methodToCall=docHandler</docHandler>
+      <active>true</active>
+      <policies>
+        <policy>
+          <name>LOOK_FUTURE</name>
+          <value>true</value>
+        </policy>
+      </policies>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing"/>
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>P</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

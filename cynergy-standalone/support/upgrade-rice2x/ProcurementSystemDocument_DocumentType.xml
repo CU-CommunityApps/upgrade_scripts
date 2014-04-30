@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xsi:schemaLocation="ns:workflow resource:WorkflowData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ns:workflow">
+  <documentTypes xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType" xmlns="ns:workflow/DocumentType">
+    <documentType>
+      <name>ProcurementSystemDocument</name>
+      <parent>DFADocument</parent>
+      <description>Create or Update Procurement System Document</description>
+      <label>Procurement System Document</label>
+      <superUserGroupName namespace="PERMIT">cit.cynergy.global.admins</superUserGroupName>
+      <!--<blanketApproveGroupName namespace="PERMIT">cit.cynergy.global.admins</blanketApproveGroupName>-->
+      <blanketApprovePolicy>NONE</blanketApprovePolicy>
+      <defaultExceptionGroupName namespace="PERMIT">cit.cynergy.global.admins</defaultExceptionGroupName>
+      <docHandler>${kr.krad.url}/procurementSystemDocument?methodToCall=docHandler</docHandler>
+      <active>true</active>
+      <attributes>
+        <attribute>
+          <name>DFADataDictionarySearchableAttribute</name>
+        </attribute>
+      </attributes>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing" nextNode="DfaAcctDeptRoutingRuleNode"/>
+          <requests name="DfaAcctDeptRoutingRuleNode" nextNode="ProcureAdminRoutingRuleNode"/>
+          <requests name="ProcureAdminRoutingRuleNode"/>
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="DfaAcctDeptRoutingRuleNode">
+          <activationType>P</activationType>
+          <routeModule>edu.cornell.dfa.routemodule.DFAAccountingDepartmentRouteModule</routeModule>
+          <mandatoryRoute>true</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="ProcureAdminRoutingRuleNode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergySingleRecipientRouteModule</routeModule>
+          <name>routeToGroup</name>
+          <value>infoaccess.dfa.admin.procure</value>
+          <mandatoryRoute>true</mandatoryRoute>
+          <finalApproval>true</finalApproval>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

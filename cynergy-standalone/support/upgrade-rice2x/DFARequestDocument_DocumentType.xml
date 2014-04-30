@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xsi:schemaLocation="ns:workflow resource:WorkflowData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ns:workflow">
+  <documentTypes xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType" xmlns="ns:workflow/DocumentType">
+    <documentType>
+      <name>DFARequestDocument</name>
+      <parent>DFADocument</parent>
+      <description>Create or Update DFARequest Document</description>
+      <label>DFA Request Document</label>
+      <superUserGroupName namespace="PERMIT">cit.cynergy.global.admins</superUserGroupName>
+      <!--<blanketApproveGroupName namespace="PERMIT">cit.cynergy.global.admins</blanketApproveGroupName>-->
+      <blanketApprovePolicy>NONE</blanketApprovePolicy>
+      <defaultExceptionGroupName namespace="PERMIT">cit.cynergy.global.admins</defaultExceptionGroupName>
+      <docHandler>${kr.krad.url}/dfaRequestDocument?methodToCall=docHandler</docHandler>
+      <active>true</active>
+      <attributes>
+        <attribute>
+          <name>DFADataDictionarySearchableAttribute</name>
+        </attribute>
+      </attributes>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing" nextNode="SpawnNDA"/>
+          <requests name="SpawnNDA" nextNode="DataCustodianRoutingOnSubmitNode"/>
+          <requests name="DataCustodianRoutingOnSubmitNode" nextNode="InitiatorRoutingOnSubmitNode"/>
+          <requests name="InitiatorRoutingOnSubmitNode" nextNode="SpawnSubDocuments"/>
+          <requests name="SpawnSubDocuments" nextNode="DataCustodianRoutingOnFinalNode"/>
+          <requests name="DataCustodianRoutingOnFinalNode" nextNode="InitiatorRoutingOnFinalNode"/>
+          <requests name="InitiatorRoutingOnFinalNode"/>
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="SpawnNDA">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.adf.core.routemodule.SpawningDocumentRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="DataCustodianRoutingOnSubmitNode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.dfa.routemodule.DFADataCustodianRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="InitiatorRoutingOnSubmitNode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergyInitiatorFYIRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="SpawnSubDocuments">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.adf.core.routemodule.SpawningDocumentRouteModule</routeModule>
+          <mandatoryRoute>true</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="DataCustodianRoutingOnFinalNode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.dfa.routemodule.DFADataCustodianRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="InitiatorRoutingOnFinalNode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergyInitiatorFYIRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

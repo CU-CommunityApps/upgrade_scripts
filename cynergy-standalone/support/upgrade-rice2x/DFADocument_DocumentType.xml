@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    A base document type that all doc types for the DFA InfoAccess application can derive from. This can help with setting up
+    common properties (especially the applicationId) and KIM permissions for the DFA InfoAccess documents.
+ -->
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>DFADocument</name>
+      <parent>CynergyADFDocument</parent>
+      <description>The base document type that is generally used as the parent of all doc types for the DFA InfoAccess ADF application.</description>
+      <label>DFA InfoAccess Base Document</label>
+      <applicationId>dfa</applicationId>
+    </documentType>
+  </documentTypes>
+  <ruleAttributes xmlns="ns:workflow/RuleAttribute" xsi:schemaLocation="ns:workflow/RuleAttribute resource:RuleAttribute">
+    <ruleAttribute>
+      <name>DFADataDictionarySearchableAttribute</name>
+      <className>org.kuali.rice.kns.workflow.attribute.DataDictionarySearchableAttribute</className>
+      <label>Data Dictionary Searchable Attribute</label>
+      <description>Data Dictionary Searchable Attribute</description>
+      <type>SearchableAttribute</type>
+      <applicationId>dfa</applicationId>
+    </ruleAttribute>
+  </ruleAttributes>
+</data>

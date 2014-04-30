@@ -74,7 +74,12 @@ my @cynergyFiles = (
   "HRDARequestMaintenanceDocument_DocumentType.xml",
   "ConfAgreementDocument_DocumentType.xml",
   "CynergyApps_KIMData.xml",
-  "ConfAgreement_KIMData.xml"
+  "ConfAgreement_KIMData.xml",
+  "DFADocument_DocumentType.xml",
+  "ProcurementSystemDocument_DocumentType.xml",
+  "DFARequestDocument_DocumentType.xml",
+  "DFAAdminMaintenanceDocument_DocumentType.xml",
+  "ADWDocument_DocumentType.xml"
   ) ;
 
 my $redir=[qw(GET HEAD POST)] ;
