@@ -5,11 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-  <changeSet author="srb55" id="KDO-504" failOnError="false">
+  <changeSet author="srb55" id="KDO-504:KFSUPGRADE-901" failOnError="false">
   	<sql stripComments="true" endDelimiter="/">
   		<![CDATA[
         alter table CM_CPTLAST_DTL_T modify (CPTLAST_TAG_NBR varchar2(10))
-      /
+        /
+        alter table FP_CPTL_AST_INFO_DTL_T modify (CPTLAST_TAG_NBR varchar2(10))
+        /
   		]]>
    	</sql> 	
 	</changeSet>
