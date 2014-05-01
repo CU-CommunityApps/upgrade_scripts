@@ -84,31 +84,7 @@
                    and t2.fin_coa_cd = t3.fin_coa_cd
                    and t2.fdoc_post_yr = t3.univ_fiscal_yr
                    and t2.fin_object_cd = t3.fin_object_cd
-                   and t3.fin_obj_sub_typ_cd in ('AM',
-                                                 'BD',
-                                                 'BF',
-                                                 'BR',
-                                                 'BX',
-                                                 'BY',
-                                                 'C1',
-                                                 'C2',
-                                                 'CF',
-                                                 'CM',
-                                                 'CO',
-                                                 'CP',
-                                                 'EC',
-                                                 'IF',
-                                                 'IT',
-                                                 'LA',
-                                                 'LE',
-                                                 'LF',
-                                                 'LI',
-                                                 'LR',
-                                                 'LS',
-                                                 'RF',
-                                                 'UC',
-                                                 'UF',
-                                                 'UO')
+                   and t3.fin_obj_sub_typ_cd in ('BD','BE','BF','CF','CL','CM','CS','CT','CV','IM','UC','UF','LA','SN','SM','FN','FM')
                  group by t2.fdoc_nbr)
          where exists
          (select *
@@ -117,31 +93,7 @@
                    and t2.fin_coa_cd = t3.fin_coa_cd
                    and t2.fdoc_post_yr = t3.univ_fiscal_yr
                    and t2.fin_object_cd = t3.fin_object_cd
-                   and t3.fin_obj_sub_typ_cd in ('AM',
-                                                 'BD',
-                                                 'BF',
-                                                 'BR',
-                                                 'BX',
-                                                 'BY',
-                                                 'C1',
-                                                 'C2',
-                                                 'CF',
-                                                 'CM',
-                                                 'CO',
-                                                 'CP',
-                                                 'EC',
-                                                 'IF',
-                                                 'IT',
-                                                 'LA',
-                                                 'LE',
-                                                 'LF',
-                                                 'LI',
-                                                 'LR',
-                                                 'LS',
-                                                 'RF',
-                                                 'UC',
-                                                 'UF',
-                                                 'UO'))
+                   and t3.fin_obj_sub_typ_cd in ('BD','BE','BF','CF','CL','CM','CS','CT','CV','IM','UC','UF','LA','SN','SM','FN','FM'))
         /                                      
         update fp_cptl_ast_info_t t1
            set CPTLAST_LINE_AMT =
@@ -155,31 +107,7 @@
                    and t1.fdoc_nbr = t4.doc_hdr_id
                    and t4.doc_typ_id = t5.doc_typ_id
                    and t5.doc_typ_nm='PCDO'
-                   and t3.fin_obj_sub_typ_cd in ('AM',
-                                                 'BD',
-                                                 'BF',
-                                                 'BR',
-                                                 'BX',
-                                                 'BY',
-                                                 'C1',
-                                                 'C2',
-                                                 'CF',
-                                                 'CM',
-                                                 'CO',
-                                                 'CP',
-                                                 'EC',
-                                                 'IF',
-                                                 'IT',
-                                                 'LA',
-                                                 'LE',
-                                                 'LF',
-                                                 'LI',
-                                                 'LR',
-                                                 'LS',
-                                                 'RF',
-                                                 'UC',
-                                                 'UF',
-                                                 'UO')
+                   and t3.fin_obj_sub_typ_cd in ('BD','BE','BF','CF','CL','CM','CS','CT','CV','IM','UC','UF','LA','SN','SM','FN','FM')
                  group by t2.fdoc_nbr)
          where exists
          (select *
@@ -192,31 +120,7 @@
                    and t1.fdoc_nbr = t4.doc_hdr_id
                    and t4.doc_typ_id = t5.doc_typ_id
                    and t5.doc_typ_nm='PCDO'
-                   and t3.fin_obj_sub_typ_cd in ('AM',
-                                                 'BD',
-                                                 'BF',
-                                                 'BR',
-                                                 'BX',
-                                                 'BY',
-                                                 'C1',
-                                                 'C2',
-                                                 'CF',
-                                                 'CM',
-                                                 'CO',
-                                                 'CP',
-                                                 'EC',
-                                                 'IF',
-                                                 'IT',
-                                                 'LA',
-                                                 'LE',
-                                                 'LF',
-                                                 'LI',
-                                                 'LR',
-                                                 'LS',
-                                                 'RF',
-                                                 'UC',
-                                                 'UF',
-                                                 'UO'))
+                   and t3.fin_obj_sub_typ_cd in ('BD','BE','BF','CF','CL','CM','CS','CT','CV','IM','UC','UF','LA','SN','SM','FN','FM'))
 
         /
         update FP_CPTL_AST_INFO_T t set t.cptlast_line_qty=(select count(*) 
@@ -261,31 +165,7 @@
          where t.fdoc_post_yr = s.univ_fiscal_yr
            and t.fin_coa_cd = s.fin_coa_cd
            and t.fin_object_cd = s.fin_object_cd
-           and s.fin_obj_sub_typ_cd in (''AM'',
-                                        ''BD'',
-                                        ''BF'',
-                                        ''BR'',
-                                        ''BX'',
-                                        ''BY'',
-                                        ''C1'',
-                                        ''C2'',
-                                        ''CF'',
-                                        ''CM'',
-                                        ''CO'',
-                                        ''CP'',
-                                        ''EC'',
-                                        ''IF'',
-                                        ''IT'',
-                                        ''LA'',
-                                        ''LE'',
-                                        ''LF'',
-                                        ''LI'',
-                                        ''LR'',
-                                        ''LS'',
-                                        ''RF'',
-                                        ''UC'',
-                                        ''UF'',
-                                        ''UO'' )
+           and s.fin_obj_sub_typ_cd in (''BD'',''BE'',''BF'',''CF'',''CL'',''CM'',''CS'',''CT'',''CV'',''IM'',''UC'',''UF'',''LA'',''SN'',''SM'',''FN'',''FM'')
                                         and t.fdoc_nbr = ''';
 
           insertGroupDetail VARCHAR2(2000) := 'INSERT INTO fp_cptl_ast_acct_grp_dtl_t (OBJ_ID, 
@@ -379,31 +259,7 @@
          where t.fdoc_post_yr = s.univ_fiscal_yr
            and t.fin_coa_cd = s.fin_coa_cd
            and t.fin_object_cd = s.fin_object_cd
-           and s.fin_obj_sub_typ_cd in (''AM'',
-                                        ''BD'',
-                                        ''BF'',
-                                        ''BR'',
-                                        ''BX'',
-                                        ''BY'',
-                                        ''C1'',
-                                        ''C2'',
-                                        ''CF'',
-                                        ''CM'',
-                                        ''CO'',
-                                        ''CP'',
-                                        ''EC'',
-                                        ''IF'',
-                                        ''IT'',
-                                        ''LA'',
-                                        ''LE'',
-                                        ''LF'',
-                                        ''LI'',
-                                        ''LR'',
-                                        ''LS'',
-                                        ''RF'',
-                                        ''UC'',
-                                        ''UF'',
-                                        ''UO'' )
+           and s.fin_obj_sub_typ_cd in (''BD'',''BE'',''BF'',''CF'',''CL'',''CM'',''CS'',''CT'',''CV'',''IM'',''UC'',''UF'',''LA'',''SN'',''SM'',''FN'',''FM'')
                                         and t.fdoc_nbr = ''';
 
           insertGroupDetail VARCHAR2(2000) := 'INSERT INTO fp_cptl_ast_acct_grp_dtl_t (OBJ_ID, 
