@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <otherData xmlns="ns:workflow/OtherData" xsi:schemaLocation="ns:workflow/OtherData resource:OtherData">
+    <permissionData xmlns="ns:workflow/PermissionData" xsi:schemaLocation="ns:workflow/PermissionData resource:PermissionData">
+      <permissions>
+        <!-- IAS ItemType Document permissions. -->
+        <permission>
+          <name namespace="SDA">Initiate InfoAccess ItemType Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate InfoAccess ItemType maintenance documents.</description>
+          <attributes>
+            <attribute key="documentTypeName">InfoAccessItemTypeMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
+      </permissions>
+    </permissionData>
+    <roleData xmlns="ns:workflow/RoleData" xsi:schemaLocation="ns:workflow/RoleData resource:RoleData">
+      <roles>
+        <!-- IAS ItemType Document roles. -->
+        <role>
+          <name namespace="SDA">InfoAccess ItemType Initiator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>The authorized initiators of InfoAccess ItemType maintenance documents.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">cit.security.sa.studfin</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
+      </roles>
+      <rolePermissions>
+        <!-- IAS ItemType Document permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="SDA">Initiate InfoAccess ItemType Document</permissionName>
+          <roleName namespace="SDA">InfoAccess ItemType Initiator</roleName>
+        </rolePermission>
+      </rolePermissions>
+    </roleData>
+  </otherData>
+</data>

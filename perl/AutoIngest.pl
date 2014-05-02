@@ -90,6 +90,8 @@ my @cynergyFiles = (
   "AdmissionsDocument_DocumentType.xml",
   "CynergyApps_KIMData.xml",
   "ConfAgreement_KIMData.xml",
+  "BSCMS_KIMData.xml",
+  "SDA_KIMData.xml",
   "DFA_KIMData.xml",
   "HRDA_KIMData.xml"
   ) ;
