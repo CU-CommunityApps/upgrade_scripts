@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>BscAcctDeptResponsibilityMaintenanceDocument</name>
+      <parent>BSCMSDocument</parent>
+      <description>Create or update a BSC Accounting Department Responsibility record.</description>
+      <label>BSC Accounting Department Responsibility Maintenance Document</label>
+      <superUserGroupName namespace="PERMIT">dfa-bsc</superUserGroupName>
+      <blanketApproveGroupName namespace="PERMIT">dfa-bsc</blanketApproveGroupName>
+      <defaultExceptionGroupName namespace="PERMIT">cit.cynergy.global.admins</defaultExceptionGroupName>
+      <docHandler>${kr.krad.url}/maintenance?methodToCall=docHandler</docHandler>
+      <active>true</active>
+      <policies>
+        <policy>
+          <name>LOOK_FUTURE</name>
+          <value>true</value>
+        </policy>
+      </policies>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing" nextNode="BSC Director Approval Routing"/>
+          <requests name="BSC Director Approval Routing" nextNode="UBSC FYI"/>
+          <requests name="UBSC FYI"/>
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="BSC Director Approval Routing">
+          <activationType>P</activationType>
+          <routeModule>edu.cornell.ubsc.bscms.routemodule.BscAcctDeptResponsibilityRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="UBSC FYI">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergySingleRecipientRouteModule</routeModule>
+          <name>routeToGroup</name>
+          <value>dfa-bsc,F</value>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

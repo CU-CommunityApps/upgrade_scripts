@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xsi:schemaLocation="ns:workflow resource:WorkflowData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ns:workflow">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>StudentDataAccessDocument</name>
+      <parent>SDADocument</parent>
+      <description>Create Student Data Access Document</description>
+      <label>Student Data Access Document</label>
+      <superUserGroupName namespace="PERMIT">cit.cynergy.global.admins</superUserGroupName>
+      <blanketApproveGroupName namespace="PERMIT">cit.cynergy.global.admins</blanketApproveGroupName>
+      <defaultExceptionGroupName namespace="PERMIT">cit.cynergy.global.admins</defaultExceptionGroupName>
+      <docHandler>${kr.krad.url}/studentDataAccessDocument?methodToCall=docHandler</docHandler>
+      <active>true</active>
+      <attributes>
+        <attribute>
+          <name>SDADataDictionarySearchableAttribute</name>
+        </attribute>
+      </attributes>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing"  nextNode="Confidentiality Agreement Form"/>
+          <requests name="Confidentiality Agreement Form" nextNode="SpawnSubDocuments"/>
+          <requests name="SpawnSubDocuments"/>
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="Confidentiality Agreement Form">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.adf.core.routemodule.SpawningDocumentRouteModule</routeModule>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="SpawnSubDocuments">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.adf.core.routemodule.SpawningDocumentRouteModule</routeModule>
+          <mandatoryRoute>true</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

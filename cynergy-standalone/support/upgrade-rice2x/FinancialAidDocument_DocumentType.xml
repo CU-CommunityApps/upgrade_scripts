@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xsi:schemaLocation="ns:workflow resource:WorkflowData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ns:workflow">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>FinancialAidDocument</name>
+      <parent>SDADocument</parent>
+      <description>Create a Financial Aid Document</description>
+      <label>Financial Aid Document</label>
+      <superUserGroupName namespace="PERMIT">cit.cynergy.global.admins</superUserGroupName>
+      <blanketApproveGroupName namespace="PERMIT">cit.cynergy.global.admins</blanketApproveGroupName>
+      <defaultExceptionGroupName namespace="PERMIT">cit.cynergy.global.admins</defaultExceptionGroupName>
+      <docHandler>${kr.krad.url}/financialAidDocument?methodToCall=docHandler</docHandler>
+      <active>true</active>
+      <policies>
+        <policy>
+          <name>LOOK_FUTURE</name>
+          <value>true</value>
+        </policy>
+      </policies>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing" nextNode="Unit Authorizers Approval"/>
+          <requests name="Unit Authorizers Approval" nextNode="FA Authorizers Approval"/>
+          <requests name="FA Authorizers Approval" nextNode="CIT Security Authorizers Approval"/>
+          <requests name="CIT Security Authorizers Approval" nextNode="Final FYI to Requester"/>
+          <requests name="Final FYI to Requester" nextNode="Final FYI to Unit Authorizers"/>
+          <requests name="Final FYI to Unit Authorizers"/>
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="Unit Authorizers Approval">
+          <activationType>P</activationType>
+          <routeModule>edu.cornell.cynergy.is.routemodule.InfoAccessRouteModule</routeModule>
+          <name>routeToUnit</name>
+          <value>SDA</value>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="FA Authorizers Approval">
+          <activationType>P</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergySingleRecipientRouteModule</routeModule>
+          <name>routeToGroup</name>
+          <value>cit.security.sa.finaid</value>
+          <mandatoryRoute>true</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="CIT Security Authorizers Approval">
+          <activationType>P</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergySingleRecipientRouteModule</routeModule>
+          <name>routeToGroup</name>
+          <value>cit.security.workflow.cmsecurity</value>
+          <mandatoryRoute>true</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="Final FYI to Requester">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergyInitiatorFYIRouteModule</routeModule>
+        </requests>
+        <requests name="Final FYI to Unit Authorizers">
+          <activationType>P</activationType>
+          <routeModule>edu.cornell.cynergy.is.routemodule.InfoAccessRouteModule</routeModule>
+          <name>routeToUnit</name>
+          <value>SDA:F</value>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>
