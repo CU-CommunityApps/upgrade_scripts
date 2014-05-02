@@ -5,12 +5,20 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+     <changeSet author="cah292" id="cynapps-namespace-component" failOnError="false">
+        <comment>namespace updates for cynergy apps</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+               INSERT INTO KRCR_CMPNT_T (NMSPC_CD, CMPNT_CD, OBJ_ID, VER_NBR, NM, ACTV_IND) VALUES ('IAS', 'All', SYS_GUID(), 1, 'All', 'Y')
+                /
+            ]]>
+        </sql>
+    </changeSet>
+
      <changeSet author="cah292" id="cynapps-namespace" failOnError="false">
         <comment>namespace updates for cynergy apps</comment>
         <sql stripComments="true" endDelimiter="/">
             <![CDATA[
-                INSERT INTO KRCR_CMPNT_T (NMSPC_CD, CMPNT_CD, OBJ_ID, VER_NBR, NM, ACTV_IND) VALUES ('IAS', 'All', SYS_GUID(), 1, 'All', 'Y')
-                /
                 INSERT INTO KRCR_NMSPC_T (NMSPC_CD, OBJ_ID, VER_NBR, NM, ACTV_IND, APPL_ID) VALUES ('CYN_APPS', SYS_GUID(), 1, 'Cynergy-Apps', 'Y', 'CYN_APPS')
                 /
                 INSERT INTO KRCR_NMSPC_T (NMSPC_CD, OBJ_ID, VER_NBR, NM, ACTV_IND, APPL_ID) VALUES ('IAS', SYS_GUID(), 1, 'InfoAccess Shared', 'Y', 'ias')
