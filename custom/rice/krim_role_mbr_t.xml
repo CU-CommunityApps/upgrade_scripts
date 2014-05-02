@@ -5,13 +5,31 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet author="srb55" id="KFSUPGRADE-860" failOnError="false">
-        <comment>add mo14 to Payee ACH Accounts Administrato</comment>
+    <changeSet author="srb55" id="KFSUPGRADE-860:KFSUPGRADE-899" failOnError="false">
+        <comment>add mo14, jf427, dms386 to Payee ACH Accounts Administration</comment>
 
         <insert tableName="krim_role_mbr_t">
             <column name="ROLE_MBR_ID" valueComputed="KRIM_ROLE_MBR_ID_S.NEXTVAL" />
             <column name="ROLE_ID" value="KFSMI6886-ROLE" />
             <column name="MBR_ID" value="1011174" />
+            <column name="MBR_TYP_CD" value="P" />
+            <column name="VER_NBR" value="1" /> 
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+        </insert>
+        
+        <insert tableName="krim_role_mbr_t">
+            <column name="ROLE_MBR_ID" valueComputed="KRIM_ROLE_MBR_ID_S.NEXTVAL" />
+            <column name="ROLE_ID" value="KFSMI6886-ROLE" />
+            <column name="MBR_ID" value="1489786" />
+            <column name="MBR_TYP_CD" value="P" />
+            <column name="VER_NBR" value="1" /> 
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+        </insert>
+        
+        <insert tableName="krim_role_mbr_t">
+            <column name="ROLE_MBR_ID" valueComputed="KRIM_ROLE_MBR_ID_S.NEXTVAL" />
+            <column name="ROLE_ID" value="KFSMI6886-ROLE" />
+            <column name="MBR_ID" value="1494686" />
             <column name="MBR_TYP_CD" value="P" />
             <column name="VER_NBR" value="1" /> 
             <column name="OBJ_ID" valueNumeric="sys_guid() " />
