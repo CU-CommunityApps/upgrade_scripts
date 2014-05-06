@@ -10,7 +10,7 @@
 		
   	<sql stripComments="true" endDelimiter="/">
   		<![CDATA[
-      update cynergyup.krew_doc_hdr_t t
+      update cynergy.krew_doc_hdr_t t
       set (app_doc_stat, app_doc_stat_mdfn_dt) = (select s.reqs_stat_desc, trunc(sysdate) + 365
                                                   from pur_reqs_t p,
                                                        pur_reqs_stat_t s
@@ -23,7 +23,7 @@
                     and p.fdoc_nbr = t.doc_hdr_id)
 
       /
-      update cynergyup.krew_doc_hdr_t t
+      update cynergy.krew_doc_hdr_t t
       set (app_doc_stat, app_doc_stat_mdfn_dt) = (select s.po_stat_desc, trunc(sysdate) + 365
                                                   from pur_po_t p,
                                                        pur_po_stat_t s
@@ -36,7 +36,7 @@
                     and p.fdoc_nbr = t.doc_hdr_id)
 
       /
-      update cynergyup.krew_doc_hdr_t t
+      update cynergy.krew_doc_hdr_t t
       set (app_doc_stat, app_doc_stat_mdfn_dt) = (select s.pmt_rqst_stat_desc, trunc(sysdate) + 365
                                                   from ap_pmt_rqst_t p,
                                                        ap_pmt_rqst_stat_t s
@@ -49,7 +49,7 @@
                     and p.fdoc_nbr = t.doc_hdr_id)
 
       /
-      update cynergyup.krew_doc_hdr_t t
+      update cynergy.krew_doc_hdr_t t
       set (app_doc_stat, app_doc_stat_mdfn_dt) = (select s.crdt_memo_stat_desc, trunc(sysdate) + 365
                                                   from ap_crdt_memo_t p,
                                                        ap_crdt_memo_stat_t s
@@ -62,7 +62,7 @@
                     and p.fdoc_nbr = t.doc_hdr_id)
 
       /
-      update cynergyup.krew_doc_hdr_t t
+      update cynergy.krew_doc_hdr_t t
       set (app_doc_stat, app_doc_stat_mdfn_dt) = (select s.rcvng_ln_stat_desc, trunc(sysdate) + 365
                                                   from pur_rcvng_ln_t p,
                                                        pur_rcvng_ln_stat_t s

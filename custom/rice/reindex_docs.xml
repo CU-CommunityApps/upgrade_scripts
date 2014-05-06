@@ -16,7 +16,7 @@
       vrs_count             number       := 0;
 
       --Table for Bulk Collect
-      type bill_table is table of cynergyup.krew_doc_hdr_ext_t%rowtype index by binary_integer;
+      type bill_table is table of cynergy.krew_doc_hdr_ext_t%rowtype index by binary_integer;
       vbill_tab bill_table;
 
       --Declare Cursors
@@ -25,17 +25,17 @@
               h.doc_hdr_id   hdr_id,
               'applicationDocumentStatus' key_cd,
               h.app_doc_stat val
-       from cynergyup.krew_doc_hdr_t h,
-            cynergyup.krew_doc_typ_t t
+       from cynergy.krew_doc_hdr_t h,
+            cynergy.krew_doc_typ_t t
        where (t.doc_typ_nm like 'REQ%')
         and t.doc_typ_id = h.doc_typ_id
         and h.app_doc_stat is not null;
 
-      procedure ins_ext(ext in cynergyup.krew_doc_hdr_ext_t%rowtype) is   
+      procedure ins_ext(ext in cynergy.krew_doc_hdr_ext_t%rowtype) is   
       begin
-      	insert into cynergyup.krew_doc_hdr_ext_t
+      	insert into cynergy.krew_doc_hdr_ext_t
         values
-        (cynergyup.krew_srch_attr_s.nextval,
+        (cynergy.krew_srch_attr_s.nextval,
          ext.doc_hdr_id,
          ext.key_cd,
          ext.val);

@@ -12,7 +12,7 @@
         delete
         from fp_cptl_ast_info_dtl_t  t1 
         where t1.campus_cd is null or (t1.fdoc_nbr = (select t.fdoc_nbr
-        from fp_cptl_ast_info_t t, cynergyup.krew_doc_hdr_t t2 
+        from fp_cptl_ast_info_t t, cynergy.krew_doc_hdr_t t2 
          where t.cptlast_desc is null
            and t.cptlast_nbr is null
            and t.cptlast_typ_cd is null
@@ -29,7 +29,7 @@
         delete
         from fp_cptl_ast_info_dtl_t  t1 
         where t1.campus_cd is null or (t1.fdoc_nbr = (select t.fdoc_nbr
-        from fp_cptl_ast_info_t t, cynergyup.krew_doc_hdr_t t2 
+        from fp_cptl_ast_info_t t, cynergy.krew_doc_hdr_t t2 
          where t.cptlast_desc is null
            and t.cptlast_nbr is null
            and t.cptlast_typ_cd is null
@@ -99,7 +99,7 @@
            set CPTLAST_LINE_AMT =
                (select sum(t2.fdoc_line_amt)
                   from FP_PRCRMNT_ACCT_LINES_T t2, ca_object_code_t t3, 
-                  cynergyup.krew_doc_hdr_t t4, cynergyup.krew_doc_typ_t t5
+                  cynergy.krew_doc_hdr_t t4, cynergy.krew_doc_typ_t t5
                  where t1.fdoc_nbr = t2.fdoc_nbr
                    and t2.fin_coa_cd = t3.fin_coa_cd
                    and t2.fdoc_post_yr = t3.univ_fiscal_yr
@@ -112,7 +112,7 @@
          where exists
          (select *
                   from FP_PRCRMNT_ACCT_LINES_T t2, ca_object_code_t t3, 
-                  cynergyup.krew_doc_hdr_t t4, cynergyup.krew_doc_typ_t t5
+                  cynergy.krew_doc_hdr_t t4, cynergy.krew_doc_typ_t t5
                  where t1.fdoc_nbr = t2.fdoc_nbr
                    and t2.fin_coa_cd = t3.fin_coa_cd
                    and t2.fdoc_post_yr = t3.univ_fiscal_yr
