@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>SMSRequestSolicitationMaintenanceDocument</name>
+      <parent>SMSRequestDocument</parent>
+      <description>SMS Request Solicitation Document</description>
+      <label>SMSRequestSolication</label>
+      <superUserGroupName namespace="PERMIT">cit.cynergy.global.admins</superUserGroupName>
+      <!--<blanketApproveGroupName namespace="PERMIT">cit.cynergy.global.admins</blanketApproveGroupName>-->
+      <blanketApprovePolicy>NONE</blanketApprovePolicy>
+      <defaultExceptionGroupName namespace="PERMIT">dfa-cynergy-it</defaultExceptionGroupName>
+      <docHandler>${kr.krad.url}/maintenance?methodToCall=docHandler</docHandler>
+      <active>true</active>
+      <policies>
+        <policy>
+          <name>LOOK_FUTURE</name>
+          <value>true</value>
+        </policy>
+      </policies>
+      <routePaths>
+        <routePath>
+          <start name="SMSReqSolCreation" nextNode="SMSReqSolPurchasingAsst"/>
+          <requests name="SMSReqSolPurchasingAsst" nextNode="SMSReqSolPurchasingAgent"/>
+          <requests name="SMSReqSolPurchasingAgent"/>
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="SMSReqSolCreation">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="SMSReqSolPurchasingAsst">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergySingleRecipientRouteModule</routeModule>
+          <name>routeToGroup</name>
+          <value>dfa.cynergy.smsassts</value>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="SMSReqSolPurchasingAgent">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergySingleRecipientRouteModule</routeModule>
+          <name>routeToGroup</name>
+          <value>dfa.cynergy.smsagents</value>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>

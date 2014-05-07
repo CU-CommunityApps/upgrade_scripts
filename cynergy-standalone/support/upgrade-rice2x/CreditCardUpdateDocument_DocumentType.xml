@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>CreditCardUpdateDocument</name>
+      <parent>CreditCardDocument</parent>
+      <description>Credit Card Update Form</description>
+      <label>Credit Card Update Document</label>
+      <superUserGroupName namespace="PERMIT">dfa-cynergy-it</superUserGroupName>
+      <blanketApproveGroupName namespace="PERMIT">dfa-cynergy-it</blanketApproveGroupName>
+      <defaultExceptionGroupName namespace="PERMIT">dfa-cynergy-it</defaultExceptionGroupName>
+      <docHandler>${kr.krad.url}/creditCardUpdateDocument?methodToCall=docHandler</docHandler>
+      <active>true</active>
+      <policies>
+        <policy>
+          <name>LOOK_FUTURE</name>
+          <value>true</value>
+        </policy>
+      </policies>
+      <attributes>
+        <attribute>
+          <name>CreditCardDataDictionarySearchableAttribute</name>
+        </attribute>
+      </attributes>
+      <routePaths>
+        <routePath>
+          <start name="CreditCardUpdateInitiation" nextNode="CreditCardUpdateRequest"/>
+          <requests name="CreditCardUpdateRequest" nextNode="CreditCardFinalFYINode"/>
+          <requests name="CreditCardFinalFYINode"/>
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="CreditCardUpdateInitiation">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="CreditCardUpdateRequest">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergySingleRecipientRouteModule</routeModule>
+          <name>routeToGroup</name>
+          <value>ga.access.creditcards</value>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>true</finalApproval>
+        </requests>
+        <requests name="CreditCardFinalFYINode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergyInitiatorFYIRouteModule</routeModule>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+</data>
