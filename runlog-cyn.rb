@@ -36,7 +36,8 @@ custom_changelogs = ['krim_rsp_t_update.xml',
                      'krim_role_rsp_t_update.xml',
                      'krim_role_mbr_t.xml',
                      'cynapps_namespaces.xml',
-                     'krcr_parm_t_update.xml']
+                     'krcr_parm_t_update.xml',
+                     'indexes.xml']
 
 # folders in the correct order
 folders = [ {:name => "kfs/3.0.1_4.0", :version => 1, :changelogs => ['rice/kns_upgrade.xml', 

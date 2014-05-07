@@ -1,0 +1,17 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="srb55" id="KFSUPGRADE-914" failOnError="false">
+		<comment>index for DV person search</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+                CREATE INDEX KRIM_ENTITY_EXT_ID_TI3 ON KRIM_ENTITY_EXT_ID_T (UPPER(EXT_ID), UPPER(EXT_ID_TYP_CD))
+                /
+            ]]>
+        </sql>  
+	</changeSet>
+</databaseChangeLog>
