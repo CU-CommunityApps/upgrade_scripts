@@ -27,8 +27,7 @@
               h.app_doc_stat val
        from cynergy.krew_doc_hdr_t h,
             cynergy.krew_doc_typ_t t
-       where (t.doc_typ_nm like 'REQ%')
-        and t.doc_typ_id = h.doc_typ_id
+       where t.doc_typ_id = h.doc_typ_id
         and h.app_doc_stat is not null;
 
       procedure ins_ext(ext in cynergy.krew_doc_hdr_ext_t%rowtype) is   
