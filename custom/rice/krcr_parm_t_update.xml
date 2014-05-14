@@ -255,7 +255,7 @@
         <comment>Update to LINK_DOCUMENT_NUMBER_TO_LABOR_ORIGIN_CODES</comment>
 
         <update tableName="krcr_parm_t">
-            <column name="val" value="P4;RN;01" />
+            <column name="val" value="P4;RN" />
             <where>parm_nm = 'LINK_DOCUMENT_NUMBER_TO_LABOR_ORIGIN_CODES' and nmspc_cd ='KFS-LD'</where>
         </update>
     </changeSet>
