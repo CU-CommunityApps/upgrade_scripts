@@ -29,6 +29,16 @@
             ]]>
         </sql>
 
+
     </changeSet>
+
+    <changeSet author="srb55" id="KFSUPGRADE-716" failOnError="false">
+        <comment>Responsibilty Review 24 throws stacktrace</comment>
+
+        <delete tableName="krim_role_rsp_t">
+            <where>role_id = '71' AND rsp_id = '24'</where>
+        </delete>
+
+   </changeSet>
 
 </databaseChangeLog>
