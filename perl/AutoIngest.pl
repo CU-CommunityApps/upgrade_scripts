@@ -100,7 +100,8 @@ my @cynergyFiles = (
   "BSCMS_KIMData.xml",
   "SDA_KIMData.xml",
   "DFA_KIMData.xml",
-  "HRDA_KIMData.xml"
+  "HRDA_KIMData.xml",
+  "IAS_KIMData.xml"
   ) ;
 
 my $redir=[qw(GET HEAD POST)] ;

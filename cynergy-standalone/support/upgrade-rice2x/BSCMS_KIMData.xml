@@ -12,6 +12,15 @@
             <attribute key="documentTypeName">BusinessServiceCenterMaintenanceDocument</attribute>
           </attributes>
         </permission>
+        <!-- Legacy FTC/BSC Accounting Department Document permissions. -->
+        <permission>
+          <name namespace="BSCMS">Open BscAcctDeptResponsibility Maintenance Document</name>
+          <templateName namespace="KR-NS">Open Document</templateName>
+          <description>Users that are authorized to open legacy BscAcctDeptResponsibility maintenance docs.</description>
+          <attributes>
+            <attribute key="documentTypeName">BscAcctDeptResponsibilityMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
       </permissions>
     </permissionData>
     <roleData xmlns="ns:workflow/RoleData" xsi:schemaLocation="ns:workflow/RoleData resource:RoleData">
@@ -27,12 +36,39 @@
             </roleMember>
           </roleMembers>
         </role>
+        <!-- BscAcctDeptResponsibility-related roles. -->
+        <role>
+          <name namespace="BSCMS">BscAcctDeptResponsibility Administrator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>Administrative users for BscAcctDeptResponsibility maintenance documents.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">dfa-bsc</groupName>
+            </roleMember>
+            <roleMember>
+              <groupName namespace="PERMIT">cit.cynergy.global.admins</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
       </roles>
       <rolePermissions>
         <!-- FTC/BSC Maintenance Document permission assignments. -->
         <rolePermission>
           <permissionName namespace="BSCMS">Initiate BSC Maintenance Document</permissionName>
           <roleName namespace="BSCMS">BSC Maintenance Document Initiator</roleName>
+        </rolePermission>
+        <!-- Legacy FTC/BSC Accounting Department Document permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="BSCMS">Open BscAcctDeptResponsibility Maintenance Document</permissionName>
+          <roleName namespace="KR-SYS">Technical Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="BSCMS">Open BscAcctDeptResponsibility Maintenance Document</permissionName>
+          <roleName namespace="BSCMS">BscAcctDeptResponsibility Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="BSCMS">Open BscAcctDeptResponsibility Maintenance Document</permissionName>
+          <roleName namespace="KR-WKFLW">Initiator or Reviewer</roleName>
         </rolePermission>
       </rolePermissions>
     </roleData>
