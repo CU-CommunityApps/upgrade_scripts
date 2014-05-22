@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <otherData xmlns="ns:workflow/OtherData" xsi:schemaLocation="ns:workflow/OtherData resource:OtherData">
+    <permissionData xmlns="ns:workflow/PermissionData" xsi:schemaLocation="ns:workflow/PermissionData resource:PermissionData">
+      <permissions>
+        <!-- IAS Namespace Document permissions. -->
+        <permission>
+          <name namespace="IAS">Initiate InfoAccess Namespace Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate InfoAccess Namespace maintenance documents.</description>
+          <attributes>
+            <attribute key="documentTypeName">InfoAccessNamespaceMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
+        <!-- IAS Role Document permissions. -->
+        <permission>
+          <name namespace="IAS">Initiate InfoAccess Role Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate InfoAccess Role maintenance documents.</description>
+          <attributes>
+            <attribute key="documentTypeName">InfoAccessRoleMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
+        <!-- IAS Unit Document permissions. -->
+        <permission>
+          <name namespace="IAS">Initiate InfoAccess Unit Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate InfoAccess Unit maintenance documents.</description>
+          <attributes>
+            <attribute key="documentTypeName">InfoAccessUnitMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
+        <!-- IAS Organization Document permissions. -->
+        <permission>
+          <name namespace="IAS">Initiate InfoAccess Organization Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate InfoAccess Organization maintenance documents.</description>
+          <attributes>
+            <attribute key="documentTypeName">InfoAccessOrganizationMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
+        <!-- IAS Department Document permissions. -->
+        <permission>
+          <name namespace="IAS">Initiate InfoAccess Department Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate InfoAccess Department maintenance documents.</description>
+          <attributes>
+            <attribute key="documentTypeName">InfoAccessDepartmentMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
+        <!-- IAS Subledger Document permissions. -->
+        <permission>
+          <name namespace="IAS">Initiate InfoAccess Subledger Document</name>
+          <templateName namespace="KR-SYS">Initiate Document</templateName>
+          <description>Users that are authorized to initiate InfoAccess Subledger maintenance documents.</description>
+          <attributes>
+            <attribute key="documentTypeName">InfoAccessSubledgerMaintenanceDocument</attribute>
+          </attributes>
+        </permission>
+        <!-- IAS Role administrative field permissions. -->
+        <permission>
+          <name namespace="IAS">View InfoAccess Role Admin Fields</name>
+          <templateName namespace="KR-KRAD">View Field</templateName>
+          <description>Users that are authorized view administrative fields on InfoAccess Role screens.</description>
+          <attributes>
+            <attribute key="viewId">InfoAccessRole-*View</attribute>
+            <attribute key="fieldId">iasRoleAdminField</attribute>
+          </attributes>
+        </permission>
+        <!-- IAS Unit administrative field permissions. -->
+        <permission>
+          <name namespace="IAS">View InfoAccess Unit Admin Fields</name>
+          <templateName namespace="KR-KRAD">View Field</templateName>
+          <description>Users that are authorized view administrative fields on InfoAccess Unit screens.</description>
+          <attributes>
+            <attribute key="viewId">InfoAccessUnit-*View</attribute>
+            <attribute key="fieldId">iasUnitAdminField</attribute>
+          </attributes>
+        </permission>
+      </permissions>
+    </permissionData>
+    <roleData xmlns="ns:workflow/RoleData" xsi:schemaLocation="ns:workflow/RoleData resource:RoleData">
+      <roles>
+        <!-- IAS document initiation roles. -->
+        <role>
+          <name namespace="IAS">InfoAccess Current Documents Initiator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>The authorized initiators of InfoAccess Namespace/Role/Unit maintenance documents.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">cit.security.workflow.cmsecurity</groupName>
+            </roleMember>
+            <roleMember>
+              <groupName namespace="PERMIT">cit.cynergy.global.admins</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
+        <role>
+          <name namespace="IAS">InfoAccess Legacy Documents Initiator</name>
+          <kimTypeName namespace="KUALI">Default</kimTypeName>
+          <description>The authorized initiators of InfoAccess Organization/Department/Subledger maintenance documents.</description>
+          <roleMembers>
+            <roleMember>
+              <groupName namespace="PERMIT">cit.security.workflow.infoaccess.dfa</groupName>
+            </roleMember>
+            <roleMember>
+              <groupName namespace="PERMIT">cit.cynergy.global.admins</groupName>
+            </roleMember>
+          </roleMembers>
+        </role>
+      </roles>
+      <rolePermissions>
+        <!-- IAS Namespace Document permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="IAS">Initiate InfoAccess Namespace Document</permissionName>
+          <roleName namespace="IAS">InfoAccess Current Documents Initiator</roleName>
+        </rolePermission>
+        <!-- IAS Role Document permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="IAS">Initiate InfoAccess Role Document</permissionName>
+          <roleName namespace="IAS">InfoAccess Current Documents Initiator</roleName>
+        </rolePermission>
+        <!-- IAS Unit Document permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="IAS">Initiate InfoAccess Unit Document</permissionName>
+          <roleName namespace="IAS">InfoAccess Current Documents Initiator</roleName>
+        </rolePermission>
+        <!-- IAS Organization Document permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="IAS">Initiate InfoAccess Organization Document</permissionName>
+          <roleName namespace="IAS">InfoAccess Legacy Documents Initiator</roleName>
+        </rolePermission>
+        <!-- IAS Department Document permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="IAS">Initiate InfoAccess Department Document</permissionName>
+          <roleName namespace="IAS">InfoAccess Legacy Documents Initiator</roleName>
+        </rolePermission>
+        <!-- IAS Subledger Document permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="IAS">Initiate InfoAccess Subledger Document</permissionName>
+          <roleName namespace="IAS">InfoAccess Legacy Documents Initiator</roleName>
+        </rolePermission>
+        <!-- IAS Role administrative field permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="IAS">View InfoAccess Role Admin Fields</permissionName>
+          <roleName namespace="IAS">InfoAccess Current Documents Initiator</roleName>
+        </rolePermission>
+        <!-- IAS Unit administrative field permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="IAS">View InfoAccess Unit Admin Fields</permissionName>
+          <roleName namespace="IAS">InfoAccess Current Documents Initiator</roleName>
+        </rolePermission>
+      </rolePermissions>
+    </roleData>
+  </otherData>
+</data>
