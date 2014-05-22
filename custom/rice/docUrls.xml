@@ -1,0 +1,23 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet author="cab379" id="KFSUPGRADE-913" failOnError="false">
+  	<sql stripComments="true" endDelimiter="/nGo">
+  		<![CDATA[
+		Create Table docurl_temp AS (Select DOC_TYP_ID, REGEXP_REPLACE(DOC_HDLR_URL, '/kr/', '/krad/', 1) AS DOC_HDLR_URL from krew_doc_typ_t)
+		/nGo
+	  update krew_doc_typ_t Set doc_hdlr_url = ((Select docurl_temp.doc_hdlr_url from docurl_temp where krew_doc_typ_t.doc_typ_id = docurl_temp.doc_typ_id)) where krew_doc_typ_t.doc_typ_id IN (select docurl_temp.doc_typ_id from docurl_temp)
+	  /nGo
+	  drop table docurl_temp
+	  /nGo
+	  commit
+	  /nGo
+  		]]>
+   	</sql> 	
+	</changeSet>
+
+</databaseChangeLog>
