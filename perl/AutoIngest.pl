@@ -26,7 +26,8 @@ my @kfsFiles = (
   "kfs/5.0.5_5.1/workflow/workflow_document_updates.xml",
   "custom/kfs/workflow/cu_purchasing_document_updates.xml",
   "custom/kfs/workflow/AccountDelegateModelMaintenanceDocument.xml",
-  "custom/kfs/workflow/CU-DisbursementVoucherDocument.xml"
+  "custom/kfs/workflow/CU-DisbursementVoucherDocument.xml",
+  "custom/kfs/workflow/EffortCommittmentTransactionalDocuments.xml"
 	) ;
 
 my @riceFiles = (

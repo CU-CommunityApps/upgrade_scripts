@@ -12,6 +12,8 @@
         /
         alter table FP_CPTL_AST_INFO_DTL_T modify (CPTLAST_TAG_NBR varchar2(10))
         /
+        alter table CB_PRTG_DTL_T modify (CPTLAST_ORGTAG_NBR varchar2(10))
+        /
   		]]>
    	</sql> 	
 	</changeSet>
