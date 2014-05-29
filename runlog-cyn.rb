@@ -39,6 +39,7 @@ custom_changelogs = ['krim_rsp_t_update.xml',
                      'cynapps_namespaces.xml',
                      'krcr_parm_t_update.xml',
                      'docUrls.xml',
+                     'setDescendsHierarchy.xml',
                      'indexes.xml']
 
 # folders in the correct order
