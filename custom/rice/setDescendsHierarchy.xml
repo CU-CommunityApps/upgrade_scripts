@@ -28,7 +28,7 @@
 		update role_attr_temp set ATTR_DATA_ID = krim_attr_data_id_s.NEXTVAL
 		/
 
-		update ROLE_ATTR_TEMP SET KIM_TYP_ID = '28', KIM_ATTR_DEFN_ID = '25', ATTR_VAL = 'Y'
+		update ROLE_ATTR_TEMP SET KIM_TYP_ID = '28', KIM_ATTR_DEFN_ID = '25', ATTR_VAL = 'N'
 		/
 		update role_attr_temp set OBJ_ID =SYS_GUID()
 		/
