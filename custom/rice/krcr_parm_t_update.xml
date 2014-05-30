@@ -274,4 +274,18 @@
         </sql>
     </changeSet>
 
+    <changeSet author="srb55" id="KFSUPGRADE-953" failOnError="false">
+        <comment>determine if duplicate capital equipment tag numbers should be allowed</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+            insert into krcr_parm_t 
+              (NMSPC_CD, CMPNT_CD, PARM_NM, OBJ_ID, PARM_TYP_CD, VAL, PARM_DESC_TXT, EVAL_OPRTR_CD, APPL_ID) 
+            values 
+              ('KFS-CAM','Asset','RE_USE_RETIRED_ASSET_TAG_NUMBER',SYS_GUID(),'CONFG', 
+               'N','Controls whether to allow the re-use of retired tag numbers','A','KFS')
+            /
+            ]]>
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
