@@ -288,4 +288,13 @@
         </sql>
     </changeSet>
 
+    <changeSet author="srb55" id="KFSUPGRADE-959" failOnError="false">
+        <comment>Parm for IAA ICR validation</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+Insert into KRCR_PARM_T (NMSPC_CD,CMPNT_CD,PARM_NM,OBJ_ID,VER_NBR,PARM_TYP_CD,VAL,PARM_DESC_TXT,EVAL_OPRTR_CD,APPL_ID) values ('KFS-FP','IntraAccountAdjustment','VALIDATE_CS_SUB_ACCOUNT_OR_ICR_ATTRIBUTES',sys_guid(),1,'CONFG','N','Flag to turn on or off validation that Cost Share Sub Account and ICR sub Account Attributes cannot be used on Intra Account Adjustment Document. By default this parameter is set to N and this validation will not occur. If validation is needed please set this parameter value to Y','A','KFS')
+            /
+            ]]>
+        </sql>
+    </changeSet>
 </databaseChangeLog>
