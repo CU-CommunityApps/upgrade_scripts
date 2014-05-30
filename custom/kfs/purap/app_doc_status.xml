@@ -10,6 +10,11 @@
 		
   	<sql stripComments="true" endDelimiter="/">
   		<![CDATA[
+  		
+  		update ap_pmt_rqst_stat_t set pmt_rqst_stat_desc = 'Cancelled In Process' where pmt_rqst_stat_cd = 'CIPR'
+  		/
+  		update ap_crdt_memo_stat_t set crdt_memo_stat_desc = 'Cancelled In Process' where crdt_memo_stat_cd = 'CIPR'
+  		/
       update cynergy.krew_doc_hdr_t t
       set (app_doc_stat, app_doc_stat_mdfn_dt) = (select s.reqs_stat_desc, trunc(sysdate) + 365
                                                   from pur_reqs_t p,
