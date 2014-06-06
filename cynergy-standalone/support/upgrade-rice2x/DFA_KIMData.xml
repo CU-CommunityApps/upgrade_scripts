@@ -20,6 +20,23 @@
             <attribute key="documentTypeName">DFAAdminMaintenanceDocument</attribute>
           </attributes>
         </permission>
+        <permission>
+          <name namespace="DFA">Open DFAAdmin Lookup</name>
+          <templateName namespace="KR-KRAD">Open View</templateName>
+          <description>Users that are authorized to open the DFAAdmin lookup screen.</description>
+          <attributes>
+            <attribute key="viewId">DFAAdmin-LookupView</attribute>
+          </attributes>
+        </permission>
+        <!-- DFAProcSysSourcePerm permissions. -->
+        <permission>
+          <name namespace="DFA">Open DFAProcSysSourcePerm Lookup</name>
+          <templateName namespace="KR-KRAD">Open View</templateName>
+          <description>Users that are authorized to open the DFAProcSysSourcePerm lookup screen.</description>
+          <attributes>
+            <attribute key="viewId">DFAProcSysSourcePerm-LookupView</attribute>
+          </attributes>
+        </permission>
         <!-- DFARequest doc permissions. -->
         <permission>
           <name namespace="DFA">Cancel Enroute DFARequest Document</name>
@@ -100,6 +117,15 @@
         </rolePermission>
         <rolePermission>
           <permissionName namespace="DFA">Initiate DFAAdmin Maintenance Document</permissionName>
+          <roleName namespace="DFA">DFA-InfoAccess Administrator</roleName>
+        </rolePermission>
+        <rolePermission>
+          <permissionName namespace="DFA">Open DFAAdmin Lookup</permissionName>
+          <roleName namespace="DFA">DFA-InfoAccess Administrator</roleName>
+        </rolePermission>
+        <!-- DFAProcSysSourcePerm permission assignments. -->
+        <rolePermission>
+          <permissionName namespace="DFA">Open DFAProcSysSourcePerm Lookup</permissionName>
           <roleName namespace="DFA">DFA-InfoAccess Administrator</roleName>
         </rolePermission>
         <!-- DFARequest doc permission assignments. -->
