@@ -24,6 +24,7 @@ my @kfsFiles = (
   "kfs/5.0.1_5.0.2/workflow/workflow_attribute_updates.xml", 
   "kfs/5.0.1_5.0.2/workflow/workflow_document_updates.xml",
   "kfs/5.0.5_5.1/workflow/workflow_document_updates.xml",
+  "kfs/5.1.2_5.2/workflow/workflow_document_updates.xml",
   "custom/kfs/workflow/cu_purchasing_document_updates.xml",
   "custom/kfs/workflow/AccountDelegateModelMaintenanceDocument.xml",
   "custom/kfs/workflow/CU-DisbursementVoucherDocument.xml",
