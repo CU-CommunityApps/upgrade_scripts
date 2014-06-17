@@ -297,4 +297,15 @@ Insert into KRCR_PARM_T (NMSPC_CD,CMPNT_CD,PARM_NM,OBJ_ID,VER_NBR,PARM_TYP_CD,VA
             ]]>
         </sql>
     </changeSet>
+
+    <changeSet author="srb55" id="KFSUPGRADE-969" failOnError="false">
+        <comment>create new system parameter for EXPIRATION_DATE_BACKDATING_FUND_GROUPS</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+Insert into cynergy.KRCR_PARM_T (NMSPC_CD,CMPNT_CD,PARM_NM,OBJ_ID,VER_NBR,PARM_TYP_CD,VAL,PARM_DESC_TXT,EVAL_OPRTR_CD,APPL_ID) values ('KFS-COA','Account','EXPIRATION_DATE_BACKDATING_FUND_GROUPS',sys_guid(),1,'VALID','CG;RG','Fund groups that allow backdating of the expiration date.','A','KFS')
+            /
+            ]]>
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
