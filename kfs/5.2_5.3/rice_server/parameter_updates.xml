@@ -169,6 +169,7 @@
             <column name="NM" value="Current Account Balance"/>
             <column name="ACTV_IND" value="Y"/>
         </insert> 
+        <!--
         <insert tableName="KRCR_PARM_T">
             <column name="NMSPC_CD" value="KFS-GL"/>
             <column name="CMPNT_CD" value="CurrentAccountBalance"/>
@@ -180,7 +181,7 @@
             <column name="PARM_DESC_TXT" value="Identifies accounts that will have Cash Expenditure Authority and Fund Balance calculated for it on the Current Account Balance Screen. All other Budget Record Level codes will calculate Budget Balance Available."/>
             <column name="EVAL_OPRTR_CD" value="A"/>
             <column name="APPL_ID" value="KFS"/>
-        </insert>
+        </insert>-->
         <insert tableName="KRCR_PARM_T">
             <column name="NMSPC_CD" value="KFS-GL"/>
             <column name="CMPNT_CD" value="CurrentAccountBalance"/>
@@ -205,6 +206,7 @@
             <column name="EVAL_OPRTR_CD" value="A"/>
             <column name="APPL_ID" value="KFS"/>
         </insert>
+        <!--
         <insert tableName="KRCR_PARM_T">
             <column name="NMSPC_CD" value="KFS-GL"/>
             <column name="CMPNT_CD" value="CurrentAccountBalance"/>
@@ -216,7 +218,7 @@
             <column name="PARM_DESC_TXT" value="Encumbrance balance types."/>
             <column name="EVAL_OPRTR_CD" value="A"/>
             <column name="APPL_ID" value="KFS"/>
-        </insert>
+        </insert> -->
         <insert tableName="KRCR_PARM_T">
             <column name="NMSPC_CD" value="KFS-GL"/>
             <column name="CMPNT_CD" value="CurrentAccountBalance"/>
@@ -241,6 +243,7 @@
             <column name="EVAL_OPRTR_CD" value="A"/>
             <column name="APPL_ID" value="KFS"/>
         </insert>
+        <!--
         <insert tableName="KRCR_PARM_T">
             <column name="NMSPC_CD" value="KFS-GL"/>
             <column name="CMPNT_CD" value="CurrentAccountBalance"/>
@@ -252,9 +255,9 @@
             <column name="PARM_DESC_TXT" value="Liability object codes."/>
             <column name="EVAL_OPRTR_CD" value="A"/>
             <column name="APPL_ID" value="KFS"/>
-        </insert>
+        </insert>-->
   	</changeSet>
-	
+	<!--
 	<changeSet author="KFS53" id="KKFSCNTRB-594">
         <comment>Adds parameter for KKFSCNTRB-594 for Default chart code</comment>
 		<insert tableName="KRCR_PARM_T">
@@ -294,7 +297,7 @@
 			<column name="EVAL_OPRTR_CD" value="A"/>
 			<column name="APPL_ID" value="KFS"/>
 		</insert>
-    </changeSet>
+    </changeSet>-->
     
     <changeSet author="KFSCNTRB-1681" id="KFSCNTRB-1681">
 		<comment>Adds parameter for KFSCNTRB-1681 allows Negative Accounting Lines on DV</comment>
