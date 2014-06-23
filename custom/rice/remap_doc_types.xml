@@ -1,0 +1,30 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+     <changeSet author="srb55" id="KFSUPGRADE-982" failOnError="false">
+
+    <comment>need to remap all the doc types to the current doc type</comment>
+
+    <sql stripComments="true" endDelimiter="/">
+        <![CDATA[
+update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'PREQ' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'PREQ' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')/
+update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'REQS' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.
+krew_doc_typ_t where doc_typ_nm = 'REQS' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')/
+update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'CM' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'CM' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')/
+update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'PO' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'PO' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')/
+update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'POA' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'POA' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')/
+update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'POC' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'POC' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')/
+update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'POPH' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'POPH' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')/
+update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'PORH' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'PORH' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')/
+update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'POR' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'POR' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')/
+update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'POSP' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'POSP' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')/
+update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'POV' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'POV' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')/
+update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'PORT' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'PORT' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')/
+        ]]>
+    </sql>
+
+    </changeSet> 	
+</databaseChangeLog>
