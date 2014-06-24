@@ -1,0 +1,23 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	 <changeSet author="srb55" id="KFSUPGRADE-986" failOnError="false">
+		<comment>Update FS_DOC_HEADER_T from KREW_DOC_HDR_T</comment>
+		
+  	<sql stripComments="true" endDelimiter="/">
+  		<![CDATA[
+        update kfs.fs_doc_header_t b 
+          set (FDOC_HDR_STAT_CD, APP_DOC_STAT, INITR_PRNCPL_ID, FDOC_TYP_NM) =
+            (select a.doc_hdr_stat_cd, a.app_doc_stat, a.initr_prncpl_id, c.doc_typ_nm from cynergy.krew_doc_hdr_t a, cynergy.krew_doc_typ_t c where a.doc_hdr_id = b.fdoc_nbr and a.doc_typ_id = c.doc_typ_id)
+        where exists
+        (select * from cynergy.krew_doc_hdr_t a, cynergy.krew_doc_typ_t c where a.doc_hdr_id = b.fdoc_nbr and a.doc_typ_id = c.doc_typ_id)
+        / 
+  		]]>
+   	</sql>
+ 	
+ 	</changeSet>
+</databaseChangeLog>
