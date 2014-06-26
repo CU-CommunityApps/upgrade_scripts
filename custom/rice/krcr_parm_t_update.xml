@@ -297,7 +297,7 @@ Insert into KRCR_PARM_T (NMSPC_CD,CMPNT_CD,PARM_NM,OBJ_ID,VER_NBR,PARM_TYP_CD,VA
             ]]>
         </sql>
     </changeSet>
-
+<!--
     <changeSet author="srb55" id="KFSUPGRADE-969" failOnError="false">
         <comment>create new system parameter for EXPIRATION_DATE_BACKDATING_FUND_GROUPS</comment>
         <sql stripComments="true" endDelimiter="/">
@@ -306,6 +306,6 @@ Insert into cynergy.KRCR_PARM_T (NMSPC_CD,CMPNT_CD,PARM_NM,OBJ_ID,VER_NBR,PARM_T
             /
             ]]>
         </sql>
-    </changeSet>
+    </changeSet>-->
 
 </databaseChangeLog>
