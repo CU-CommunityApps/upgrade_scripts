@@ -1299,7 +1299,7 @@
 			<where>nmspc_cd = 'KFS-FP' and cmpnt_cd = 'DisbursementVoucher' and parm_nm = 'VALID_OBJECT_LEVELS_BY_PAYMENT_REASON' and appl_id = 'KFS'</where>
 		</update>
 		<update tableName="KRCR_PARM_T">
-			<column name="VAL" valueComputed="CONCAT(VAL,';TA;TAA;TAC)"/>
+			<column name="VAL" valueComputed="CONCAT(VAL,';TA;TAA;TAC')"/>
 			<where>nmspc_cd = 'KFS-GL' and cmpnt_cd = 'PosterEntriesStep' and parm_nm = 'ENCUMBRANCE_OPEN_AMOUNT_OVERRIDING_DOCUMENT_TYPES' and appl_id = 'KFS'</where>
 		</update>
 		<update tableName="KRCR_PARM_T">
