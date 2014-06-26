@@ -462,17 +462,13 @@
 					<qualifierResolverClass>
 						org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
 					</qualifierResolverClass>
-					<activationType>
-						P
-                    </activationType>
+					<activationType>P</activationType>
 				</role>
 				<role name="AccountingOrganizationHierarchy">
 					<qualifierResolverClass>
 						org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
 					</qualifierResolverClass>
-					<activationType>
-						P
-                    </activationType>
+					<activationType>P</activationType>
 				</role>
 				<join name="JoinTravelRequiresDivisionApproval" />
                 <simple name="NoOpTravelRequiresDivisionApproval">
@@ -538,17 +534,13 @@
 					<qualifierResolverClass>
 						org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
 					</qualifierResolverClass>
-					<activationType>
-						P
-          			</activationType>
+					<activationType>P</activationType>
 				</role>
 				<role name="Award">
 					<qualifierResolverClass>
 						org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
 					</qualifierResolverClass>
-					<activationType>
-						P
-          			</activationType>
+					<activationType>P</activationType>
 				</role>
 				
 				<role name="Budget">
@@ -937,9 +929,7 @@
 					<qualifierResolverClass>
 						org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
 					</qualifierResolverClass>
-					<activationType>
-						P
-					</activationType>
+					<activationType>P</activationType>
 				</role>
 			</routeNodes>
 		</documentType>
@@ -1082,17 +1072,13 @@
 					<qualifierResolverClass>
 						org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
 					</qualifierResolverClass>
-					<activationType>
-						P
-                    </activationType>
+					<activationType>P</activationType>
 				</role>
 				<role name="AccountingOrganizationHierarchy">
 					<qualifierResolverClass>
 						org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
 					</qualifierResolverClass>
-					<activationType>
-						P
-                    </activationType>
+					<activationType>P</activationType>
 				</role>
                 
                 <join name="JoinTravelHasSpecialRequest" />
@@ -1116,17 +1102,13 @@
                     <qualifierResolverClass>
                         org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
                     </qualifierResolverClass>
-                    <activationType>
-                        P
-                    </activationType>
+                    <activationType>P</activationType>
                 </role>
                 <role name="Award">
                     <qualifierResolverClass>
                         org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
                     </qualifierResolverClass>
-                    <activationType>
-                        P
-                    </activationType>
+                    <activationType>P</activationType>
                 </role>
                 
                 <role name="Budget">
@@ -1172,18 +1154,14 @@
                     <qualifierResolverClass>
                         org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
                     </qualifierResolverClass>
-                    <activationType>
-                        P
-                    </activationType>
+                    <activationType>P</activationType>
                 </role>    
                 
                 <role name="MovingAndRelocationManager">
                     <qualifierResolverClass>
                         org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
                     </qualifierResolverClass>
-                    <activationType>
-                        P
-                    </activationType>
+                    <activationType>P</activationType>
                 </role>        
             </routeNodes>        
         </documentType>
@@ -1495,17 +1473,13 @@
 					<qualifierResolverClass>
 						org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
 					</qualifierResolverClass>
-					<activationType>
-						P
-                    </activationType>
+					<activationType>P</activationType>
 				</role>
 				<role name="Travel">
 					<qualifierResolverClass>
 						org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
 					</qualifierResolverClass>
-					<activationType>
-						P
-                    </activationType>
+					<activationType>P</activationType>
 				</role>
 			</routeNodes>
 		</documentType>
@@ -1545,17 +1519,13 @@
 					<qualifierResolverClass>
 						org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
 					</qualifierResolverClass>
-					<activationType>
-						P
-                    </activationType>
+					<activationType>P</activationType>
 				</role>
 				<role name="Travel">
 					<qualifierResolverClass>
 						org.kuali.rice.krad.workflow.attribute.DataDictionaryQualifierResolver
 					</qualifierResolverClass>
-					<activationType>
-						P
-                    </activationType>
+					<activationType>P</activationType>
 				</role>
 			</routeNodes>
 		</documentType>
