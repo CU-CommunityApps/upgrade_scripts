@@ -1,0 +1,83 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="srb55" id="KFSUPGRADE-989" failOnError="false">
+        <comment>Chapter4Status db scripts</comment>
+
+
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+                INSERT INTO CYNERGY.KRIM_PERM_T 
+                (PERM_ID, OBJ_ID, VER_NBR, PERM_TMPL_ID, NMSPC_CD,  NM, DESC_TXT, ACTV_IND) 
+                VALUES(KRIM_PERM_ID_S.NEXTVAL,SYS_GUID(), 1, 
+                (select PERM_TMPL_ID from krim_perm_tmpl_t where NMSPC_CD='KR-NS' and nm='Full Unmask Field'), 
+                'KFS-VND', 'Full Unmask Field ' || KRIM_PERM_ID_S.CURRVAL, 
+                'Authorizes users to view the entire Foreign Tax Number on the Vendor Maintenance Document and Inquiry.' , 'Y')
+                /
+
+                INSERT INTO CYNERGY.KRIM_PERM_ATTR_DATA_T
+                (ATTR_DATA_ID, OBJ_ID, VER_NBR, PERM_ID, KIM_TYP_ID, KIM_ATTR_DEFN_ID, ATTR_VAL)
+                VALUES(krim_attr_data_id_s.NEXTVAL,SYS_GUID(), 1, KRIM_PERM_ID_S.CURRVAL, '11', '5', 'VendorDetail')
+                /
+                INSERT INTO CYNERGY.KRIM_PERM_ATTR_DATA_T
+                (ATTR_DATA_ID, OBJ_ID, VER_NBR, PERM_ID, KIM_TYP_ID, KIM_ATTR_DEFN_ID, ATTR_VAL)
+                VALUES(krim_attr_data_id_s.NEXTVAL,SYS_GUID(), 1, KRIM_PERM_ID_S.CURRVAL, '11', '6', 'vendorHeader.extension.vendorForeignTaxNumber' )
+                /
+                INSERT into  KRIM_ROLE_PERM_T (ROLE_PERM_ID, OBJ_ID, VER_NBR, ROLE_ID, PERM_ID, ACTV_IND )
+                VALUES (KRIM_ROLE_PERM_ID_S.NEXTVAL,SYS_GUID(), 1, 
+                (select role_id from krim_role_t where NMSPC_CD='KFS-SYS' and role_nm='Tax Identification Number User'),
+                KRIM_PERM_ID_S.CURRVAL, 'Y')
+                /
+                INSERT INTO CYNERGY.KRIM_PERM_T 
+                (PERM_ID, OBJ_ID, VER_NBR, PERM_TMPL_ID, NMSPC_CD,  NM, DESC_TXT, ACTV_IND) 
+                VALUES(KRIM_PERM_ID_S.NEXTVAL,SYS_GUID(), 1, 
+                (select PERM_TMPL_ID from krim_perm_tmpl_t where NMSPC_CD='KR-NS' and nm='Full Unmask Field'),
+                 'KFS-VND', 'Full Unmask Field ' || KRIM_PERM_ID_S.CURRVAL, 
+                'Authorizes users to view the entire Global Intermediary Identification Number - GIIN on the Vendor Maintenance Document and Inquiry.' , 'Y')
+                /
+                INSERT INTO CYNERGY.KRIM_PERM_ATTR_DATA_T
+                (ATTR_DATA_ID, OBJ_ID, VER_NBR, PERM_ID, KIM_TYP_ID, KIM_ATTR_DEFN_ID, ATTR_VAL)
+                VALUES(krim_attr_data_id_s.NEXTVAL,SYS_GUID(), 1, KRIM_PERM_ID_S.CURRVAL, '11', '5', 'VendorDetail')
+                /
+                INSERT INTO CYNERGY.KRIM_PERM_ATTR_DATA_T
+                (ATTR_DATA_ID, OBJ_ID, VER_NBR, PERM_ID, KIM_TYP_ID, KIM_ATTR_DEFN_ID, ATTR_VAL)
+                VALUES(krim_attr_data_id_s.NEXTVAL,SYS_GUID(), 1, KRIM_PERM_ID_S.CURRVAL, '11', '6', 'vendorHeader.extension.vendorGIIN' )
+                /
+                INSERT into  KRIM_ROLE_PERM_T (ROLE_PERM_ID, OBJ_ID, VER_NBR, ROLE_ID, PERM_ID, ACTV_IND )
+                VALUES (KRIM_ROLE_PERM_ID_S.NEXTVAL,SYS_GUID(), 1, 
+                (select role_id from krim_role_t where NMSPC_CD='KFS-SYS' and role_nm='Tax Identification Number User'),
+                KRIM_PERM_ID_S.CURRVAL, 'Y')
+                /
+                INSERT INTO CYNERGY.KRIM_PERM_T 
+                (PERM_ID, OBJ_ID, VER_NBR, PERM_TMPL_ID, NMSPC_CD,  NM, DESC_TXT, ACTV_IND) 
+                VALUES(KRIM_PERM_ID_S.NEXTVAL,SYS_GUID(), 1, 
+                (select PERM_TMPL_ID from krim_perm_tmpl_t where NMSPC_CD='KR-NS' and nm='Full Unmask Field'),
+                'KFS-VND', 'Full Unmask Field ' || KRIM_PERM_ID_S.CURRVAL, 
+                q'!Authorizes users to view the entire Foreign National Recipient’s Date of Birth on the Vendor Maintenance Document and Inquiry.!' , 'Y')
+                /
+                INSERT INTO CYNERGY.KRIM_PERM_ATTR_DATA_T
+                (ATTR_DATA_ID, OBJ_ID, VER_NBR, PERM_ID, KIM_TYP_ID, KIM_ATTR_DEFN_ID, ATTR_VAL)
+                VALUES(krim_attr_data_id_s.NEXTVAL,SYS_GUID(), 1, KRIM_PERM_ID_S.CURRVAL, '11', '5', 'VendorDetail')
+                /
+                INSERT INTO CYNERGY.KRIM_PERM_ATTR_DATA_T
+                (ATTR_DATA_ID, OBJ_ID, VER_NBR, PERM_ID, KIM_TYP_ID, KIM_ATTR_DEFN_ID, ATTR_VAL)
+                VALUES(krim_attr_data_id_s.NEXTVAL,SYS_GUID(), 1, KRIM_PERM_ID_S.CURRVAL, '11', '6', 'vendorHeader.extension.vendorForeignRecipientBirthDate' )
+                /
+                INSERT into  KRIM_ROLE_PERM_T (ROLE_PERM_ID, OBJ_ID, VER_NBR, ROLE_ID, PERM_ID, ACTV_IND )
+                VALUES (KRIM_ROLE_PERM_ID_S.NEXTVAL,SYS_GUID(), 1, 
+                (select role_id from krim_role_t where NMSPC_CD='KFS-SYS' and role_nm='Tax Identification Number User'),
+                KRIM_PERM_ID_S.CURRVAL, 'Y')
+                /
+
+            ]]>
+        </sql>
+
+
+    </changeSet>
+
+
+</databaseChangeLog>

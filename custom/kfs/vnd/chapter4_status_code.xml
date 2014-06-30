@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="srb55" id="KFSUPGRADE-989" failOnError="false">
+        <comment>Delete Vendor Type that will not work and has never been used in Production</comment>
+            <sql stripComments="true" endDelimiter="/">
+                <![CDATA[
+                ALTER TABLE KFS.PUR_VNDR_HDR_TX ADD (
+                    VNDR_CHPT4_STAT_CD VARCHAR2(2 BYTE),
+                  VNDR_W8_BEN_RCVD_DT DATE,
+                  VNDR_FRGN_TAX_NBR VARCHAR2(20 BYTE),
+                  VNDR_GIINBR VARCHAR2(19 BYTE),
+                  VNDR_FRGN_RECIPNT_BIRTH_DT DATE
+                )
+                /
+                CREATE TABLE KFS.PUR_VNDR_CHPT4_STAT_CD_TC 
+                   (    VNDR_CHPT4_STAT_CD VARCHAR2(2 BYTE), 
+                    VNDR_CHPT4_STAT_CD_DESC VARCHAR2(100 BYTE), 
+                    OBJ_ID VARCHAR2(36 BYTE) NOT NULL ENABLE, 
+                    VER_NBR NUMBER(8,0) DEFAULT 1 NOT NULL ENABLE, 
+                    ROW_ACTV_IND VARCHAR2(1 BYTE), 
+                     CONSTRAINT PUR_VNDR_CHPT4_STAT_CD_TC_TP1 PRIMARY KEY (VNDR_CHPT4_STAT_CD))
+                /
+                ]]>
+            </sql> 
+    </changeSet>
+</databaseChangeLog>
