@@ -39,6 +39,7 @@ custom_changelogs = ['krim_rsp_t_update.xml',
                      'krcr_parm_t_update.xml',
                      'docUrls.xml',
                      'setDescendsHierarchy.xml',
+                     'chapter4_role_perm.xml',
                      'indexes.xml']
 
 # folders in the correct order

@@ -13,7 +13,7 @@
                     VNDR_CHPT4_STAT_CD VARCHAR2(2 BYTE),
                   VNDR_W8_BEN_RCVD_DT DATE,
                   VNDR_FRGN_TAX_NBR VARCHAR2(20 BYTE),
-                  VNDR_GIINBR VARCHAR2(19 BYTE),
+                  VNDR_GIIN VARCHAR2(19 BYTE),
                   VNDR_FRGN_RECIPNT_BIRTH_DT DATE
                 )
                 /
