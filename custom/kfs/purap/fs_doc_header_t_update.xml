@@ -11,8 +11,8 @@
   	<sql stripComments="true" endDelimiter="/">
   		<![CDATA[
         update kfs.fs_doc_header_t b 
-          set (FDOC_HDR_STAT_CD, APP_DOC_STAT, INITR_PRNCPL_ID, FDOC_TYP_NM) =
-            (select a.doc_hdr_stat_cd, a.app_doc_stat, a.initr_prncpl_id, c.doc_typ_nm from cynergy.krew_doc_hdr_t a, cynergy.krew_doc_typ_t c where a.doc_hdr_id = b.fdoc_nbr and a.doc_typ_id = c.doc_typ_id)
+          set (FDOC_HDR_STAT_CD, APP_DOC_STAT, INITR_PRNCPL_ID, FDOC_TYP_NM, FDOC_CRTE_DT) =
+            (select a.doc_hdr_stat_cd, a.app_doc_stat, a.initr_prncpl_id, c.doc_typ_nm, a.crte_dt from cynergy.krew_doc_hdr_t a, cynergy.krew_doc_typ_t c where a.doc_hdr_id = b.fdoc_nbr and a.doc_typ_id = c.doc_typ_id)
         where exists
         (select * from cynergy.krew_doc_hdr_t a, cynergy.krew_doc_typ_t c where a.doc_hdr_id = b.fdoc_nbr and a.doc_typ_id = c.doc_typ_id)
         / 
