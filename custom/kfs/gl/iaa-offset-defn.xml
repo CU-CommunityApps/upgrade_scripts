@@ -16,5 +16,14 @@
     			<column name="FIN_BALANCE_TYP_CD" value="AC" />
     			<column name="FIN_OBJECT_CD" value="1000" />
       </insert>
+      <insert tableName="GL_OFFSET_DEFN_T">
+          <column name="UNIV_FISCAL_YR" value="2015" />
+                <column name="OBJ_ID" valueNumeric="SYS_GUID() " />
+                <column name="VER_NBR" valueNumeric="1" />
+                <column name="FIN_COA_CD" value="IT" />
+                <column name="FDOC_TYP_CD" value="IAA" />
+                <column name="FIN_BALANCE_TYP_CD" value="AC" />
+                <column name="FIN_OBJECT_CD" value="1000" />
+      </insert>
 	</changeSet>
 </databaseChangeLog>
