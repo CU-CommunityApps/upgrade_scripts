@@ -1,0 +1,14 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="srb55" id="KFSUPGRADE-987" failOnError="false">
+        <comment>Update script to remove Exempt from Item Type maintenance table</comment>
+        <delete tableName="PUR_AP_ITM_TYP_T">
+            <where>ITM_TYP_CD = 'EXMT'</where>
+        </delete>
+    </changeSet>
+</databaseChangeLog>
