@@ -6,7 +6,7 @@
 	<changeSet author="KFSTEM" id="KFSMI-8898">
 		<dropUniqueConstraint tableName="FP_DV_WIRE_TRNFR_T" constraintName="FP_DV_WIRE_TRNFR_TC0"/>
 		<renameTable oldTableName="FP_DV_WIRE_TRNFR_T" newTableName="FS_PMT_SRC_WIRE_TRNFR_T"/>
-		<renameColumn tableName="FS_PMT_SRC_WIRE_TRNFR_T" oldColumnName="DV_BNK_NM" newColumnName="BNK_NM" columnDataType="VARCHAR2(40)"/>
+		<renameColumn tableName="FS_PMT_SRC_WIRE_TRNFR_T" oldColumnName="DV_BNK_NM" newColumnName="BNK_NM" columnDataType="VARCHAR2(55)"/>
 		<renameColumn tableName="FS_PMT_SRC_WIRE_TRNFR_T" oldColumnName="DV_BNK_RTNG_NBR" newColumnName="BNK_RTNG_NBR" columnDataType="VARCHAR2(9)"/>
 		<renameColumn tableName="FS_PMT_SRC_WIRE_TRNFR_T" oldColumnName="DV_BNK_CTY_NM" newColumnName="BNK_CTY_NM" columnDataType="VARCHAR2(37)"/>
 		<renameColumn tableName="FS_PMT_SRC_WIRE_TRNFR_T" oldColumnName="DV_BNK_ST_CD" newColumnName="BNK_ST_CD" columnDataType="VARCHAR2(2)"/>
