@@ -26,5 +26,41 @@ update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.k
         ]]>
     </sql>
 
+    </changeSet>
+     	
+    <changeSet author="srb55" id="KFSUPGRADE-1033" failOnError="false">
+
+    <comment>update the route node id on KREW_RTE_NODE_INSTN_T for enroute PREQs</comment>
+
+    <sql stripComments="true" endDelimiter="/">
+        <![CDATA[
+          UPDATE CYNERGY.KREW_RTE_NODE_INSTN_T t
+          SET t.RTE_NODE_ID =
+            (SELECT RTE_NODE_ID
+            FROM CYNERGY.KREW_RTE_NODE_T
+            WHERE DOC_TYP_ID =
+              (SELECT doc_typ_id
+              FROM cynergy.krew_doc_typ_t
+              WHERE doc_typ_nm = 'PREQ'
+              AND cur_ind      =1
+              )
+            AND nm =
+              (SELECT nm FROM CYNERGY.KREW_RTE_NODE_T WHERE rte_node_id = t.rte_node_id
+              )
+            )
+          WHERE t.DOC_HDR_ID IN
+            (SELECT doc_hdr_id
+            FROM cynergy.krew_doc_hdr_t
+            WHERE cynergy.krew_doc_hdr_t.doc_typ_id =
+              (SELECT doc_typ_id
+              FROM cynergy.krew_doc_typ_t
+              WHERE doc_typ_nm = 'PREQ'
+              AND cur_ind      = 1
+              )
+            AND (doc_hdr_stat_cd = 'R'
+            OR doc_hdr_stat_cd   = 'S')
+            )/
+          ]]>
+        </sql>
     </changeSet> 	
 </databaseChangeLog>
