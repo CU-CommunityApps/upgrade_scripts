@@ -269,6 +269,15 @@
         </update>
     </changeSet>
 
+    <changeSet author="srb55" id="KFSUPGRADE-1040" failOnError="false">
+        <comment>Update to OBJECT_TYPES</comment>
+
+        <update tableName="krcr_parm_t">
+            <column name="val" value="EX;IN" />
+            <where>parm_nm = 'OBJECT_TYPES' and nmspc_cd ='KFS-FP'</where>
+        </update>
+    </changeSet>
+
     <changeSet author="srb55" id="KFSUPGRADE-950" failOnError="false">
         <comment>reqs to vendors with expired contracts should not route to procurement, new parm</comment>
         <sql stripComments="true" endDelimiter="/">
