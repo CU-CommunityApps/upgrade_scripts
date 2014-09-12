@@ -1,0 +1,37 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+		<changeSet author="srb55" id="KFSUPGRADE-1038" failOnError="false">
+			<comment>UpProd - Remove columns in T tables that are being moved to TX tables</comment>
+		
+			<dropColumn tableName="AP_PMT_RQST_ITM_T" columnName="INV_ITM_LN_NBR" />
+				
+			<dropColumn tableName="PUR_VNDR_HDR_T" columnName="VNDR_W9_RCVD_DATE" />
+				
+			<dropColumn tableName="PUR_VNDR_ADDR_T" columnName="PO_TRNS_MTHD_CD" />	
+			
+			<dropColumn tableName="PUR_VNDR_SUPP_DVRST_T" columnName="VNDR_SUPP_DVRST_EXPIR_DATE" />
+				
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="MERCHANT_NOTES" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="INS_REQ_IND" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="INS_REQ_COMPLETE_IND" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="CU_ADDITIONAL_INSURED_IND" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="GEN_LIAB_COVERAGE_AMNT" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="GEN_LIAB_EXPR_DATE" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="AUTO_LIAB_COVERAGE_AMNT" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="AUTO_LIAB_EXPR_DATE" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="WRKMANS_COMP_COVERAGE_AMNT" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="WRKMANS_COMP_EXPR_DT" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="EXCESS_LIAB_UMB_AMNT" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="EXCESS_LIAB_UMB_EXPR_DATE" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="HEALTH_OFF_SITE_LICENSE_REQ" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="HEALTH_LICENSE_EXPR_DATE" />	
+			<dropColumn tableName="PUR_VNDR_DTL_T" columnName="INSURANCE_NOTES" />	
+			
+		</changeSet>
+			
+</databaseChangeLog>
