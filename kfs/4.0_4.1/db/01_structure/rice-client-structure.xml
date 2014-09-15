@@ -29,9 +29,11 @@
   	</preConditions>
   	-->
 	<comment>Restore Sequences needed if running with a separate standalone Rice server.</comment>
+	<!--
 	<createSequence sequenceName="KRSB_BAM_PARM_S" startValue="30000" />
 	<createSequence sequenceName="KRSB_BAM_S" startValue="30000" />
 	<createSequence sequenceName="KRSB_MSG_QUE_S" startValue="30000" />
+	-->
   </changeSet>
 
   <changeSet author="kfs" id="KFS_401_RESTORE_MISSING_RICE_SEQUENCES_mysql" failOnError="false" dbms="mysql">
