@@ -31,11 +31,11 @@
 		</update>
 		<update tableName="krim_perm_attr_data_t">
 			<column name="attr_val" value="PaymentSourceWireTransfer"/>
-			<where>perm_id = 381 and kim_attr_defn_id = 5</where>
+			<where>perm_id = '381' and kim_attr_defn_id = '5'</where>
 		</update>
 		<update tableName="krim_perm_attr_data_t">
 			<column name="attr_val" value="payeeAccountNumber"/>
-			<where>perm_id = 381 and kim_attr_defn_id = 6</where>
+			<where>perm_id = '381' and kim_attr_defn_id = '6'</where>
 		</update>
 		<update tableName="krim_perm_t">
 			<column name="nmspc_cd" value="KFS-SYS"/>
