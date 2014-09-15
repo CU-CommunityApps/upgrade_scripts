@@ -63,7 +63,7 @@ while (rowset.next()) do
   doc_id = rowset.getString(1)
   docIds.push(doc_id)
 end
-
+stmt.close()
 
 docId = ""
 
@@ -80,7 +80,12 @@ while (rowset.next()) do
   doc_cntnt = rowset.getString(1)
   decrypted_doc_contnt = decrypt(doc_cntnt)
 end
+stmt.close()
 
+
+if decrypted_doc_contnt.nil?
+ next
+end
 
 
 decrypted_doc_contnt.gsub!("org.kuali.kfs.vnd.document.VendorMaintainableImpl", "edu.cornell.kfs.vnd.document.CuVendorMaintainableImpl")
@@ -530,6 +535,6 @@ pstmt.setStringForClob(1,encrypted_doc_contnt)
 pstmt.executeUpdate()
 
 conn.commit
-
+pstmt.close()
 
 end
