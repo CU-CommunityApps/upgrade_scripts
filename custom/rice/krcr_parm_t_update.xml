@@ -269,12 +269,12 @@
         </update>
     </changeSet>
 
-    <changeSet author="srb55" id="KFSUPGRADE-1040" failOnError="false">
+    <changeSet author="srb55" id="KFSUPGRADE-1040:KFSUPGRADE-1041" failOnError="false">
         <comment>Update to OBJECT_TYPES</comment>
 
         <update tableName="krcr_parm_t">
             <column name="val" value="EX;IN" />
-            <where>parm_nm = 'OBJECT_TYPES' and nmspc_cd ='KFS-FP'</where>
+            <where>parm_nm = 'OBJECT_TYPES' and nmspc_cd ='KFS-FP' and CMPNT_CD = 'PreEncumbrance'</where>
         </update>
     </changeSet>
 
