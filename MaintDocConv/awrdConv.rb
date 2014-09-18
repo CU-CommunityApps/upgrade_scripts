@@ -57,8 +57,7 @@ conn2.auto_commit = false
 
 docIds = Array.new
 
-stmt = conn2.prepare_statement("select DOC_HDR_ID from KREW_DOC_HDR_T where DOC_TYP_ID = '101261' and DOC_HDR_STAT_CD != 'I' and DOC_HDR_STAT_CD != 'E'");
-#stmt = conn2.prepare_statement("select DOC_HDR_ID from KREW_DOC_HDR_T where DOC_HDR_ID = '5906627'");
+stmt = conn2.prepare_statement("select DOC_HDR_ID from KREW_DOC_HDR_T where (DOC_TYP_ID = '464078' or DOC_TYP_ID = '117026') and DOC_HDR_STAT_CD != 'I' and DOC_HDR_STAT_CD != 'E'");
 
 rowset = stmt.executeQuery()
 while (rowset.next()) do
@@ -87,9 +86,23 @@ docIds.each do |docid|
    next
   end
   
-  decrypted_doc_contnt.gsub!("org.kuali.kfs.coa.businessobject.AccountGlobal", "edu.cornell.kfs.coa.businessobject.CuAccountGlobal")
-  decrypted_doc_contnt.gsub!("edu.cornell.kfs.coa.businessobject.CuAccountGlobalDetail", "org.kuali.kfs.coa.businessobject.AccountGlobalDetail")  
-
+  decrypted_doc_contnt.gsub!("org.kuali.kfs.module.cg.businessobject.Award", "edu.cornell.kfs.module.cg.businessobject.CuAward")
+  decrypted_doc_contnt.gsub!("edu.cornell.kfs.module.cg.businessobject.CuAwardProjectDirector", "org.kuali.kfs.module.cg.businessobject.AwardProjectDirector")
+  decrypted_doc_contnt.gsub!("edu.cornell.kfs.module.cg.businessobject.CuAwardAccount", "org.kuali.kfs.module.cg.businessobject.AwardAccount")
+  decrypted_doc_contnt.gsub!("edu.cornell.kfs.module.cg.businessobject.CuAwardOrganization", "org.kuali.kfs.module.cg.businessobject.AwardOrganization")
+  
+  
+  doc = REXML::Document.new decrypted_doc_contnt
+  
+  XPath.each( doc, "//org.kuali.kfs.module.cg.businessobject.AwardAccount/account") { |element|
+    element.delete_element element.elements["indirectCostRcvyFinCoaCode"]
+    element.delete_element element.elements["indirectCostRecoveryAcctNbr"]
+  }
+  
+  docString = ""
+  doc.write(docString)
+  decrypted_doc_contnt = docString
+  
   encrypted_doc_contnt = encrypt(decrypted_doc_contnt)
    
   sql = "UPDATE KRNS_MAINT_DOC_T SET DOC_CNTNT = ? where doc_hdr_id = '#{sdocid}'"
