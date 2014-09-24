@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData"><styles xmlns="ns:workflow/Style" xsi:schemaLocation="ns:workflow/Style resource:Style"><style name="GSCRequestRoutingDocument.custom.email.style"><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    	<xsl:strip-space elements="*" />
+
+    	<!-- "Muenchian" method of grouping: http://www.jenitennison.com/xslt/grouping/muenchian.html -->
+    	<!-- this is a map of document type names to nodesets -->
+    	<xsl:key match="actionItem/documentType" name="doctypes-by-name" use="name" />
+
+    	<xsl:template match="immediateReminder">
+        <xsl:variable name="docTitle" select="actionItem/doc/docTitle" />
+        <xsl:variable name="studentName" select="substring-after($docTitle,'Committee Request for ')" />
+        <xsl:variable name="dashboard">
+        	<xsl:choose>
+          	<xsl:when test="@env = 'prod'">https://cynergy.cornell.edu/inbox.jsp</xsl:when>
+          	<xsl:otherwise>
+							<xsl:value-of select="concat('https://cynergy-',@env,'.kuali.cornell.edu/inbox.jsp')" />
+						</xsl:otherwise>
+        	</xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="docHandlerUrl" select="actionItem/actionItem/docHandlerURL" />
+        <xsl:variable name="actionRequested">
+        	<xsl:choose>
+          	<xsl:when test="actionItem/actionItem/actionRequestCd = 'A'">: Approval Needed</xsl:when>
+          	<xsl:when test="actionItem/actionItem/actionRequestCd = 'K'"> has been Denied : Acknowledgment Needed</xsl:when>
+          	<xsl:when test="actionItem/actionItem/actionRequestCd = 'F'">: FYI</xsl:when>
+        	</xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="emailBody">
+        	<xsl:choose>
+          	<xsl:when test="actionItem/actionItem/actionRequestCd = 'A'">
+							<xsl:value-of select="$studentName" /> has initiated a graduate special committee change that requires your approval.  Please click on the link below to approve or deny the request within seven days.
+						</xsl:when>
+          	<xsl:when test="actionItem/actionItem/actionRequestCd = 'K'">The special committee change request for <xsl:value-of select="$studentName" /> has been denied by one of the required approvers.  The proposed changes will not be saved.
+						</xsl:when>
+          	<xsl:when test="actionItem/actionItem/actionRequestCd = 'F'">: FYI</xsl:when>
+        	</xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="paramSeparator">
+          <xsl:choose>
+            <xsl:when test="contains($docHandlerUrl, '?')">&amp;</xsl:when>
+            <xsl:otherwise>?</xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+
+       	<email xmlns="">
+          <subject>Committee Change Request for <xsl:value-of select="$studentName" /> <xsl:value-of select="$actionRequested" />
+</subject>
+          <body>
+
+<xsl:value-of select="$emailBody" />
+
+<xsl:choose>
+	<xsl:when test="actionItem/actionItem/actionRequestCd = 'K'">
+Please complete the following steps:
+
+	1. You may see who denied the request by going to your Cynergy Inbox <xsl:value-of select="$dashboard" /> and clicking on the log for this id <xsl:value-of select="actionItem/actionItem/documentId" />.
+
+	2. Go to <xsl:value-of select="$docHandlerUrl" />
+<xsl:value-of select="$paramSeparator" />docId=<xsl:value-of select="actionItem/actionItem/documentId" /> and acknowledge that you have received this denial.
+
+	3. If you are the student you will then be able to submit a new committee request at http://studentcenter.cornell.edu.
+
+If you have questions please contact your Graduate Field Assistant(GFA)
+	</xsl:when>
+  <xsl:otherwise>
+To respond to this item: 
+
+Go to <xsl:value-of select="$docHandlerUrl" />
+<xsl:value-of select="$paramSeparator" />docId=<xsl:value-of select="actionItem/actionItem/documentId" />
+	</xsl:otherwise>
+</xsl:choose>
+
+For additional help, please visit: http://www.gradschool.cornell.edu/onlinecommitteeselection/
+
+<xsl:if test="@env != 'prod'">
+************************************************************
+This is from the <xsl:value-of select="@env" /> environment.
+************************************************************
+</xsl:if>
+          </body>
+        </email>
+    	</xsl:template>
+
+    	<xsl:template match="dailyReminder">
+        <email xmlns="">
+          <subject>Cynergy Reminder</subject>
+          <body>
+					Your Cynergy Inbox has <xsl:value-of select="count(actionItem)" /> items that need your attention: 
+<!-- "Muenchian" method of grouping: http://www.jenitennison.com/xslt/grouping/muenchian.html
+     this clever little expression ensures that we only match the FIRST node
+     for which there is a name-to-nodeset mapping.  More specifically, we want
+     to ensure that we only match ONCE, but the FIRST node is the best node
+     to match ONCE (or at least it's as good as any other; depends on whether
+     we want to preserve relative ordering, etc.) -->
+					<xsl:for-each select="actionItem/documentType[count(. | key('doctypes-by-name', name)[1]) = 1]">
+    <!-- the xsl:sort modifies the for-each selection order (I think) -->
+    <!-- <xsl:sort select="name" /> -->
+    <!-- sort by count -->
+    <!-- the order of identical values will be arbitrary in the Java map-based implementation;
+         switching this to desceding here because 1) it seems more useful for a user and
+         2) I want the unit test to pass, and given that it only uses two doc types, reversing
+         the order will make it match the literal output of the Java version ;) -->
+    				<xsl:sort data-type="number" order="descending" select="count(key('doctypes-by-name', name))" />
+						<xsl:text>	</xsl:text>
+<xsl:value-of select="count(key('doctypes-by-name', name))" />
+<xsl:text>	</xsl:text>
+<xsl:value-of select="name" />
+<xsl:text>
+</xsl:text>
+					</xsl:for-each>
+
+To respond to each of these items: 
+	Go to <xsl:value-of select="@actionListUrl" />, and then click on its numeric Id in the first column of the List.
+
+To change how these email notifications are sent (immediately, weekly or none): 
+	Go to <xsl:value-of select="@preferencesUrl" />
+
+For additional help, please visit: https://cynergy.cornell.edu/help.jsp
+
+
+					</body>
+       	</email>
+    	</xsl:template>
+    
+    	<xsl:template match="weeklyReminder">
+        <email xmlns="">
+          <subject>Cynergy Reminder</subject>
+          <body>
+					Your Cynergy Inbox has <xsl:value-of select="count(actionItem)" /> items that need your attention: 
+<!-- "Muenchian" method of grouping: http://www.jenitennison.com/xslt/grouping/muenchian.html
+     this clever little expression ensures that we only match the FIRST node
+     for which there is a name-to-nodeset mapping.  More specifically, we want
+     to ensure that we only match ONCE, but the FIRST node is the best node
+     to match ONCE (or at least it's as good as any other; depends on whether
+     we want to preserve relative ordering, etc.) -->
+					<xsl:for-each select="actionItem/documentType[count(. | key('doctypes-by-name', name)[1]) = 1]">
+    <!-- the xsl:sort modifies the for-each selection order (I think) -->
+    <!-- <xsl:sort select="name" /> -->
+    <!-- sort by count -->
+    <!-- the order of identical values will be arbitrary in the Java map-based implementation;
+         switching this to desceding here because 1) it seems more useful for a user and
+         2) I want the unit test to pass, and given that it only uses two doc types, reversing
+         the order will make it match the literal output of the Java version ;) -->
+    				<xsl:sort data-type="number" order="descending" select="count(key('doctypes-by-name', name))" />
+						<xsl:text>	</xsl:text>
+<xsl:value-of select="count(key('doctypes-by-name', name))" />
+<xsl:text>	</xsl:text>
+<xsl:value-of select="name" />
+<xsl:text>
+</xsl:text>
+					</xsl:for-each>
+
+To respond to each of these items: 
+	Go to <xsl:value-of select="@actionListUrl" />, and then click on its numeric Id in the first column of the List.
+
+To change how these email notifications are sent (immediately, daily or none): 
+	Go to <xsl:value-of select="@preferencesUrl" />
+
+For additional help, please visit: https://cynergy.cornell.edu/help.jsp
+
+
+					</body>
+       	</email>
+    	</xsl:template>
+
+    	<xsl:template match="feedback">
+        <email xmlns="">
+           <subject>Feedback from <xsl:value-of select="networkId" />
+            	<xsl:variable name="documentId" select="documentId" />
+            	<xsl:choose>
+              	<xsl:when test="string($documentId)"> for document <xsl:value-of select="$documentId" />
+</xsl:when>
+            	</xsl:choose>
+           </subject>
+           <body>
+Network ID: <xsl:value-of select="networkId" />
+Name: <xsl:value-of select="userName" />
+Email: <xsl:value-of select="userEmail" />
+Phone: <xsl:value-of select="phone" />
+Time: <xsl:value-of select="timeDate" />
+Environment: <xsl:value-of select="@env" />
+
+Document type: <xsl:value-of select="documentType" />
+Document id: <xsl:value-of select="documentId" />
+
+Category: <xsl:value-of select="category" />
+Comments: 
+<xsl:value-of select="comments" />
+
+Exception: 
+<xsl:value-of select="exception" />
+           </body>
+        </email>
+     </xsl:template>
+	</xsl:stylesheet></style></styles></data>
