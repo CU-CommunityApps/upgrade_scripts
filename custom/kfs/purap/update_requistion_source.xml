@@ -1,0 +1,15 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="srb55" id="KFSUPGRADE-1066" failOnError="false">
+        <comment>Change value in Requisition Source maintenance table</comment>
+        <update tableName="PUR_REQS_SRC_T">
+            <column name="ALLOW_COPY_DAYS" value="8" />
+            <where>REQS_SRC_CD = 'B2B'</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>
