@@ -53,4 +53,18 @@
             <column name="ACTV_IND" value="Y" />
         </insert>
     </changeSet>
+	
+	
+    <changeSet author="cab379" id="KFSUPGRADE-1072" failOnError="false">
+        <comment>PremCustomer contact role 18 attached to FTC/BSC role issue is popping up again</comment>
+        <insert tableName="krim_role_perm_t">
+            <column name="role_perm_id" value="KFSUPGRADE-1072" />
+            <column name="perm_id" value="KFSMI6886-PRM2" />
+            <column name="role_id" value="18" />
+            <column name="ver_nbr" value="1" />
+            <column name="OBJ_ID" valueNumeric="sys_guid() " />
+            <column name="ACTV_IND" value="Y" />
+        </insert>
+    </changeSet>
+	
 </databaseChangeLog>
