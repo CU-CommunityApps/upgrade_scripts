@@ -107,7 +107,9 @@ my @cynergyFiles = (
   "IAS_KIMData.xml",
   "kew_email_style_upgrade.xml",
   "gsc_email_style_upgrade.xml",
-  "confagree_email_style_upgrade.xml"
+  "confagree_email_style_upgrade.xml",
+  "GSCRequestRoutingDocument_Prod.xml",
+  "CuVendorChapter4StatusMaintenanceDocument.xml"
    
   ) ;
 

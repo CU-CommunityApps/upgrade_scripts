@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+    <documentType>
+      <name>GSCRequestRoutingDocument</name>
+      <description>Used to route Graduate School Special Committee requests to selected committee, gfa and dgs</description>
+      <label>Graduate School Special Committee Request</label>
+      <postProcessorName>edu.cornell.cynergy.postprocessor.BasicRemotePostProcessor</postProcessorName>
+      <superUserGroupName namespace="PERMIT">gr.gradreps.prod</superUserGroupName>
+      <blanketApproveGroupName namespace="PERMIT">gr.gradreps.prod</blanketApproveGroupName>
+      <defaultExceptionGroupName namespace="PERMIT">gr.gsc.excpt.notify.prod</defaultExceptionGroupName>
+      <docHandler>https://gsc.hosting.cornell.edu/gscWorkflowAction.cfm</docHandler>
+      <notificationFromAddress>GradSchool@cornell.edu</notificationFromAddress>
+      <emailStylesheet>GSCRequestRoutingDocument.custom.email.style</emailStylesheet>
+      <active>true</active>
+      <policies>
+	    <policy>
+  		  <name>ALLOW_SU_POSTPROCESSOR_OVERRIDE</name>
+  		  <value>true</value>
+ 		  <stringValue>https://gsc.hosting.cornell.edu/postprocessor/gscworkflowpostprocessor.cfm</stringValue>
+		</policy>
+        <policy>
+          <name>DISAPPROVE</name>
+          <value>true</value>
+        </policy>
+        <policy>
+          <name>INITIATOR_MUST_ROUTE</name>
+          <value>false</value>
+        </policy>
+        <policy>
+          <name>LOOK_FUTURE</name>
+          <value>true</value>
+        </policy>
+      </policies>
+      <attributes>
+        <attribute>
+          <name>GSCStudentSearchableAttribute</name>
+        </attribute>
+        <attribute>
+          <name>GSCAcadPlanSearchableAttribute</name>
+        </attribute>
+      </attributes>
+      <security active="true">
+        <initiator>true</initiator>
+        <groupName namespace="PERMIT">gr.gradreps.prod</groupName>
+        <routeLogAuthenticated>true</routeLogAuthenticated>
+      </security>
+      <routePaths>
+        <routePath>
+          <start name="Adhoc Routing" nextNode="GFARouteNode"/>
+          <requests name="GFARouteNode" nextNode="CommitteeRouteNode"/>
+          <requests name="CommitteeRouteNode" nextNode="DGSRouteNode"/>
+          <requests name="DGSRouteNode"/>
+        </routePath>
+      </routePaths>
+      <routeNodes>
+        <start name="Adhoc Routing">
+          <activationType>S</activationType>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </start>
+        <requests name="GFARouteNode">
+          <activationType>P</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergyDocumentContentRouteModule</routeModule>
+          <name>routeToUsers</name>
+          <value>//gsc-request/gfa/@netid</value>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="CommitteeRouteNode">
+          <activationType>S</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergyDocumentContentRouteModule</routeModule>
+          <name>routeToUsers</name>
+          <value>//gsc-request/committee/member/@netid</value>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+        <requests name="DGSRouteNode">
+          <activationType>P</activationType>
+          <routeModule>edu.cornell.cynergy.routemodule.CynergyDocumentContentRouteModule</routeModule>
+          <name>routeToUsers</name>
+          <value>//gsc-request/dgs/@netid</value>
+          <mandatoryRoute>false</mandatoryRoute>
+          <finalApproval>false</finalApproval>
+        </requests>
+      </routeNodes>
+    </documentType>
+  </documentTypes>
+  <ruleAttributes xmlns="ns:workflow/RuleAttribute" xsi:schemaLocation="ns:workflow/RuleAttribute resource:RuleAttribute">
+    <ruleAttribute>
+      <name>GSCStudentSearchableAttribute</name>
+      <className>org.kuali.rice.kew.docsearch.xml.StandardGenericXMLSearchableAttribute</className>
+      <label>GSC Student Searchable Attribute</label>
+      <description>Search by the students name.</description>
+      <type>SearchableXmlAttribute</type>
+      <searchingConfig>
+        <fieldDef name="gscStudentNameSearch" title="Student Name">
+          <display>
+            <type>text</type>
+          </display>
+          <validation required="false"/>
+          <fieldEvaluation>
+            <xpathexpression>wf:xstreamsafe('//documentContent/applicationContent/gsc-request/common/@student-fullname')</xpathexpression>
+          </fieldEvaluation>
+        </fieldDef>
+      </searchingConfig>
+    </ruleAttribute>
+    <ruleAttribute>
+      <name>GSCAcadPlanSearchableAttribute</name>
+      <className>org.kuali.rice.kew.docsearch.xml.StandardGenericXMLSearchableAttribute</className>
+      <label>GSC Students Academic Plan Searchable Attribute</label>
+      <description>Search by an academic plan.</description>
+      <type>SearchableXmlAttribute</type>
+      <searchingConfig>
+        <fieldDef name="gscAcadPlanSearch" title="Major Academic Plan">
+          <display>
+            <type>text</type>
+          </display>
+          <validation required="false"/>
+          <fieldEvaluation>
+            <xpathexpression>wf:xstreamsafe('//documentContent/applicationContent/gsc-request/common/@acad-plan-name')</xpathexpression>
+          </fieldEvaluation>
+        </fieldDef>
+      </searchingConfig>
+    </ruleAttribute>
+  </ruleAttributes>
+</data>
