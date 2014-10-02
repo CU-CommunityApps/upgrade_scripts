@@ -23,4 +23,19 @@
   		]]>
    	</sql>
   </changeSet>
+
+  <changeSet author="srb55" id="KFSUPGRADE-1070" failOnError="false">
+        <comment>Role 6 KFS-CAM Processor role update needs to be added to upgrade script</comment>
+
+    <sql stripComments="true" endDelimiter="/">
+        <![CDATA[
+            update CYNERGY.krim_role_mbr_attr_data_t set attr_val = 'Y' where role_mbr_id = '1306' and kim_attr_defn_id = '25'
+            /
+            insert into CYNERGY.krim_role_mbr_attr_data_t values (CYNERGY.KRIM_ATTR_DATA_ID_S.nextval, sys_guid(), '1', '1306', '28', '24', '0001' )
+            /
+            insert into CYNERGY.krim_role_mbr_attr_data_t values (CYNERGY.KRIM_ATTR_DATA_ID_S.nextval, sys_guid(), '1', '1306', '28', '22', 'IT' )
+            /
+        ]]>
+    </sql>
+  </changeSet>
 </databaseChangeLog>
