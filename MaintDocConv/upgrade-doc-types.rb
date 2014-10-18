@@ -28,7 +28,7 @@ class DocTypeUpgrade
 	end
 
 	def readFlatFile(fileName)
-		text = File.open(f).read
+		text = File.open(fileName).read
 		text.each_line do |line|
 			@docTypes.push(line)
 		end
