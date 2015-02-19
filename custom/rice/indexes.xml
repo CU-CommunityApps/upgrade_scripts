@@ -11,6 +11,8 @@
             <![CDATA[
                 CREATE INDEX KRIM_ENTITY_EXT_ID_TI3 ON KRIM_ENTITY_EXT_ID_T (UPPER(EXT_ID), UPPER(EXT_ID_TYP_CD))
                 /
+                CREATE INDEX KRIM_ROLE_MBR_TI4 ON KRIM_ROLE_MBR_T (UPPER(ROLE_MBR_ID))
+                /
             ]]>
         </sql>  
 	</changeSet>
