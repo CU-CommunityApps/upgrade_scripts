@@ -8,8 +8,8 @@ CURRENT_DIR = Dir.pwd
 
 CLASSPATH = "--classpath=#{CURRENT_DIR}/lib/ojdbc6-11.2.0.3.jar"
 
-#DBURL = "--url=jdbc:oracle:thin:@ldap://oidmaster1.cit.cornell.edu:389/#{instance},cn=oraclecontext"
-DBURL = "--url=jdbc:oracle:thin:@//#{instance}.csbkl3q8fphu.us-east-1.rds.amazonaws.com/#{instance}"
+DBURL = "--url=jdbc:oracle:thin:@ldap://oidmaster1.cit.cornell.edu:389/#{instance},cn=oraclecontext"
+#DBURL = "--url=jdbc:oracle:thin:@//#{instance}.csbkl3q8fphu.us-east-1.rds.amazonaws.com/#{instance}"
 
 USER = "--username=#{user}"
 PASS = "--password=#{password}"
