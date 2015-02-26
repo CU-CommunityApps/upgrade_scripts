@@ -55,6 +55,7 @@ kfs_changelogs_with_rice_client = [ 'db/master-structure-script.xml', 'db/master
 ## Folder for 5.3.1 upgrade          
 folders = [
             {:name => "kfs/5.2.2_5.3", :version => 2, :changelogs => kfs_changelogs_with_rice_client }, 
+            {:name => "custom/kfs/fp", :version => 3, :changelogs => ['pcdo_index.xml'] },
           ]
           
 folders.each do |folder|
