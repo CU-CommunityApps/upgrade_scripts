@@ -1,0 +1,67 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="srb55" id="KFSUPGRADE-1084" failOnError="false">
+        <comment>Delete Vendor Type that will not work and has never been used in Production</comment>
+            <sql stripComments="true" endDelimiter="/">
+                <![CDATA[
+								alter table KFS.PUR_VNDR_CHAP_4_STAT_T modify vndr_chap_4_stat_desc varchar2(100)
+								/
+								insert into KFS.PUR_VNDR_CHAP_4_STAT_T columns(VNDR_CHAP_4_STAT_CD, OBJ_ID, ver_nbr, vndr_chap_4_stat_desc, actv_ind) select vndr_chpt4_stat_cd,obj_id, ver_nbr, vndr_chpt4_stat_cd_desc, row_actv_ind from KFS.pur_vndr_chpt4_stat_cd_tc
+								/
+								UPDATE KFS.pur_vndr_hdr_t t1
+								SET t1.VNDR_W9_SIGNED_DT =
+								  (SELECT t2.vndr_w9_rcvd_date
+								  FROM KFS.pur_vndr_hdr_tx t2
+								  WHERE t2.VNDR_HDR_GNRTD_ID = t1.VNDR_HDR_GNRTD_ID
+								  )
+								/
+								UPDATE KFS.pur_vndr_hdr_t t1
+								SET t1.VNDR_CHAP_4_STAT_CD =
+								  (SELECT t2.VNDR_CHPT4_STAT_CD
+								  FROM KFS.pur_vndr_hdr_tx t2
+								  WHERE t2.VNDR_HDR_GNRTD_ID = t1.VNDR_HDR_GNRTD_ID
+								  )
+								/
+								UPDATE KFS.pur_vndr_hdr_t t1
+								SET t1.VNDR_W8_SIGNED_DT=
+								  (SELECT t2.VNDR_W8_BEN_RCVD_DT
+								  FROM KFS.pur_vndr_hdr_tx t2
+								  WHERE t2.VNDR_HDR_GNRTD_ID = t1.VNDR_HDR_GNRTD_ID
+								  )
+								/
+								UPDATE KFS.pur_vndr_hdr_t t1
+								SET t1.VNDR_Foreign_tax_id=
+								  (SELECT t2.VNDR_FRGN_TAX_NBR
+								  FROM KFS.pur_vndr_hdr_tx t2
+								  WHERE t2.VNDR_HDR_GNRTD_ID = t1.VNDR_HDR_GNRTD_ID
+								  )
+								/
+								UPDATE KFS.pur_vndr_hdr_t t1
+								SET t1.VNDR_GIIN=
+								  (SELECT t2.VNDR_GIIN
+								  FROM KFS.pur_vndr_hdr_tx t2
+								  WHERE t2.VNDR_HDR_GNRTD_ID = t1.VNDR_HDR_GNRTD_ID
+								  )
+								/
+								UPDATE KFS.pur_vndr_hdr_t t1
+								SET t1.VNDR_DOB_DT=
+								  (SELECT t2.VNDR_FRGN_RECIPNT_BIRTH_DT
+								  FROM KFS.pur_vndr_hdr_tx t2
+								  WHERE t2.VNDR_HDR_GNRTD_ID = t1.VNDR_HDR_GNRTD_ID
+								  )
+								/
+								drop table KFS.pur_vndr_chpt4_stat_cd_tc
+								/
+								drop table KFS.pur_vndr_hdr_tx
+								/
+								commmit
+								/
+                ]]>
+            </sql> 
+    </changeSet>
+</databaseChangeLog>
