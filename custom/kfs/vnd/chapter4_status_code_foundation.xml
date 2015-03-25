@@ -59,6 +59,10 @@
 								/
 								drop table KFS.pur_vndr_hdr_tx
 								/
+								insert into kfs.PUR_VNDR_W8_TYP_T columns(VNDR_W8_TYP_CD, OBJ_ID, ver_nbr, vndr_w8_typ_desc, ACTV_IND) values ('BN', sys_guid(), 1, 'W-8BEN Individual', 'Y')
+								/
+                insert into kfs.PUR_VNDR_W8_TYP_T columns(VNDR_W8_TYP_CD, OBJ_ID, ver_nbr, vndr_w8_typ_desc, ACTV_IND) values ('EX', sys_guid(), 1, 'W-8EXP', 'Y')
+								/
 								commmit
 								/
                 ]]>
