@@ -147,7 +147,7 @@ if !element.elements["extension"].nil?
 
 	if !element.elements["extension"].elements["vendorForeignRecipientBirthDate"].nil?
 		if !element.elements["extension"].elements["vendorForeignRecipientBirthDate"].text.nil?
-			vendorDOB = Element.new "vendorGIIN"
+			vendorDOB = Element.new "vendorForeignRecipientBirthDate"
 			vendorDOB.text = element.elements["extension"].elements["vendorForeignRecipientBirthDate"].text
 			element.add_element vendorDOB
 		end
