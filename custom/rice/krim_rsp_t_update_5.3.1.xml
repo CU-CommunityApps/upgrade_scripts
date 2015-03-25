@@ -1,0 +1,18 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+     <changeSet author="srb55" id="KDO-809" failOnError="false">
+        <comment>SQL for auto approve feature</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+                update CYNERGY.KRIM_RSP_ATTR_DATA_T set attr_val = 'AutoApprove' where attr_data_id = 'KFS10852'
+                / 
+            ]]>
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

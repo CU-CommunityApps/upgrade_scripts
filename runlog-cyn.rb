@@ -91,7 +91,9 @@ custom_changelogs = ['krim_rsp_t_update.xml',
 #             {:name => "custom/rice/access_security", :version => 3, :changelogs => ['access-security-customizations.xml'] },
 #           ]
           
-folders = [ {:name => "custom/rice", :version => 3, :changelogs => ['vendor_parameters.xml', 'gl_cmpnt.xml'] }, ]
+folders = [ 
+            {:name => "custom/rice", :version => 3, :changelogs => ['vendor_parameters.xml', 'gl_cmpnt.xml', 'krim_rsp_t_update_5.3.1.xml'] }, 
+          ]
           
 folders.each do |folder|
   lb_cmd = folder[:version] == 1 ? LIQUIBASE_1_9_5_CMD : folder[:version] == 2 ? LIQUIBASE_2_0_5_CMD : LIQUIBASE_3_0_2_CMD
