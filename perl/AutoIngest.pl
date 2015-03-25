@@ -31,7 +31,8 @@ my @kfsFiles = (
   # "custom/kfs/workflow/EffortCommittmentTransactionalDocuments.xml",
   # "custom/kfs/workflow/PaymentRequestDocument.xml",
   # "custom/kfs/workflow/VendorCreditMemoDocument.xml"
-  "custom/kfs/workflow/PaymentRequestDocument.xml"
+  "custom/kfs/workflow/PaymentRequestDocument.xml",
+  "custom/kfs/workflow/NewVendorDocTypes.xml"
 	) ;
 
 my @riceFiles = (
