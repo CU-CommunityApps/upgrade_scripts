@@ -1,0 +1,59 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+     <changeSet author="srb55" id="KDO-809" failOnError="false">
+        <comment>SQL for auto approve feature</comment>
+        <sql stripComments="true" endDelimiter="/">
+            <![CDATA[
+            update cynergy.krew_doc_hdr_t set doc_typ_id = (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'PCDO' and cur_ind=1) where cynergy.krew_doc_hdr_t.doc_typ_id in (select doc_typ_id from cynergy.krew_doc_typ_t where doc_typ_nm = 'PCDO' and cur_ind = 0) and (doc_hdr_stat_cd = 'R' or doc_hdr_stat_cd = 'S')
+            /
+            UPDATE CYNERGY.KREW_RTE_NODE_INSTN_T t
+            SET t.RTE_NODE_ID =
+              (SELECT RTE_NODE_ID
+              FROM CYNERGY.KREW_RTE_NODE_T
+              WHERE DOC_TYP_ID =
+                (SELECT doc_typ_id
+                FROM cynergy.krew_doc_typ_t
+                WHERE doc_typ_nm = 'PCDO'
+                AND cur_ind      =1
+                )
+              AND nm =
+                (SELECT nm FROM CYNERGY.KREW_RTE_NODE_T WHERE rte_node_id = t.rte_node_id
+                )
+              )
+            WHERE t.DOC_HDR_ID IN
+              (SELECT doc_hdr_id
+              FROM cynergy.krew_doc_hdr_t
+              WHERE cynergy.krew_doc_hdr_t.doc_typ_id =
+                (SELECT doc_typ_id
+                FROM cynergy.krew_doc_typ_t
+                WHERE doc_typ_nm = 'PCDO'
+                AND cur_ind      = 1
+                )
+              AND (doc_hdr_stat_cd = 'R'
+              OR doc_hdr_stat_cd   = 'S')
+              )
+              /
+              INSERT INTO cynergy.KRIM_RSP_T (ACTV_IND, DESC_TXT, NM, NMSPC_CD, OBJ_ID, RSP_ID, RSP_TMPL_ID, VER_NBR) VALUES ('Y', 'Generate a notification to users on primary approval routing who did not previously approve a PCDO in case it is auto approved', 'Review PCDO AutoApprove', 'KFS-FP', 'KFS-RSP-038', 'KFS10861', '1', 1)
+              /
+              INSERT INTO cynergy.KRIM_RSP_ATTR_DATA_T (ATTR_DATA_ID, ATTR_VAL, KIM_ATTR_DEFN_ID, KIM_TYP_ID, OBJ_ID, RSP_ID, VER_NBR) VALUES ('KFS10862', 'PCDO', '13', '7', 'KFS-RSP-ATTR-DATA-152', 'KFS10861', 1)
+              /
+              INSERT INTO cynergy.KRIM_RSP_ATTR_DATA_T (ATTR_DATA_ID, ATTR_VAL, KIM_ATTR_DEFN_ID, KIM_TYP_ID, OBJ_ID, RSP_ID, VER_NBR) VALUES ('KFS10863', 'AutoApprove', '16', '7', 'KFS-RSP-ATTR-DATA-153', 'KFS10861', 1)
+              /
+              INSERT INTO cynergy.KRIM_RSP_ATTR_DATA_T (ATTR_DATA_ID, ATTR_VAL, KIM_ATTR_DEFN_ID, KIM_TYP_ID, OBJ_ID, RSP_ID, VER_NBR) VALUES ('KFS10864', 'false', '40', '7', 'KFS-RSP-ATTR-DATA-154', 'KFS10861', 1)
+              /
+              INSERT INTO cynergy.KRIM_RSP_ATTR_DATA_T (ATTR_DATA_ID, ATTR_VAL, KIM_ATTR_DEFN_ID, KIM_TYP_ID, OBJ_ID, RSP_ID, VER_NBR) VALUES ('KFS10865', 'false', '41', '7', 'KFS-RSP-ATTR-DATA-155', 'KFS10861', 1)
+              /
+              INSERT INTO cynergy.KRIM_ROLE_RSP_T (ACTV_IND, OBJ_ID, ROLE_ID, ROLE_RSP_ID, RSP_ID, VER_NBR) VALUES ('Y', 'KFS-ROLE-RSP-038', '41', 'KFS10866', 'KFS10861', 1)
+              /
+              INSERT INTO cynergy.KRIM_ROLE_RSP_ACTN_T (ACTN_PLCY_CD, ACTN_TYP_CD, FRC_ACTN, OBJ_ID, PRIORITY_NBR, ROLE_MBR_ID, ROLE_RSP_ACTN_ID, ROLE_RSP_ID, VER_NBR) VALUES ('A', 'F', 'N', 'KFS-RSP-ACTN-038', 1, '*', 'KFS10867', 'KFS10866', 1)
+              /
+            ]]>
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

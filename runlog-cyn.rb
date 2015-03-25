@@ -92,7 +92,10 @@ custom_changelogs = ['krim_rsp_t_update.xml',
 #           ]
           
 folders = [ 
-            {:name => "custom/rice", :version => 3, :changelogs => ['vendor_parameters.xml', 'gl_cmpnt.xml', 'krim_rsp_t_update_5.3.1.xml'] }, 
+            {:name => "custom/rice", :version => 3, :changelogs => ['vendor_parameters.xml', 
+                                                                    'gl_cmpnt.xml', 
+                                                                    'krim_rsp_t_update_5.3.1.xml',
+                                                                    'pcdo.xml'] }, 
           ]
           
 folders.each do |folder|
