@@ -73,7 +73,7 @@
 		</createTable>
 		
 		<createTable tableName="PUR_VNDR_W8_OWNRSHP_T">
-			<column name="ID" type="VARCHAR(2)">
+			<column name="ID" type="NUMBER(10)">
 				<constraints primaryKey="true" primaryKeyName="PUR_VNDR_W8_OWNRSHP_TP1" nullable="false" />
 			</column>
 			<column name="OBJ_ID" type="VARCHAR(36)" >
